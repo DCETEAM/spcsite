@@ -1,0 +1,161 @@
+@extends('admin.layout')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+@section('content')
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">
+            <h4 class="mb-0">Edit Product</h4>
+        </div>
+        <div class="card-body">
+
+            <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="row">
+
+                    {{-- ✅ MAIN CATEGORY --}}
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Main Category</label>
+                        <select name="main_category_ids[]" id="main_category" class="form-control" multiple required>
+                            @foreach($maincategories as $main)
+                                <option value="{{ $main->maincategory_id }}"
+                                    {{ in_array($main->maincategory_id, $selectedMainCategories ?? []) ? 'selected' : '' }}>
+                                    {{ $main->maincategory_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- ✅ SUBCATEGORY — leave EMPTY; will be filled dynamically by JS --}}
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Subcategory</label>
+                        <select name="sub_category_ids[]" id="sub_category" class="form-control" multiple></select>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Title</label>
+                        <input type="text" name="title" class="form-control" value="{{ old('title', $product->title) }}" required>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Subtitle</label>
+                        <input type="text" name="subtitle" class="form-control" value="{{ old('subtitle', $product->subtitle) }}">
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Slug</label>
+                        <input type="text" name="slug" id="slug" class="form-control"
+                               value="{{ old('slug', $product->slug) }}" required>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Image</label><br>
+                        @if($product->image)
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="" width="80" class="mb-2 rounded">
+                        @endif
+                        <input type="file" name="image" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 mb-3">
+                        <label>Description</label>
+                        <textarea name="description" class="form-control" rows="5">{{ old('description', $product->description) }}</textarea>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 mb-3">
+                        <label>Features</label>
+                        <textarea name="features" class="form-control" rows="5">{{ old('features', $product->features) }}</textarea>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-success">Update Product</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const initialMainIds = @json($selectedMainCategories ?? []);
+    const initialSubIds  = @json($selectedSubCategories ?? []);
+
+    const mainEl = document.getElementById('main_category');
+    const subEl  = document.getElementById('sub_category');
+
+    const mainChoices = new Choices('#main_category', {
+        removeItemButton: true,
+        searchPlaceholderValue: 'Search main categories...',
+        placeholder: true,
+    });
+
+    const subChoices = new Choices('#sub_category', {
+        removeItemButton: true,
+        searchPlaceholderValue: 'Search subcategories...',
+        placeholder: true,
+    });
+
+    // Function to load subcategories
+    const loadSubcategories = (mainIds, presetSelected = []) => {
+        if (!mainIds.length) {
+            subChoices.clearStore();
+            subChoices.clearChoices();
+            return;
+        }
+
+        // ✅ Auto-corrects URL for localhost + /spc + live
+        const fetchURL = `{{ url('admin/get-subcategories-multi') }}?ids=${mainIds.join(',')}`;
+
+        fetch(fetchURL)
+            .then(res => res.json())
+            .then(data => {
+
+                // Prevent duplication
+                subChoices.clearStore();
+                subChoices.clearChoices();
+
+                if (Array.isArray(data) && data.length > 0) {
+
+                    const selectedSet = new Set(presetSelected.map(String));
+
+                    subChoices.setChoices(
+                        data.map(sub => ({
+                            value: String(sub.subcategory_id),
+                            label: sub.subcategory_name,
+                            selected: selectedSet.has(String(sub.subcategory_id))
+                        })),
+                        'value',
+                        'label',
+                        true
+                    );
+                }
+            })
+            .catch(err => console.error('Error fetching subcategories:', err));
+    };
+
+    // Initial load
+    if (initialMainIds.length) {
+        loadSubcategories(initialMainIds, initialSubIds);
+    }
+
+    // Reload when main categories change
+    mainEl.addEventListener('change', function () {
+        const selectedMainIds = Array.from(this.selectedOptions).map(o => o.value);
+        const currentSubIds = Array.from(subEl.selectedOptions).map(o => o.value);
+        loadSubcategories(selectedMainIds, currentSubIds);
+    });
+
+    // Slug auto-format
+    document.getElementById('slug').addEventListener('input', function () {
+        this.value = this.value
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+    });
+
+});
+</script>
+
+@endsection
