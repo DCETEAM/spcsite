@@ -1,19 +1,22 @@
  <!DOCTYPE html>
- <html lang="en">
+<html lang="en">
 
- <head>
-     <meta charset="UTF-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <title>{{ \Illuminate\Support\Str::title($product->title) }} | Senthil Plastic Containers Private Limited</title>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ \Illuminate\Support\Str::title(str_replace('-', ' ', $product->slug)) }} | Senthil Plastic Containers Private Limited</title>
 
-     <meta name="description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <meta name="description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
 
-     <link rel="canonical" href="{{ request()->url() }}">
+    <link rel="canonical" href="{{ request()->url() }}">
 
-     <meta property="og:title" content="{{ $product->title }}">
-     <meta property="og:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
-     <meta property="og:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/no-image.png') }}">
-     <meta property="og:type" content="product">
+    <meta property="og:title" content="{{ $product->title }}">
+    <meta property="og:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <meta property="og:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/no-image.png') }}">
+    <meta property="og:type" content="product">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-HJ..." crossorigin="anonymous" referrerpolicy="no-referrer" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-HJ..." crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -81,21 +84,22 @@
                                      href="{{ route('products.index', ['category' => optional($product->category)->slug ?? optional($product->category)->id, 'subcategory' => optional($product->subcategory)->slug ?? optional($product->subcategory)->id]) }}">
                                      {{ optional($product->subcategory)->name ?? $product->subcategory_name }}
                                  </a>
-                             @else
-                                 {{ optional($product->subcategory)->name ?? $product->subcategory_name }}
-                             @endif
-                         </li>
-                     @endif
 
-                     <li class="breadcrumb-item active" aria-current="page">{{ $product->title }}</li>
-                 </ol>
-             </nav>
-         </div>
-     </section>
+                              @else
+                                  {{ optional($product->subcategory)->name ?? $product->subcategory_name }}
+                              @endif
+                          </li>
+                      @endif
 
-     <section class="product-details py-5">
-         <div class="container">
-             <div class="product-wrapper d-flex flex-wrap align-items-start gap-5">
+                      <li class="breadcrumb-item active" aria-current="page">{{ \Illuminate\Support\Str::title(str_replace('-', ' ', $product->slug)) }}</li>
+                  </ol>
+              </nav>
+          </div>
+      </section>
+
+    <section class="product-details py-5">
+        <div class="container">
+            <div class="product-wrapper d-flex flex-wrap align-items-start gap-5">
 
                  <!-- Product Image -->
                  <div class="product-gallery flex-shrink-0">
