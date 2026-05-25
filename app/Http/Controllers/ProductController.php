@@ -128,9 +128,13 @@ public function index()
 
     return view('products.index', compact('category','categories','subcategories','products'));
 }
-public function showCategory($slug)
+public function showCategory($idOrSlug)
 {
-    $category = MainCategory::where('slug', $slug)->firstOrFail();
+    // Try to find by slug first, then by ID
+    $category = MainCategory::where('slug', $idOrSlug)
+                            ->orWhere('maincategory_id', $idOrSlug)
+                            ->firstOrFail();
+
     $categories = MainCategory::all();
 
     // Get subcategories ordered by POSITION ASC (smallest = first)

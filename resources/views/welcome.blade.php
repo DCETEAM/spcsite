@@ -2239,7 +2239,7 @@
             <div class="categories-grid">
 
                 @foreach ($categories as $cat)
-                    <a href="{{ route('products.category', $cat->maincategory_id) }}" class="category-link">
+                    <a href="{{ route('products.category', $cat->slug) }}" class="category-link">
 
                         <div class="category-card"
                             data-bg="{{ $cat->maincategory_image ? asset('storage/' . $cat->maincategory_image) : asset('assets/img/default.jpg') }}">
