@@ -19,6 +19,9 @@
                     <th>Main Categories</th>
                     <th>Subcategories</th>
                     <th>Title</th>
+                    <th>Code</th>
+                    <th>Weight</th>
+                    <th>Volume</th>
                     <th>Image</th>
                     <th>Slug</th>
                     <th>Actions</th>
@@ -44,6 +47,9 @@
                         <td>{{ implode(', ', $mainNames) ?: '-' }}</td>
                         <td>{{ implode(', ', $subNames) ?: '-' }}</td>
                         <td>{{ $product->title }}</td>
+                        <td>{{ $product->code ?? '-' }}</td>
+                        <td>{{ $product->product_weight ?? '-' }}</td>
+                        <td>{{ $product->brimful_volume ?? '-' }}</td>
                         <td>
                             @if ($product->image)
                                 <img src="{{ asset('storage/' . $product->image) }}" width="60" alt="">

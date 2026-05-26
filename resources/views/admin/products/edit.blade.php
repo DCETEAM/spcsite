@@ -50,6 +50,21 @@
                                value="{{ old('slug', $product->slug) }}" required>
                     </div>
 
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Code</label>
+                        <input type="text" name="code" class="form-control" value="{{ old('code', $product->code) }}" placeholder="e.g. P001">
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Product Weight</label>
+                        <input type="text" name="product_weight" class="form-control" value="{{ old('product_weight', $product->product_weight) }}" placeholder="e.g. 500 gm">
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-3">
+                        <label>Brimful Volume</label>
+                        <input type="text" name="brimful_volume" class="form-control" value="{{ old('brimful_volume', $product->brimful_volume) }}" placeholder="e.g. 750 ml">
+                    </div>
+
                    <div class="col-md-4 col-sm-6 mb-3">
     <label>Image <small class="text-muted">(Max 2MB)</small></label><br>
 

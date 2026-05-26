@@ -34,8 +34,11 @@ class ProductsController extends Controller
             'title'             => 'required|string|max:255',
             'slug'              => 'nullable|string|max:255|unique:products,slug',
             'subtitle'          => 'nullable|string|max:255',
+            'code'              => 'nullable|string|max:255',
             'description'       => 'nullable|string',
             'features'          => 'nullable|string',
+            'product_weight'    => 'nullable|string|max:255',
+            'brimful_volume'    => 'nullable|string|max:255',
             'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'main_category_ids' => 'required|array',
             'sub_category_ids'  => 'required|array',
@@ -55,8 +58,11 @@ class ProductsController extends Controller
         $product->title             = $validated['title'];
         $product->subtitle          = $validated['subtitle'] ?? null;
         $product->slug              = $validated['slug'];
+        $product->code              = $validated['code'] ?? null;
         $product->description       = $validated['description'] ?? null;
         $product->features          = $validated['features'] ?? null;
+        $product->product_weight    = $validated['product_weight'] ?? null;
+        $product->brimful_volume    = $validated['brimful_volume'] ?? null;
         $product->image             = $imagePath;
         $product->main_category_ids = $request->input('main_category_ids', []);
         $product->sub_category_ids  = $request->input('sub_category_ids', []);
@@ -95,8 +101,11 @@ class ProductsController extends Controller
             'title'             => 'required|string|max:255',
             'slug'              => 'nullable|string|max:255|unique:products,slug,' . $id,
             'subtitle'          => 'nullable|string|max:255',
+            'code'              => 'nullable|string|max:255',
             'description'       => 'nullable|string',
             'features'          => 'nullable|string',
+            'product_weight'    => 'nullable|string|max:255',
+            'brimful_volume'    => 'nullable|string|max:255',
             'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'main_category_ids' => 'required|array|min:1',
             'sub_category_ids'  => 'nullable|array',
