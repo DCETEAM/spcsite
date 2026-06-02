@@ -233,14 +233,14 @@ Route::get('/products/{slug}', [ProductController::class, 'show'])->name('produc
 
 
 
-Route::get('/products/category/{id}', [ProductController::class, 'showCategory'])->name('products.category');
+Route::get('/products/category/{idOrSlug}', [ProductController::class, 'showCategory'])->name('products.category');
+Route::get('/category/{idOrSlug}', [ProductController::class, 'showCategory'])->name('products.category.slug');
 
-Route::get('/products/subcategory/{id}', [ProductController::class, 'showSubcategory'])->name('products.subcategory');
+Route::get('/products/subcategory/{subcategory_slug}', [ProductController::class, 'showSubcategory'])->name('products.subcategory');
+Route::get('/subcategory/{subcategory_slug}', [ProductController::class, 'showSubcategory'])->name('products.subcategory.slug');
+
+
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
-
-
-
-
 
 // CLIENT BLOG LIST PAGE
 Route::get('/blogs', function () {
@@ -262,11 +262,6 @@ Route::post('/admin/blog/upload-image', [BlogController::class, 'uploadImage'])
 
 // routes/web.php
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
-// Route::get('/category/{slug}', [ProductController::class, 'viewCategory'])->name('products.index');
-
-Route::get('/category/{slug}', [ProductController::class,'showCategory'])->name('products.category');
-Route::get('/subcategory/{subcategory_slug}', [ProductController::class,'showSubcategory'])
-    ->name('products.subcategory');
 
 
 

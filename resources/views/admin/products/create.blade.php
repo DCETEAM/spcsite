@@ -43,8 +43,23 @@
       </div>
 
       <div class="col-md-4 col-sm-6 mb-3">
-        <label>Slug</label>
-        <input type="text" name="slug" id="slug" class="form-control" placeholder="Enter slug (e.g. 20-litre-bucket)" required>
+        <label>Slug <small class="text-muted">(Auto-generated)</small></label>
+        <input type="text" name="slug" id="slug" class="form-control" readonly>
+      </div>
+
+      <div class="col-md-4 col-sm-6 mb-3">
+        <label>Code</label>
+        <input type="text" name="code" class="form-control" placeholder="e.g. P001">
+      </div>
+
+      <div class="col-md-4 col-sm-6 mb-3">
+        <label>Product Weight</label>
+        <input type="text" name="product_weight" class="form-control" placeholder="e.g. 500 gm">
+      </div>
+
+      <div class="col-md-4 col-sm-6 mb-3">
+        <label>Brimful Volume</label>
+        <input type="text" name="brimful_volume" class="form-control" placeholder="e.g. 750 ml">
       </div>
 
     <div class="col-md-4 col-sm-6 mb-3">
@@ -146,14 +161,51 @@ const MAX_SIZE_MB = 2;
             .catch(err => console.error('Error fetching subcategories:', err));
     });
 
-    // Auto-format slug
-    document.getElementById('slug').addEventListener('input', function () {
-        this.value = this.value
+    // Track main category selection order
+    let selectedMainCategoriesOrder = [];
+    
+    // Auto-generate slug: title + plastic-bucket-used-in + main categories (in selection order)
+    function generateSlug() {
+        const title = document.querySelector('input[name="title"]').value.trim();
+        
+        let slugParts = [];
+        if (title) slugParts.push(title);
+        slugParts.push('plastic bucket used in');
+        
+        // Use selection order instead of DOM order
+        selectedMainCategoriesOrder.forEach(catName => {
+            slugParts.push(catName);
+        });
+        
+        const slug = slugParts.join(' ')
             .toLowerCase()
             .replace(/[^a-z0-9\s-]/g, '')
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-');
+        
+        document.getElementById('slug').value = slug;
+    }
+    
+    // Track selection order and generate slug
+    document.getElementById('main_category').addEventListener('change', function(e) {
+        const selectedOptions = Array.from(this.selectedOptions);
+        const selectedTexts = selectedOptions.map(opt => opt.text.trim());
+        
+        // If adding new category
+        if (e.target.selectedOptions.length > selectedMainCategoriesOrder.length) {
+            // Find the newly added one
+            const newCats = selectedTexts.filter(cat => !selectedMainCategoriesOrder.includes(cat));
+            selectedMainCategoriesOrder.push(...newCats);
+        } else {
+            // Removing - keep only those still selected
+            selectedMainCategoriesOrder = selectedMainCategoriesOrder.filter(cat => selectedTexts.includes(cat));
+        }
+        
+        generateSlug();
     });
+    
+    // Generate slug on title input
+    document.querySelector('input[name="title"]').addEventListener('input', generateSlug);
     
     /* ===============================
        AUTO HIDE SUCCESS MESSAGE

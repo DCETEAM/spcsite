@@ -789,7 +789,7 @@
                     <ul class="footer-links">
                         @foreach ($categories as $cat)
                             <li>
-                                <a href="{{ route('products.category', $cat->maincategory_id) }}">
+                                <a href="{{ route('products.category', $cat->slug) }}">
                                     {{ $cat->maincategory_name }}
                                 </a>
                             </li>

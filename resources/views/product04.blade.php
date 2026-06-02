@@ -64,6 +64,18 @@
                     {{ $product->details['description'] ?? '' }}
                 </p>
 
+                @if($product->code)
+                    <p class="product-code"><strong>Code:</strong> {{ $product->code }}</p>
+                @endif
+                
+                @if($product->product_weight)
+                    <p class="product-weight"><strong>Weight:</strong> {{ $product->product_weight }}</p>
+                @endif
+                
+                @if($product->brimful_volume)
+                    <p class="product-volume"><strong>Brimful Volume:</strong> {{ $product->brimful_volume }}</p>
+                @endif
+
                 <ul class="product-features">
                     @foreach($product->details['features'] ?? [] as $feature)
                         <li>✔ {{ $feature }}</li>
