@@ -44,11 +44,6 @@ class ProductsController extends Controller
             'sub_category_ids'  => 'required|array',
         ]);
 
-        // Auto-generate slug from title if not provided
-        if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['title']);
-        }
-
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('uploads/products', 'public');
@@ -66,6 +61,18 @@ class ProductsController extends Controller
         $product->image             = $imagePath;
         $product->main_category_ids = $request->input('main_category_ids', []);
         $product->sub_category_ids  = $request->input('sub_category_ids', []);
+        
+        // Auto-generate slug: title + plastic-bucket-used-in + main categories
+        if (empty($validated['slug'])) {
+            $mainCategoryIds = $request->input('main_category_ids', []);
+            $mainCategoryNames = MainCategory::whereIn('maincategory_id', $mainCategoryIds)
+                ->pluck('maincategory_name')
+                ->toArray();
+            
+            $slugParts = array_merge([$validated['title']], ['plastic bucket used in'], $mainCategoryNames);
+            $product->slug = Str::slug(implode(' ', $slugParts));
+        }
+        
         $product->save();
 
         return redirect()->route('admin.products.index')
@@ -111,9 +118,15 @@ class ProductsController extends Controller
             'sub_category_ids'  => 'nullable|array',
         ]);
 
-        // Auto-generate slug from title if not provided
+        // Auto-generate slug: title + plastic-bucket-used-in + main categories
         if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['title']);
+            $mainCategoryIds = $request->input('main_category_ids', []);
+            $mainCategoryNames = MainCategory::whereIn('maincategory_id', $mainCategoryIds)
+                ->pluck('maincategory_name')
+                ->toArray();
+            
+            $slugParts = array_merge([$validated['title']], ['plastic bucket used in'], $mainCategoryNames);
+            $validated['slug'] = Str::slug(implode(' ', $slugParts));
         }
 
         if ($request->hasFile('image')) {

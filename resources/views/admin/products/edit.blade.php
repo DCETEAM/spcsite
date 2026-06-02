@@ -45,9 +45,9 @@
                     </div>
 
                     <div class="col-md-4 col-sm-6 mb-3">
-                        <label>Slug</label>
+                        <label>Slug <small class="text-muted">(Auto-generated)</small></label>
                         <input type="text" name="slug" id="slug" class="form-control"
-                               value="{{ old('slug', $product->slug) }}" required>
+                               value="{{ old('slug', $product->slug) }}" readonly>
                     </div>
 
                     <div class="col-md-4 col-sm-6 mb-3">
@@ -188,14 +188,55 @@ document.addEventListener('DOMContentLoaded', function () {
         loadSubcategories(selectedMainIds, currentSubIds);
     });
 
-    // Slug auto-format
-    document.getElementById('slug').addEventListener('input', function () {
-        this.value = this.value
+    // Track main category selection order
+    let selectedMainCategoriesOrder = [];
+    
+    // Initialize with currently selected categories
+    const mainSelect = document.getElementById('main_category');
+    selectedMainCategoriesOrder = Array.from(mainSelect.selectedOptions).map(opt => opt.text.trim());
+    
+    // Auto-generate slug: title + plastic-bucket-used-in + main categories (in selection order)
+    function generateSlug() {
+        const title = document.querySelector('input[name="title"]').value.trim();
+        
+        let slugParts = [];
+        if (title) slugParts.push(title);
+        slugParts.push('plastic bucket used in');
+        
+        // Use selection order instead of DOM order
+        selectedMainCategoriesOrder.forEach(catName => {
+            slugParts.push(catName);
+        });
+        
+        const slug = slugParts.join(' ')
             .toLowerCase()
             .replace(/[^a-z0-9\s-]/g, '')
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-');
+        
+        document.getElementById('slug').value = slug;
+    }
+    
+    // Track selection order and generate slug
+    mainSelect.addEventListener('change', function(e) {
+        const selectedOptions = Array.from(this.selectedOptions);
+        const selectedTexts = selectedOptions.map(opt => opt.text.trim());
+        
+        // If adding new category
+        if (selectedTexts.length > selectedMainCategoriesOrder.length) {
+            // Find the newly added one
+            const newCats = selectedTexts.filter(cat => !selectedMainCategoriesOrder.includes(cat));
+            selectedMainCategoriesOrder.push(...newCats);
+        } else {
+            // Removing - keep only those still selected
+            selectedMainCategoriesOrder = selectedMainCategoriesOrder.filter(cat => selectedTexts.includes(cat));
+        }
+        
+        generateSlug();
     });
+    
+    // Generate slug on title input
+    document.querySelector('input[name="title"]').addEventListener('input', generateSlug);
 
 
     
