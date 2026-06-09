@@ -25,7 +25,7 @@ class WhyChooseUsController extends Controller
         $request->validate([
             'title' => 'nullable|string',
             'description' => 'nullable|string',
-            'certificates.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'certificates.*' => 'image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
         // Get or create the row with id=1

@@ -26,7 +26,7 @@
 
                 <div class="col-md-6 mb-3">
                     <label>
-                        Image <small class="text-muted">(Max 2MB)</small>
+                        Image <small class="text-muted">(Max 4MB)</small>
                     </label>
 
                     <input type="file"
@@ -35,7 +35,7 @@
                            class="form-control">
 
                     <small id="imageError" class="text-danger d-none">
-                        Image size must be less than 2 MB
+                        Image size must be less than 4 MB
                     </small>
 
                     @if($maincategory->maincategory_image)
@@ -64,7 +64,7 @@ document.getElementById('name').addEventListener('input', function () {
 /* ===============================
        IMAGE SIZE VALIDATION (NO ALERT)
     ================================ */
-    const MAX_SIZE_MB = 2;
+    const MAX_SIZE_MB = 4;
     const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 
     const imageInput = document.getElementById('maincategory_image');

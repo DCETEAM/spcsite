@@ -23,7 +23,7 @@ public function store(Request $request)
     $request->validate([
         'maincategory_name' => 'required|string|max:255',
         'slug' => 'nullable|string|max:255|unique:maincategories,slug',
-        'maincategory_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'maincategory_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
     ]);
 
     $path = $request->hasFile('maincategory_image')
@@ -53,7 +53,7 @@ public function store(Request $request)
     $request->validate([
         'maincategory_name' => 'required|string|max:255',
         'slug' => 'required|string|max:255|unique:maincategories,slug,' . $maincategory->maincategory_id . ',maincategory_id',
-        'maincategory_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'maincategory_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
     ]);
 
     $path = $request->hasFile('maincategory_image')

@@ -28,7 +28,7 @@ class AllblogController extends Controller
             'title' => 'required',
             'short_description' => 'required',
             'long_description' => 'required',
-            'image' => 'image'
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096'
         ]);
 
         $imageName = null;
@@ -64,7 +64,8 @@ class AllblogController extends Controller
         $request->validate([
             'title' => 'required',
             'short_description' => 'required',
-            'long_description' => 'required'
+            'long_description' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096'
         ]);
 
         $imageName = $blog->image;

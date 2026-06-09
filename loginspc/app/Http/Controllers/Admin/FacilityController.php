@@ -24,7 +24,7 @@ class FacilityController extends Controller
     $request->validate([
     
         'title' => 'required',
-        'image' => 'nullable|image'
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096'
     ]);
 
       $imagePath = null;
@@ -58,7 +58,7 @@ public function update(Request $request, $id)
 
     $request->validate([
         'title' => 'required',
-        'image' => 'nullable|image'
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096'
     ]);
 
     // Keep old image by default

@@ -25,7 +25,7 @@ class FacilityController extends Controller
     'title' => 'required|string|max:255',
     'description' => 'required|string',
     'features' => 'nullable|string',
-    'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', // 2MB
+    'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096', // 4MB
 ]);
 
 
@@ -62,7 +62,7 @@ public function update(Request $request, $id)
     'title' => 'required|string|max:255',
     'description' => 'required|string',
     'features' => 'nullable|string',
-    'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', // 2MB
+    'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096', // 4MB
 ]);
 
 

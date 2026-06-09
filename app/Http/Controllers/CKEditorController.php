@@ -13,7 +13,7 @@ class CKEditorController extends Controller
     {
         // Basic validation
         $request->validate([
-            'upload' => 'required|image|max:5120' // max 5MB
+            'upload' => 'required|image|max:4096' // max 4MB
         ]);
 
         if ($request->hasFile('upload')) {

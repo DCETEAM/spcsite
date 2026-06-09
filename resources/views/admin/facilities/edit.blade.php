@@ -25,7 +25,7 @@
                     <div class="row">
                     <div class="col-md-6 col-sm-6 mb-3">
                         <label>
-                            Current Image <small class="text-muted">(Max 2MB)</small>
+                            Current Image <small class="text-muted">(Max 4MB)</small>
                         </label><br>
 
                         @if ($facility->image)
@@ -38,7 +38,7 @@
                         <input type="file" name="image" id="facility_image" class="form-control mt-2">
 
                         <small id="imageError" class="text-danger d-none">
-                            Image size must be less than 2 MB
+                            Image size must be less than 4 MB
                         </small>
                     </div>
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ===============================
        IMAGE SIZE VALIDATION (NO ALERT)
     ================================ */
-    const MAX_SIZE_MB = 2;
+    const MAX_SIZE_MB = 4;
     const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 
     const imageInput = document.getElementById('facility_image');

@@ -66,7 +66,7 @@
                     </div>
 
                    <div class="col-md-4 col-sm-6 mb-3">
-    <label>Image <small class="text-muted">(Max 2MB)</small></label><br>
+    <label>Image <small class="text-muted">(Max 4MB)</small></label><br>
 
     @if($product->image)
         <img src="{{ asset('storage/' . $product->image) }}" width="80" class="mb-2 rounded">
@@ -75,7 +75,7 @@
     <input type="file" name="image" id="product_image" class="form-control">
 
     <small id="imageError" class="text-danger d-none">
-        Image size must be less than 2 MB
+        Image size must be less than 4 MB
     </small>
 </div>
 
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const imageInput = document.getElementById('product_image');
     const imageError = document.getElementById('imageError');
 
-    const MAX_SIZE_MB = 2;
+    const MAX_SIZE_MB = 4;
     const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
    
 
