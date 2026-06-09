@@ -2,29 +2,48 @@
      <html lang="en">
 
      <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Senthil Plastic Containers">
+    <meta name="keywords" content="Senthil Plastic Containers, SPC Virudhunagar, plastic containers manufacturer, plastic packaging containers, plastic storage containers, industrial plastic containers, plastic products Tamil Nadu, plastic containers Virudhunagar, plastic container supplier India">
+    <meta name="language" content="English">
+    <meta name="geo.region" content="IN-TN">
+    <meta name="geo.placename" content="Virudhunagar, Tamil Nadu">
+    <meta name="geo.position" content="9.5851;77.9570">
+    <meta name="ICBM" content="9.5851, 77.9570">
 
-         <meta charset="UTF-8" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-         <title>{{ \Illuminate\Support\Str::title($blog->title) }} | Senthil Plastic Containers Private Limited</title>
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-         <link
-             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-             rel="stylesheet" />
-         <meta name="description" content="{{ strip_tags($blog->short_description ?: ($blog->long_description ? \Illuminate\Support\Str::limit($blog->long_description, 160, '') : '')) }}">
+    <title>{{ \Illuminate\Support\Str::title($blog->title) }} | Senthil Plastic Containers Private Limited</title>
+    <meta name="description" content="{{ strip_tags($blog->short_description ?: ($blog->long_description ? \Illuminate\Support\Str::limit($blog->long_description, 160, '') : '')) }}">
 
-         <link rel="canonical" href="{{ request()->url() }}">
+    <link rel="canonical" href="{{ url()->current() }}">
 
-         <meta property="og:title" content="{{ $blog->title }}">
-         <meta property="og:description" content="{{ strip_tags($blog->short_description ?: ($blog->long_description ? \Illuminate\Support\Str::limit($blog->long_description, 160, '') : '')) }}">
-         <meta property="og:image" content="{{ $blog->image ? asset('storage/' . $blog->image) : asset('assets/img/no-image.png') }}">
-         <meta property="og:type" content="article">
-         @if (!empty($blog->publish_date))
-             <meta property="article:published_time" content="{{ \Carbon\Carbon::parse($blog->publish_date)->toIso8601String() }}">
-         @endif
-         @if (!empty($blog->publisher))
-             <meta property="article:author" content="{{ $blog->publisher }}">
-         @endif
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ $blog->title }} | Senthil Plastic Containers">
+    <meta property="og:description" content="{{ strip_tags($blog->short_description ?: ($blog->long_description ? \Illuminate\Support\Str::limit($blog->long_description, 160, '') : '')) }}">
+    <meta property="og:image" content="{{ $blog->image ? asset('storage/' . $blog->image) : asset('assets/img/item2.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $blog->title }} | Senthil Plastic Containers">
+    <meta name="twitter:description" content="{{ strip_tags($blog->short_description ?: ($blog->long_description ? \Illuminate\Support\Str::limit($blog->long_description, 160, '') : '')) }}">
+    <meta name="twitter:image" content="{{ $blog->image ? asset('storage/' . $blog->image) : asset('assets/img/item2.png') }}">
+
+    @if (!empty($blog->publish_date))
+        <meta property="article:published_time" content="{{ \Carbon\Carbon::parse($blog->publish_date)->toIso8601String() }}">
+    @endif
+    @if (!empty($blog->publisher))
+        <meta property="article:author" content="{{ $blog->publisher }}">
+    @endif
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
 
          <style>
              :root {

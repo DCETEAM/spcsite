@@ -2,18 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Senthil Plastic Containers">
+    <meta name="keywords" content="Senthil Plastic Containers, SPC Virudhunagar, plastic containers manufacturer, plastic packaging containers, plastic storage containers, industrial plastic containers, plastic products Tamil Nadu, plastic containers Virudhunagar, plastic container supplier India">
+    <meta name="language" content="English">
+    <meta name="geo.region" content="IN-TN">
+    <meta name="geo.placename" content="Virudhunagar, Tamil Nadu">
+    <meta name="geo.position" content="9.5851;77.9570">
+    <meta name="ICBM" content="9.5851, 77.9570">
+
     <title>{{ \Illuminate\Support\Str::title(str_replace('-', ' ', $product->slug)) }} | Senthil Plastic Containers Private Limited</title>
+    <meta name="description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : 'Senthil Plastic Containers (SPC) is a leading manufacturer of high-quality plastic containers.')) }}">
 
-    <meta name="description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <link rel="canonical" href="{{ url()->current() }}">
 
-    <link rel="canonical" href="{{ request()->url() }}">
-
-    <meta property="og:title" content="{{ $product->title }}">
-    <meta property="og:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
-    <meta property="og:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/no-image.png') }}">
+    <!-- Open Graph -->
     <meta property="og:type" content="product">
+    <meta property="og:title" content="{{ $product->title }} | Senthil Plastic Containers">
+    <meta property="og:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <meta property="og:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/item2.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $product->title }} | Senthil Plastic Containers">
+    <meta name="twitter:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <meta name="twitter:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/item2.png') }}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-HJ..." crossorigin="anonymous" referrerpolicy="no-referrer" />

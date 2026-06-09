@@ -2,8 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="description" content="Browse our wide range of high-quality plastic containers, buckets, and pails. Senthil Plastic Containers (SPC) provides durable packaging for various industrial applications.">
+    <meta name="keywords" content="SPC products, plastic container catalog, industrial pails, plastic buckets Tamil Nadu, bulk plastic containers, packaging solutions">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Senthil Plastic Containers">
+    <meta name="language" content="English">
+    <meta name="geo.region" content="IN-TN">
+    <meta name="geo.placename" content="Virudhunagar, Tamil Nadu">
+    <meta name="geo.position" content="9.5851;77.9570">
+    <meta name="ICBM" content="9.5851, 77.9570">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Our Products | Senthil Plastic Containers (SPC)">
+    <meta property="og:description" content="Explore our collection of premium plastic containers designed for durability and industrial standards. Find the perfect packaging for your business.">
+    <meta property="og:image" content="{{ asset('assets/img/item2.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Senthil Plastic Containers (SPC) | Plastic Container Manufacturer">
+    <meta name="twitter:description" content="High-quality plastic containers and packaging solutions manufactured by Senthil Plastic Containers, Virudhunagar, Tamil Nadu.">
+    <meta name="twitter:image" content="{{ asset('assets/img/item2.png') }}">
+
     @php
         $activeCategory = isset($categories, $activeCategoryId)
             ? $categories->firstWhere('maincategory_id', $activeCategoryId)
@@ -212,7 +236,7 @@
         .hero {
             position: relative;
             width: 100%;
-            height: 70vh;
+            height: 75vh;
             overflow: hidden;
         }
 
