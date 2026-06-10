@@ -2,14 +2,36 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="description" content="Explore the advanced manufacturing facilities of Senthil Plastic Containers (SPC). Our state-of-the-art infrastructure in Virudhunagar ensures precision-moulded, high-quality plastic containers.">
+    <meta name="keywords" content="SPC manufacturing facility, plastic container production, injection moulding Tamil Nadu, industrial infrastructure Virudhunagar, precision plastic moulding">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Senthil Plastic Containers">
+    <meta name="language" content="English">
+    <meta name="geo.region" content="IN-TN">
+    <meta name="geo.placename" content="Virudhunagar, Tamil Nadu">
+    <meta name="geo.position" content="9.5851;77.9570">
+    <meta name="ICBM" content="9.5851, 77.9570">
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Our Facilities & Infrastructure | Senthil Plastic Containers (SPC)">
+    <meta property="og:description" content="Discover the technology and precision behind SPC's high-quality plastic containers. Our facility is equipped with modern machinery for superior packaging solutions.">
+    <meta property="og:image" content="{{ asset('assets/img/item2.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Senthil Plastic Containers (SPC) | Plastic Container Manufacturer">
+    <meta name="twitter:description" content="High-quality plastic containers and packaging solutions manufactured by Senthil Plastic Containers, Virudhunagar, Tamil Nadu.">
+    <meta name="twitter:image" content="{{ asset('assets/img/item2.png') }}">
+
     @php
         $pageFacility = \App\Models\Facility::orderBy('id')->first();
     @endphp
     <title>{{ $pageFacility?->title ? (\Illuminate\Support\Str::title($pageFacility->title) . ' | Senthil Plastic Containers Private Limited') : 'Facility | Senthil Plastic Containers Private Limited' }}</title>
-    <meta name="description" content="{{ $pageFacility?->description ? strip_tags(\Illuminate\Support\Str::limit($pageFacility->description, 160, '')) : '' }}">
     <link rel="canonical" href="{{ request()->url() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -38,7 +38,7 @@ class SubcategoryController extends Controller
             'subcategory_name' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:subcategorie,slug',
             'position' => 'required|integer|min:1',
-            'subcategory_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'subcategory_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
         $mainCategoryId = $request->maincategory_id;
@@ -104,7 +104,7 @@ class SubcategoryController extends Controller
         'subcategory_name' => 'required|string|max:255',
         'slug' => 'required|string|max:255|unique:subcategorie,slug,' . $subcategory->subcategory_id . ',subcategory_id',
         'position' => 'required|integer|min:1',
-        'subcategory_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'subcategory_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
     ]);
 
     $oldMain = $subcategory->maincategory_id;

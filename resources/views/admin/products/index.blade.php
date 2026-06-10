@@ -74,8 +74,7 @@
         </table>
     </div>
 </div>
-@endsection
-<script>
+@endsection<script>
     
     /* ===============================
        AUTO HIDE SUCCESS MESSAGE

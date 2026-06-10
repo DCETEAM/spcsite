@@ -2,23 +2,41 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="description" content="Stay updated with the latest news, industry trends, and manufacturing insights from Senthil Plastic Containers (SPC). Your source for plastic packaging expertise.">
+    <meta name="keywords" content="SPC blog, plastic manufacturing news, packaging industry trends, Senthil Plastic updates, industrial container insights">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Senthil Plastic Containers">
+    <meta name="language" content="English">
+    <meta name="geo.region" content="IN-TN">
+    <meta name="geo.placename" content="Virudhunagar, Tamil Nadu">
+    <meta name="geo.position" content="9.5851;77.9570">
+    <meta name="ICBM" content="9.5851, 77.9570">
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Senthil Plastic Containers (SPC) | Plastic Container Manufacturer in Virudhunagar">
+    <meta property="og:description" content="Leading manufacturer and supplier of quality plastic containers and packaging solutions from Virudhunagar, Tamil Nadu.">
+    <meta property="og:image" content="{{ asset('assets/img/item2.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Senthil Plastic Containers (SPC) | Plastic Container Manufacturer">
+    <meta name="twitter:description" content="High-quality plastic containers and packaging solutions manufactured by Senthil Plastic Containers, Virudhunagar, Tamil Nadu.">
+    <meta name="twitter:image" content="{{ asset('assets/img/item2.png') }}">
+
     <title>Blog | Senthil Plastic Containers Private Limited</title>
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
-    <meta name="description" content="Read the latest updates, guides, and news from Senthil Plastic Containers Private Limited.">
-
-    <link rel="canonical" href="{{ request()->url() }}">
-
-    <meta property="og:title" content="Blog | Senthil Plastic Containers Private Limited">
-    <meta property="og:description" content="Read the latest updates, guides, and news from Senthil Plastic Containers Private Limited.">
-    <meta property="og:image" content="{{ asset('assets/img/no-image.png') }}">
-    <meta property="og:type" content="website">
 
     <style>
         :root {

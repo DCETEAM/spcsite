@@ -2,47 +2,40 @@
      <html lang="en">
 
      <head>
-
-         <meta charset="UTF-8" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-         <title>spc | Premium Plastic Containers</title>
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-         <link
-             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-             rel="stylesheet" />
-             <!-- Header -->
-<title>The Art and Science of Manufacturing Quality, Durable Plastic Buckets | [SPC] Blog</title>
-
-<meta name="description" content="Discover the intricate injection moulding process used to manufacture high-quality, durable plastic buckets and pails for food, chemical, and industrial applications.">
-
-<link rel="canonical" href="[Full URL of this specific blog post]">
-
-<meta property="og:title" content="Manufacturing Quality Plastic Buckets (Injection Moulding Explained)">
-<meta property="og:description" content="Discover the intricate process behind creating durable plastic pails for industrial use.">
-<meta property="og:image" content="{{ asset('assets/img/banner05.png') }}">
-<meta property="og:type" content="article">
-<meta property="article:published_time" content="2021-11-29T00:00:00+00:00">
-<meta property="article:author" content="Roxce">
-
-    <meta name="description" content="Buy the SPC P4 - 4 Litres Premium Paint Bucket. Durable, compact, and perfect for storing smaller liquid or powdered products. Ideal for home and professional use.">
-    <meta name="keywords" content="SPC P4 Paint Bucket, 4 Litre Plastic Container, Premium Paint Bucket, Durable Plastic Storage, SPC Products">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Senthil Plastic Containers">
+    <meta name="keywords" content="Senthil Plastic Containers, SPC Virudhunagar, plastic containers manufacturer, plastic packaging containers, plastic storage containers, industrial plastic containers, plastic products Tamil Nadu, plastic containers Virudhunagar, plastic container supplier India">
+    <meta name="language" content="English">
+    <meta name="geo.region" content="IN-TN">
+    <meta name="geo.placename" content="Virudhunagar, Tamil Nadu">
+    <meta name="geo.position" content="9.5851;77.9570">
+    <meta name="ICBM" content="9.5851, 77.9570">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="P4 - 4 Litres Premium Paint Bucket | SPC Paints">
-    <meta property="og:description" content="Compact and durable 4-litre paint bucket made from premium plastic. Perfect for home and industrial use.">
-    <meta property="og:image" content="{{ asset('assets/img/p4.png') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Senthil Plastic Containers (SPC) | Plastic Container Manufacturer in Virudhunagar">
+    <meta property="og:description" content="Leading manufacturer and supplier of quality plastic containers and packaging solutions from Virudhunagar, Tamil Nadu.">
+    <meta property="og:image" content="{{ asset('assets/img/item2.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:type" content="product">
 
-    <!-- Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="P4 - 4 Litres Premium Paint Bucket | SPC Paints">
-    <meta name="twitter:description" content="Compact and durable 4-litre paint bucket made from premium plastic. Perfect for home and industrial use.">
-    <meta name="twitter:image" content="{{ asset('assets/img/p4.png') }}">
+    <meta name="twitter:title" content="Senthil Plastic Containers (SPC) | Plastic Container Manufacturer">
+    <meta name="twitter:description" content="High-quality plastic containers and packaging solutions manufactured by Senthil Plastic Containers, Virudhunagar, Tamil Nadu.">
+    <meta name="twitter:image" content="{{ asset('assets/img/item2.png') }}">
 
-    <!-- Canonical URL -->
+    <title>The Art and Science of Manufacturing Quality, Durable Plastic Buckets | Senthil Plastic Containers (SPC) Blog</title>
+    <meta name="description" content="Discover the intricate injection moulding process used to manufacture high-quality, durable plastic buckets and pails for food, chemical, and industrial applications.">
     <link rel="canonical" href="{{ url()->current() }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
 
     <style>
          :root {

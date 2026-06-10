@@ -63,11 +63,11 @@
       </div>
 
     <div class="col-md-4 col-sm-6 mb-3">
-    <label>Image <small class="text-muted">(Max 2MB)</small></label>
+    <label>Image <small class="text-muted">(Max 4MB)</small></label>
     <input type="file" name="image" id="product_image" class="form-control">
 
     <small id="imageError" class="text-danger d-none">
-        Image size must be less than 2 MB
+        Image size must be less than 4 MB
     </small>
 </div>
 
@@ -92,7 +92,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-const MAX_SIZE_MB = 2;
+const MAX_SIZE_MB = 4;
     const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 
     const imageInput = document.getElementById('product_image');

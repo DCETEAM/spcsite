@@ -62,7 +62,7 @@
 
 <div class="mb-3">
     <label class="form-label fw-bold">
-        Upload Certificates <small class="text-muted">(Max 2MB each)</small>
+        Upload Certificates <small class="text-muted">(Max 4MB each)</small>
     </label>
 
     <input type="file"
@@ -72,7 +72,7 @@
            class="form-control">
 
     <small id="certificateError" class="text-danger d-none">
-        Image size exceeds 2 MB.
+        Image size exceeds 4 MB.
     </small>
 </div>
 
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ===============================
        MULTIPLE CERTIFICATE SIZE CHECK
     ================================ */
-    const MAX_SIZE_MB = 2;
+    const MAX_SIZE_MB = 4;
     const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 
     const input = document.getElementById('certificates');
