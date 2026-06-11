@@ -13,12 +13,35 @@ use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->get();
+        // Debug: show all request values
+        logger()->info('Products Index Request', $request->all());
+
+        $validated = $request->validate([
+            'search' => ['nullable', 'string', 'max:255'],
+            'main_category' => ['nullable', 'integer', 'exists:maincategories,maincategory_id'],
+            'title' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $search = $validated['search'] ?? null;
+        $mainCategoryId = $validated['main_category'] ?? null;
+        $title = $validated['title'] ?? null;
+
+        $products = Product::query()
+            ->search($search)
+            ->filterByMainCategory($mainCategoryId)
+            ->filterByTitle($title)
+            ->latest()
+            ->paginate(10)
+            ->appends($validated);
+
+        $mainCategories = MainCategory::all();
+        $titles = Product::select('title')->distinct()->orderBy('title')->get();
         $mainMap = MainCategory::pluck('maincategory_name', 'maincategory_id');
         $subMap  = SubCategory::pluck('subcategory_name', 'subcategory_id');
-        return view('admin.products.index', compact('products', 'mainMap', 'subMap'));
+
+        return view('admin.products.index', compact('products', 'mainMap', 'subMap', 'mainCategories', 'titles', 'search', 'mainCategoryId', 'title'));
     }
 
     public function create()

@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Builder;
 
 class Maincategory extends Model
 {
@@ -42,5 +43,19 @@ class Maincategory extends Model
     {
         return $this->hasMany(Product::class, 'main_category_id', 'maincategory_id');
     }
-    
+
+    /**
+     * Scope a query to search main categories by keywords.
+     */
+    public function scopeSearch(Builder $query, ?string $search): Builder
+    {
+        if (empty($search)) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($search) {
+            $q->where('maincategory_name', 'like', "%{$search}%")
+              ->orWhere('slug', 'like', "%{$search}%");
+        });
+    }
 }

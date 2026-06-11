@@ -8,10 +8,21 @@ use Illuminate\Http\Request;
 
 class FacilityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $facilities = Facility::orderBy('title')->get();
-        return view('admin.facilities.index', compact('facilities'));
+        $validated = $request->validate([
+            'search' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $search = $validated['search'] ?? null;
+
+        $facilities = Facility::query()
+            ->search($search)
+            ->orderBy('title')
+            ->paginate(10)
+            ->appends($validated);
+
+        return view('admin.facilities.index', compact('facilities', 'search'));
     }
 
     public function create()
