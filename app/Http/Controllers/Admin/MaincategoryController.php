@@ -8,10 +8,21 @@ use App\Models\MainCategory;
 
 class MaincategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $maincategories = MainCategory::all();
-        return view('admin.maincategories.index', compact('maincategories'));
+        $validated = $request->validate([
+            'search' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $search = $validated['search'] ?? null;
+
+        $maincategories = MainCategory::query()
+            ->search($search)
+            ->orderBy('maincategory_id')
+            ->paginate(10)
+            ->appends($validated);
+
+        return view('admin.maincategories.index', compact('maincategories', 'search'));
     }
 
     public function create()

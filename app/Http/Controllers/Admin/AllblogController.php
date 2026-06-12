@@ -10,11 +10,21 @@ use Illuminate\Support\Facades\Storage;
 
 class AllblogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        
-        $blogs = AllBlog::orderBy('id', 'DESC')->paginate(10);
-        return view('admin.allblog.index', compact('blogs'));
+        $validated = $request->validate([
+            'search' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $search = $validated['search'] ?? null;
+
+        $blogs = AllBlog::query()
+            ->search($search)
+            ->orderBy('id', 'DESC')
+            ->paginate(10)
+            ->appends($validated);
+
+        return view('admin.allblog.index', compact('blogs', 'search'));
     }
 
     public function create()

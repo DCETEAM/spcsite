@@ -10,10 +10,26 @@ use Illuminate\Support\Str;
 
 class SubcategoryController extends Controller
 {
-   public function index()
+   public function index(Request $request)
     {
-        $subcategories = SubCategory::all();
-        return view('admin.subcategories.index', compact('subcategories'));
+        $validated = $request->validate([
+            'search' => ['nullable', 'string', 'max:255'],
+            'main_category' => ['nullable', 'integer', 'exists:maincategories,maincategory_id'],
+        ]);
+
+        $search = $validated['search'] ?? null;
+        $mainCategoryId = $validated['main_category'] ?? null;
+
+        $subcategories = SubCategory::query()
+            ->search($search)
+            ->filterByMainCategory($mainCategoryId)
+            ->orderBy('position')
+            ->paginate(10)
+            ->appends($validated);
+
+        $mainCategories = MainCategory::all();
+
+        return view('admin.subcategories.index', compact('subcategories', 'mainCategories', 'search', 'mainCategoryId'));
     }
 
     public function create()
