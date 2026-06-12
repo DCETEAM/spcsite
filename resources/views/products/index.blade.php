@@ -48,6 +48,13 @@
     <title>{{ $productsPageTitlePart }} | Senthil Plastic Containers Private Limited</title>
     <meta name="description" content="Browse {{ $productsPageTitlePart }} from Senthil Plastic Containers Private Limited.">
     <link rel="canonical" href="{{ request()->url() }}">
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -1292,10 +1299,48 @@
             color: #fff;
             font-weight: 600;
         }
+
+        /* Page Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #45aae3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Page Loader -->
+    <div id="pageLoader" class="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
@@ -2253,4 +2298,56 @@
                 noProductsMsg.style.display = 'none';
             }
         });
+    </script>
+
+    <!-- Page Loader Script -->
+    <script>
+        // Function to show loader
+        function showLoader() {
+            const loader = document.getElementById('pageLoader');
+            if (loader) {
+                loader.classList.remove('hidden');
+            }
+        }
+
+        // Function to hide loader
+        function hideLoader() {
+            const loader = document.getElementById('pageLoader');
+            if (loader) {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', hideLoader);
+
+        // Also hide loader when DOM is ready (in case load event takes too long)
+        document.addEventListener('DOMContentLoaded', hideLoader);
+
+        // Hide loader when page is restored from bfcache (back/forward)
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted) {
+                hideLoader();
+            }
+        });
+
+        // Show loader when clicking on internal links
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href]');
+            if (link && !link.href.startsWith('javascript:') && !link.href.includes('#')) {
+                showLoader();
+            }
+        });
+
+        // For popstate, show loader but also make sure it hides after a short delay as a fallback
+        window.addEventListener('popstate', function() {
+            showLoader();
+            // Fallback: hide loader after 2 seconds in case page events don't fire
+            setTimeout(hideLoader, 2000);
+        });
+
+        // Show loader when page is about to be unloaded (for some browsers)
+        window.addEventListener('beforeunload', showLoader);
     </script>
