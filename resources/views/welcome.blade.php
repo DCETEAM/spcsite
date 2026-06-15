@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="description" content="Senthil Plastic Containers (SPC) is a leading manufacturer of high-quality industrial plastic containers, buckets, and pails in Virudhunagar, Tamil Nadu. Serving Paint, Food, and Chemical industries.">
     <meta name="keywords" content="Senthil Plastic Containers, SPC Virudhunagar, plastic container manufacturer Tamil Nadu, industrial plastic buckets, food grade plastic containers, paint pails supplier">
@@ -2107,6 +2108,7 @@ footer {
 </head>
 
 <body>
+    @include('partials.initial-loader-markup')
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
@@ -2864,6 +2866,7 @@ footer {
     });
     </script>
 
+    @include('partials.initial-loader-script')
 </body>
 
 </html>

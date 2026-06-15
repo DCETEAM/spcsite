@@ -4,6 +4,7 @@
      <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="Senthil Plastic Containers">
@@ -642,10 +643,12 @@
                 padding: 40px;
             }
         }
-    </style>
+    
+</style>
 </head>
 
 <body>
+    @include('partials.initial-loader-markup')
 <!-- Header -->
     <header id="header">
         <div class="container nav-container">
@@ -855,5 +858,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 </script>
     <script src="{{ asset('assets/js/mainforall.js') }}" defer></script>
+
+    @include('partials.initial-loader-script')
 </body>
 </html>

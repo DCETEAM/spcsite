@@ -1,9 +1,10 @@
- <!DOCTYPE html>
+﻿ <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="Senthil Plastic Containers">
@@ -41,7 +42,12 @@
 
      <link
          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-         rel="stylesheet" /><!-- Header -->
+         rel="stylesheet" />
+</head>
+
+<body>
+    @include('partials.initial-loader-markup')
+    <!-- Header -->
      <header id="header">
          <div class="container nav-container">
              <div style="display:flex;align-items:center;gap:8px;">
@@ -994,7 +1000,8 @@
              color: #6c757d;
              font-weight: 600;
          }
-     </style>
+     
+</style>
      <script>
          function changeImage(element) {
              const mainImage = document.getElementById("mainImage");
@@ -1029,6 +1036,8 @@
              });
          });
      </script>
-     </body>
+     
+    @include('partials.initial-loader-script')
+</body>
 
  </html>

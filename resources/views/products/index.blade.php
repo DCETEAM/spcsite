@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="description" content="Browse our wide range of high-quality plastic containers, buckets, and pails. Senthil Plastic Containers (SPC) provides durable packaging for various industrial applications.">
     <meta name="keywords" content="SPC products, plastic container catalog, industrial pails, plastic buckets Tamil Nadu, bulk plastic containers, packaging solutions">
@@ -1299,48 +1300,11 @@
             color: #fff;
             font-weight: 600;
         }
-
-        /* Page Loader */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #45aae3;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 
 <body>
-    <!-- Page Loader -->
-    <div id="pageLoader" class="page-loader">
-        <div class="loader-spinner"></div>
-    </div>
+    @include('partials.initial-loader-markup')
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
@@ -2300,54 +2264,4 @@
         });
     </script>
 
-    <!-- Page Loader Script -->
-    <script>
-        // Function to show loader
-        function showLoader() {
-            const loader = document.getElementById('pageLoader');
-            if (loader) {
-                loader.classList.remove('hidden');
-            }
-        }
-
-        // Function to hide loader
-        function hideLoader() {
-            const loader = document.getElementById('pageLoader');
-            if (loader) {
-                setTimeout(() => {
-                    loader.classList.add('hidden');
-                }, 300);
-            }
-        }
-
-        // Hide loader when page is fully loaded
-        window.addEventListener('load', hideLoader);
-
-        // Also hide loader when DOM is ready (in case load event takes too long)
-        document.addEventListener('DOMContentLoaded', hideLoader);
-
-        // Hide loader when page is restored from bfcache (back/forward)
-        window.addEventListener('pageshow', function(e) {
-            if (e.persisted) {
-                hideLoader();
-            }
-        });
-
-        // Show loader when clicking on internal links
-        document.addEventListener('click', function(e) {
-            const link = e.target.closest('a[href]');
-            if (link && !link.href.startsWith('javascript:') && !link.href.includes('#')) {
-                showLoader();
-            }
-        });
-
-        // For popstate, show loader but also make sure it hides after a short delay as a fallback
-        window.addEventListener('popstate', function() {
-            showLoader();
-            // Fallback: hide loader after 2 seconds in case page events don't fire
-            setTimeout(hideLoader, 2000);
-        });
-
-        // Show loader when page is about to be unloaded (for some browsers)
-        window.addEventListener('beforeunload', showLoader);
-    </script>
+    @include('partials.initial-loader-script')
