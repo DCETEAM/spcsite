@@ -15,22 +15,27 @@
     <meta name="geo.position" content="9.5851;77.9570">
     <meta name="ICBM" content="9.5851, 77.9570">
 
-    <title>{{ \Illuminate\Support\Str::title(str_replace('-', ' ', $product->slug)) }} | Senthil Plastic Containers Private Limited</title>
-    <meta name="description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : 'Senthil Plastic Containers (SPC) is a leading manufacturer of high-quality plastic containers.')) }}">
+    @php
+        $metaTitle = \Illuminate\Support\Str::title(str_replace(['-', '_'], ' ', $product->slug));
+        $metaDescription = $product->description ? strip_tags($product->description) : '';
+    @endphp
+
+    <title>{{ $metaTitle }} | Senthil Plastic Containers Private Limited</title>
+    <meta name="description" content="{{ $metaDescription ? \Illuminate\Support\Str::limit($metaDescription, 160, '') : 'Senthil Plastic Containers (SPC) is a leading manufacturer of high-quality plastic containers.' }}">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
     <meta property="og:type" content="product">
-    <meta property="og:title" content="{{ $product->title }} | Senthil Plastic Containers">
-    <meta property="og:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <meta property="og:title" content="{{ $metaTitle }} | Senthil Plastic Containers">
+    <meta property="og:description" content="{{ $metaDescription ? \Illuminate\Support\Str::limit($metaDescription, 160, '') : '' }}">
     <meta property="og:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/item2.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $product->title }} | Senthil Plastic Containers">
-    <meta name="twitter:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <meta name="twitter:title" content="{{ $metaTitle }} | Senthil Plastic Containers">
+    <meta name="twitter:description" content="{{ $metaDescription ? \Illuminate\Support\Str::limit($metaDescription, 160, '') : '' }}">
     <meta name="twitter:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/item2.png') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
