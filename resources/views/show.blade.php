@@ -17,25 +17,27 @@
 
     @php
         $metaTitle = \Illuminate\Support\Str::title(str_replace(['-', '_'], ' ', $product->slug));
-        $metaDescription = $product->description ? strip_tags($product->description) : '';
+        $metaDescription = $product->description
+            ? \Illuminate\Support\Str::limit(strip_tags($product->description), 300, '')
+            : '';
     @endphp
 
     <title>{{ $metaTitle }} | Senthil Plastic Containers Private Limited</title>
-    <meta name="description" content="{{ $metaDescription ? \Illuminate\Support\Str::limit($metaDescription, 160, '') : 'Senthil Plastic Containers (SPC) is a leading manufacturer of high-quality plastic containers.' }}">
+    <meta name="description" content="{{ $metaDescription ?: 'Senthil Plastic Containers (SPC) is a leading manufacturer of high-quality plastic containers.' }}">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
     <meta property="og:type" content="product">
     <meta property="og:title" content="{{ $metaTitle }} | Senthil Plastic Containers">
-    <meta property="og:description" content="{{ $metaDescription ? \Illuminate\Support\Str::limit($metaDescription, 160, '') : '' }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
     <meta property="og:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/item2.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $metaTitle }} | Senthil Plastic Containers">
-    <meta name="twitter:description" content="{{ $metaDescription ? \Illuminate\Support\Str::limit($metaDescription, 160, '') : '' }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
     <meta name="twitter:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/item2.png') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
