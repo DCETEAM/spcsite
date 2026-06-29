@@ -47,6 +47,10 @@
     /* Violet Accent */
     --accent: #45aae3;
     /* Light Blue highlight tone */
+    --hero-navy: #001a3d;
+    --hero-gold: #ffb800;
+    --hero-blue: #3a9dff;
+    --hero-stats-height: clamp(88px, 11vh, 104px);
 
     /* Backgrounds */
     --light: #F8FAFC;
@@ -138,7 +142,7 @@ h5 {
 /* Header & Navigation */
 header {
     position: fixed;
-    top: 0;
+    top: 38px;
     left: 0;
     width: 100%;
     z-index: 1000;
@@ -229,87 +233,610 @@ header.scrolled {
     color: #0f0707;
 }
 
+/* Top bar */
+.site-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    background: var(--hero-navy);
+    color: rgba(255, 255, 255, 0.88);
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.78rem;
+}
+
+.site-topbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 9px 0;
+    flex-wrap: wrap;
+}
+
+.site-topbar-left,
+.site-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.site-topbar a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+}
+
+.site-topbar a:hover {
+    color: var(--hero-gold);
+}
+
+.site-topbar i {
+    color: var(--hero-blue);
+    margin-right: 6px;
+}
+
+.site-topbar-social {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-quote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--hero-navy);
+    color: #fff !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-left: 12px;
+    transition: 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-quote-btn:hover {
+    background: #002855;
+    color: #fff !important;
+}
+
 /* Hero Section */
 .hero {
     position: relative;
     width: 100%;
-    height: 90vh;
+    min-height: 100vh;
     overflow: hidden;
+    background: var(--hero-navy);
+    margin-top: 38px;
 }
 
 .hero-slider {
     position: relative;
     width: 100%;
+    min-height: calc(100vh - 38px);
     height: 100%;
+    padding-bottom: var(--hero-stats-height);
 }
 
 .hero-slide {
     position: absolute;
-    top: 0;
-    left: 100%;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
     opacity: 0;
-    transition: all 0.8s ease-in-out;
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
+    visibility: hidden;
+    transition: opacity 1s ease, visibility 1s ease;
     overflow: hidden;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
 }
 
 .hero-video {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    transform: scale(1.08);
+    transition: transform 9s ease-out;
+    z-index: 0;
+}
+
+.hero-slide.active .hero-video {
+    transform: scale(1);
 }
 
 .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 0;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 26, 61, 0.35);
+    pointer-events: none;
 }
 
-.hero-slide.active {
-    left: 0;
-    opacity: 1;
-    z-index: 1;
+.hero-overlay::before,
+.hero-overlay::after {
+    display: none;
 }
 
 .hero .container {
-    max-width: 1200px;
-    height: 70%;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
-    z-index: 2;
+    padding: clamp(100px, 13vh, 140px) clamp(32px, 5vw, 80px) calc(var(--hero-stats-height) + 28px);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    pointer-events: none;
 }
 
 .hero-content {
-    color: #fff;
-    max-width: 600px;
-    animation: fadeInUp 1s ease forwards;
+    max-width: 560px;
+    width: 100%;
     position: relative;
-    z-index: 2;
+    z-index: 3;
+    text-align: left;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease 0.25s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+
+.hero-slide.active .hero-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.hero-badge-line {
+    width: 36px;
+    height: 2px;
+    background: var(--hero-gold);
+}
+
+.hero-badge-text {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--hero-gold);
+}
+
+.hero-tag {
+    display: block;
+    font-size: clamp(0.75rem, 1.1vw, 0.88rem);
+    font-weight: 600;
+    color: #cff4fc;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
 }
 
 .hero-content h1 {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 1rem;
+    /* font-size: clamp(2rem, 4.5vw, 3.25rem); */
+    font-weight: 500;
+    color: #fff;
+    text-align: left;
+    line-height: 1.15;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
 }
 
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+.hero-accent {
+    color: var(--hero-blue);
+}
+
+.hero-sub {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0 0 22px;
+    line-height: 1.55;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-sub strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+.hero-desc {
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.65;
+    margin: 0 0 24px;
+    max-width: 48ch;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 24px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.hero-btn-primary {
+    background: var(--hero-blue);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(58, 157, 255, 0.35);
+}
+
+.hero-btn-primary:hover {
+    background: #2b8ae8;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.hero-btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid var(--hero-gold);
+}
+
+.hero-btn-outline:hover {
+    background: rgba(255, 184, 0, 0.12);
+    color: #fff;
+}
+
+.hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-features li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 4px 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-features li:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 184, 0, 0.35);
+}
+
+.hero-features i {
+    color: var(--hero-blue);
+    font-size: 0.95rem;
+}
+
+.hero-slide-counter {
+    position: absolute;
+    right: clamp(20px, 4vw, 48px);
+    top: clamp(80px, 12vh, 120px);
+    z-index: 5;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.08em;
+}
+
+.hero-slide-counter span {
+    color: var(--hero-gold);
+    font-size: 1.1rem;
+}
+
+/* Hero bottom panels */
+.hero-bottom-ui {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.hero-bottom-ui > * {
+    pointer-events: auto;
+}
+
+.hero-product-strip {
+    background: #fff;
+    margin: 0 clamp(16px, 3vw, 40px);
+    border-radius: 14px 14px 0 0;
+    padding: clamp(18px, 2.5vw, 28px) clamp(20px, 3vw, 32px);
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hero-strip-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.hero-strip-head h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: 700;
+    color: var(--hero-navy);
+    margin: 0;
+}
+
+.hero-strip-head h3 span {
+    color: var(--hero-blue);
+}
+
+.hero-strip-head p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.82rem;
+    color: #6b7280;
+    margin: 4px 0 0;
+}
+
+.hero-strip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.hero-strip-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #f4f7fb;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    border: 1px solid #e8edf3;
+}
+
+.hero-strip-card:hover {
+    background: #eef4fc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 26, 61, 0.08);
+}
+
+.hero-strip-card img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.hero-strip-card span {
+    flex: 1;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--hero-navy);
+    line-height: 1.35;
+}
+
+.hero-strip-card i {
+    color: var(--hero-blue);
+    font-size: 0.85rem;
+}
+
+.hero-stats-bar {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    min-height: var(--hero-stats-height);
+    background: linear-gradient(180deg, #002855 0%, var(--hero-navy) 100%);
+    border-radius: 0;
+    padding: clamp(14px, 2vh, 18px) clamp(20px, 4vw, 48px);
+    box-shadow: 0 -6px 28px rgba(0, 0, 0, 0.22);
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-stat {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(10px, 1.5vw, 14px);
+    padding: 8px clamp(12px, 2vw, 20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    min-width: 0;
+}
+
+.hero-stat:last-child {
+    border-right: none;
+}
+
+.hero-stat-icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    border-radius: 50%;
+    background: var(--hero-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.hero-stat-icon i {
+    font-size: 1.05rem;
+    color: var(--hero-navy);
+}
+
+.hero-stat-text strong {
+    display: block;
+    font-size: clamp(1rem, 1.5vw, 1.28rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.hero-stat-text span {
+    display: block;
+    font-size: clamp(0.68rem, 1vw, 0.78rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.35;
+    margin-top: 3px;
+}
+
+.hero .container.hero-container-right {
+    max-width: 100%;
+    justify-content: flex-start;
+    padding-left: 50%;
+    padding-right: clamp(32px, 5vw, 80px);
+}
+
+.hero-content-right {
+    text-align: left;
+    margin: 0;
+    width: 100%;
+    max-width: min(560px, calc(50vw - clamp(32px, 5vw, 80px)));
+}
+
+.hero-slide-left .hero-overlay {
+    background: linear-gradient(
+        90deg,
+        rgba(0, 26, 61, 0.88) 0%,
+        rgba(0, 26, 61, 0.72) 38%,
+        rgba(0, 26, 61, 0.4) 52%,
+        rgba(0, 26, 61, 0.12) 62%,
+        transparent 78%
+    );
+}
+
+.hero-slide-right .hero-overlay {
+    background: linear-gradient(
+        270deg,
+        rgba(0, 26, 61, 0.97) 0%,
+        rgba(0, 26, 61, 0.9) 22%,
+        rgba(0, 26, 61, 0.78) 40%,
+        rgba(0, 26, 61, 0.55) 52%,
+        rgba(0, 26, 61, 0.28) 65%,
+        rgba(0, 26, 61, 0.08) 78%,
+        transparent 92%
+    );
+}
+
+.hero-slide-right .hero-overlay::after {
+    display: block;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        270deg,
+        rgba(0, 15, 40, 0.45) 0%,
+        rgba(0, 15, 40, 0.25) 35%,
+        transparent 60%
+    );
+    pointer-events: none;
+}
+
+.hero .container.hero-container-left {
+    justify-content: flex-start;
+}
+
+.hero-badge-text,
+.hero-tag {
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* Slider progress */
+.hero-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    z-index: 7;
+}
+
+.hero-progress-bar {
+    height: 100%;
+    width: 0;
+    background: var(--hero-gold);
+    transition: width 0.1s linear;
+}
+
+/* Slider Dots */
+.hero-slider-nav {
+    display: none;
+}
+
+/* Arrows */
+.hero-prev,
+.hero-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(60, 60, 60, 0.42);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0;
+    cursor: pointer;
+    font-size: 22px;
+    border-radius: 6px;
+    z-index: 4;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hero-prev:hover,
+.hero-next:hover {
+    background: rgba(40, 40, 40, 0.62);
+    transform: translateY(-50%) scale(1.04);
+}
+
+.hero-prev {
+    left: clamp(12px, 2vw, 28px);
+}
+
+.hero-next {
+    right: clamp(12px, 2vw, 28px);
 }
 
 .btn {
@@ -337,60 +864,7 @@ header.scrolled {
     color: #00a86b;
 }
 
-/* Slider Dots */
-.hero-slider-nav {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-}
-
-.hero-dot {
-    width: 12px;
-    height: 12px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.hero-dot.active {
-    background: #55C1FF;
-}
-
 /* Hero Visual (side image & shape) */
-.hero-visual {
-    position: absolute;
-    right: 5%;
-    bottom: 10%;
-    text-align: center;
-}
-
-/* Arrows */
-.hero-prev,
-.hero-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    padding: 12px 18px;
-    cursor: pointer;
-    font-size: 24px;
-    border-radius: 50%;
-    z-index: 2;
-}
-
-.hero-prev {
-    left: 20px;
-}
-
-.hero-next {
-    right: 20px;
-}
 
 .hero-shape {
     width: 250px;
@@ -582,7 +1056,149 @@ header.scrolled {
 
     .hero-prev,
     .hero-next {
-        visibility: hidden;
+        width: 42px;
+        height: 46px;
+        font-size: 18px;
+    }
+
+    .hero .container {
+        padding: clamp(90px, 12vh, 120px) clamp(20px, 5vw, 28px) calc(var(--hero-stats-height) + 20px);
+        align-items: center;
+    }
+
+    .hero .container.hero-container-right {
+        padding-left: clamp(20px, 5vw, 28px);
+        padding-right: clamp(20px, 5vw, 28px);
+    }
+
+    .hero-slide-left .hero-overlay,
+    .hero-slide-right .hero-overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 26, 61, 0.82) 0%,
+            rgba(0, 26, 61, 0.55) 45%,
+            rgba(0, 26, 61, 0.35) 100%
+        );
+    }
+
+    .hero-content,
+    .hero-content-right {
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+
+    .hero-desc,
+    .hero-sub {
+        font-size: 0.85rem;
+    }
+
+    .hero-tag {
+        font-size: 0.65rem;
+    }
+
+    .hero-badge-text {
+        font-size: 0.6rem;
+    }
+
+    .hero-btn {
+        padding: 10px 18px;
+        font-size: 0.75rem;
+    }
+
+    .hero-features li {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .hero-actions {
+        margin-bottom: 18px;
+    }
+
+    .hero-features {
+        gap: 10px 14px;
+    }
+
+    .hero-strip-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-stats-bar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        padding: clamp(12px, 2vh, 16px) clamp(16px, 3vw, 24px);
+    }
+
+    .hero-stat {
+        flex: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 12px 8px;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .hero-stat:nth-child(odd) {
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-stat:nth-child(even) {
+        border-right: none;
+    }
+
+    .hero-stat:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+
+    .hero-stat-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+
+    .hero-stat-text strong {
+        font-size: 1rem;
+    }
+
+    .hero-stat-text span {
+        font-size: 0.65rem;
+    }
+
+    .hero-slide-counter {
+        display: none;
+    }
+
+    .site-topbar-inner {
+        padding: 8px 12px;
+        gap: 12px;
+    }
+
+    .site-topbar-left,
+    .site-topbar-right {
+        gap: 12px;
+    }
+
+    .site-topbar-left span:nth-child(n+2) {
+        display: none;
+    }
+
+    .site-topbar-social {
+        gap: 10px;
+    }
+
+    .nav-quote-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        margin-left: 0;
+    }
+
+    .hero-tag {
+        font-size: 0.78rem;
+        margin-bottom: 14px;
     }
 
     .about-commitments .section-title {
@@ -595,18 +1211,15 @@ header.scrolled {
     }
 
     .hero {
-        /* height: 180px !important; */
-        /* let section adjust */
+        min-height: 100vh;
+        height: auto;
+    }
 
+    .hero-slider {
+        padding-bottom: var(--hero-stats-height);
     }
 
     .about-commitments {
-        padding: 20px;
-    }
-
-
-    .hero .container {
-        height: auto;
         padding: 20px;
     }
 
@@ -620,6 +1233,27 @@ header.scrolled {
 
     header.scrolled {
         padding: 1px 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .stat-box {
+        padding: 15px;
+    }
+
+    .stat-box i {
+        font-size: 1.8rem;
+    }
+
+    .stat-box h3 {
+        font-size: 1.5rem;
+    }
+
+    .stat-box p {
+        font-size: 0.85rem;
     }
 
 }
@@ -942,7 +1576,7 @@ header.scrolled {
 
     background-color: #f8f9fa;
     border-radius: 20px;
-    object-fit: contain;
+    /* object-fit: contain; */
     transition: transform 0.4s ease;
 }
 
@@ -2016,44 +2650,22 @@ footer {
     }
 
     .hero {
-        flex-direction: column;
-        height: 40vh;
-        /* height: auto; */
-        /* padding: 150px 0 80px; */
+        min-height: 100vh;
+        height: auto;
     }
 
     .hero .container {
-        height: 40%;
+        height: auto;
     }
 
     header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        padding: 0;
-        background: white;
-        /* black with 60% opacity */
-        backdrop-filter: blur(5px);
-        /* optional: adds a glassy blur effect */
-        z-index: 1000;
-        transition: var(--transition);
+        top: 38px;
     }
 
     .hero-content {
         width: 100%;
-        padding-right: 0;
-        text-align: center;
-        /* margin-bottom: 50px; */
+        max-width: 100%;
     }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-
-
 
     .about-content,
     .contact-content {
@@ -2078,8 +2690,48 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .hero h1 {
-        font-size: 2rem;
+    .hero-content h1 {
+        font-size: 1.65rem;
+    }
+
+    .hero-desc,
+    .hero-sub {
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+
+    .hero-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-strip-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-stats-bar {
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .hero-stat {
+        flex: none;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        justify-content: flex-start;
+    }
+
+    .hero-stat:last-child {
+        border-bottom: none;
+    }
+
+    .hero-features li {
+        font-size: 0.72rem;
+    }
+
+    .hero-tag {
+        font-size: 0.72rem;
     }
 }
 
@@ -2109,6 +2761,25 @@ footer {
 
 <body>
     @include('partials.initial-loader-markup')
+
+    <div class="site-topbar">
+        <div class="container site-topbar-inner">
+            <div class="site-topbar-left">
+                <span><i class="fas fa-phone"></i> +91 98430 42111</span>
+                <span><i class="fas fa-envelope"></i> senthilplasticcontainers@gmail.com</span>
+                <span><i class="fas fa-map-marker-alt"></i> Virudhunagar, Tamil Nadu</span>
+            </div>
+            <div class="site-topbar-right">
+                <!-- <span><i class="fas fa-certificate"></i> ISO Certified Manufacturer</span> -->
+                <div class="site-topbar-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
@@ -2121,6 +2792,7 @@ footer {
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
+            <div style="display:flex;align-items:center;">
             <ul class="nav-menu  p-0" id="nav-menu">
                 <li class="nav-item"><a href="{{ route('home') }}" class="nav-link active">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
@@ -2139,61 +2811,148 @@ footer {
                     <a href="{{ route('contact') }}" class="nav-link ">Contact</a>
                 </li>
             </ul>
+            <a href="{{ route('contact') }}" class="nav-quote-btn d-none d-lg-inline-flex"><i class="fas fa-user-tie"></i> Get a Quote</a>
+            </div>
         </div>
     </header>
 
     <section class="hero" id="home">
         <div class="hero-slider">
-            <div class="hero-slide active">
+            <div class="hero-slide active hero-slide-right">
                 <video autoplay muted loop playsinline class="hero-video">
                     <source src="{{ asset('assets/img/MVI_5417.MP4') }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="hero-overlay"></div>
-                <div class="hero-content">
+                <div class="container hero-container-right">
+                    <div class="hero-content hero-content-right">
+                        <div class="hero-badge">
+                            <span class="hero-badge-line"></span>
+                            <span class="hero-badge-text">Quality · Durability · Trust</span>
+                            <span class="hero-badge-line"></span>
+                        </div>
+                        <span class="hero-tag">01 — Raw Materials</span>
+                        <h1>Premium <span class="hero-accent">Polymer Preparation</span></h1>
+                        <p class="hero-sub">Engineered for <strong>Performance</strong>. Designed for <strong>Perfection</strong>.</p>
+                       
+                        <ul class="hero-features">
+                            <li><i class="fas fa-cube"></i><span>High Quality Materials</span></li>
+                            <li><i class="fas fa-print"></i><span>Advanced Printing</span></li>
+                            <li><i class="fas fa-tags"></i><span>Custom Branding</span></li>
+                            <li><i class="fas fa-truck"></i><span>Bulk Supply</span></li>
+                            <li><i class="fas fa-clock"></i><span>Timely Delivery</span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="hero-slide">
+            <div class="hero-slide hero-slide-left">
                 <video muted loop playsinline class="hero-video">
                     <source src="{{ asset('assets/img/MVI_5413.MP4') }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="hero-overlay"></div>
-                <div class="container">
+                <div class="container hero-container-left">
                     <div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="hero-badge-line"></span>
+                            <span class="hero-badge-text">Advanced · Printing · Branding</span>
+                            <span class="hero-badge-line"></span>
+                        </div>
+                        <span class="hero-tag">02 — Screen Printing</span>
+                        <h1>Screen <span class="hero-accent">Printing Machine</span></h1>
+                        <p class="hero-sub">Sharp <strong>Branding</strong>. Lasting <strong>Finish</strong>.</p>
+                       
+                        <ul class="hero-features">
+                            <li><i class="fas fa-cube"></i><span>High Quality Materials</span></li>
+                            <li><i class="fas fa-print"></i><span>Advanced Printing</span></li>
+                            <li><i class="fas fa-tags"></i><span>Custom Branding</span></li>
+                            <li><i class="fas fa-truck"></i><span>Bulk Supply</span></li>
+                            <li><i class="fas fa-clock"></i><span>Timely Delivery</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="hero-slide">
+            <div class="hero-slide hero-slide-right">
                 <video muted loop playsinline class="hero-video">
                     <source src="{{ asset('assets/img/MVI_5411.MP4') }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="hero-overlay"></div>
-                <div class="container">
-                    <div class="hero-content">
+                <div class="container hero-container-right">
+                    <div class="hero-content hero-content-right">
+                        <div class="hero-badge">
+                            <span class="hero-badge-line"></span>
+                            <span class="hero-badge-text">Precision · Labelling · Quality</span>
+                            <span class="hero-badge-line"></span>
+                        </div>
+                        <span class="hero-tag">03 — Labelling</span>
+                        <h1>Heat Transfer <span class="hero-accent">Labelling </span></h1>
+                        <p class="hero-sub">Professional <strong>Labels</strong>. Premium <strong>Presentation</strong>.</p>
+                       
+                        <ul class="hero-features">
+                            <li><i class="fas fa-cube"></i><span>High Quality Materials</span></li>
+                            <li><i class="fas fa-print"></i><span>Advanced Printing</span></li>
+                            <li><i class="fas fa-tags"></i><span>Custom Branding</span></li>
+                            <li><i class="fas fa-truck"></i><span>Bulk Supply</span></li>
+                            <li><i class="fas fa-clock"></i><span>Timely Delivery</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            
 
-            <button class="hero-prev">&#10094;</button>
-            <button class="hero-next">&#10095;</button>
+            <div class="hero-slide-counter"><span id="heroSlideNum">01</span> / 03</div>
 
-            <div class="hero-slider-nav">
-                <span class="hero-dot active" data-slide="0"></span>
-                <span class="hero-dot" data-slide="1"></span>
-                <span class="hero-dot" data-slide="2"></span>
-                <span class="hero-dot" data-slide="3"></span>
-                <span class="hero-dot" data-slide="4"></span>
+            <button class="hero-prev" aria-label="Previous slide">&#10094;</button>
+            <button class="hero-next" aria-label="Next slide">&#10095;</button>
+
+            <div class="hero-progress" aria-hidden="true">
+                <div class="hero-progress-bar" id="heroProgressBar"></div>
+            </div>
+
+            <div class="hero-bottom-ui">
+                <!-- <div class="hero-product-strip">
+                    <div class="hero-strip-head">
+                        <div>
+                            <h3>Wide Range of <span>Plastic Containers</span></h3>
+                            <p>Solutions for every industry need</p>
+                        </div>
+                    </div>
+                    <div class="hero-strip-grid">
+                        @foreach ($categories->take(4) as $cat)
+                        <a href="{{ route('products.category', $cat->slug) }}" class="hero-strip-card">
+                            <img src="{{ $cat->maincategory_image ? asset('storage/' . $cat->maincategory_image) : asset('assets/img/default.jpg') }}"
+                                alt="{{ $cat->maincategory_name }}" loading="lazy">
+                            <span>{{ $cat->maincategory_name }}</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        @endforeach
+                    </div>
+                </div> -->
+                @if ($data)
+                <div class="hero-stats-bar">
+                    @for ($i = 1; $i <= 4; $i++)
+                        @php
+                            $statIcon = $data->{'stat' . $i . '_icon'} ?? null;
+                            $statValue = $data->{'stat' . $i . '_value'} ?? null;
+                            $statTitle = $data->{'stat' . $i . '_title'} ?? null;
+                        @endphp
+                        @if ($statIcon || $statValue || $statTitle)
+                        <div class="hero-stat">
+                            <div class="hero-stat-icon">
+                                <i class="{{ $statIcon ?? 'fas fa-award' }}"></i>
+                            </div>
+                            <div class="hero-stat-text">
+                                <strong>{{ $statValue }}</strong>
+                                <span>{{ $statTitle }}</span>
+                            </div>
+                        </div>
+                        @endif
+                    @endfor
+                </div>
+                @endif
             </div>
         </div>
     </section>
-    @php
-    $data = \App\Models\WhyChooseUs::first();
-    $certificates = \App\Models\WhyUsCertificate::all();
-    @endphp
-
     <section class="why-choose-us" id="why-us">
         <div class="container">
 
@@ -2791,9 +3550,26 @@ footer {
         const dots = document.querySelectorAll(".hero-dot");
         const prevBtn = document.querySelector(".hero-prev");
         const nextBtn = document.querySelector(".hero-next");
+        const progressBar = document.getElementById("heroProgressBar");
+        const slideNumEl = document.getElementById("heroSlideNum");
 
         let currentIndex = 0;
         let slideInterval;
+        let progressInterval;
+        const slideDuration = 8000;
+
+        function resetProgress() {
+            if (!progressBar) return;
+            clearInterval(progressInterval);
+            progressBar.style.width = "0%";
+            const start = Date.now();
+            progressInterval = setInterval(() => {
+                const elapsed = Date.now() - start;
+                const pct = Math.min((elapsed / slideDuration) * 100, 100);
+                progressBar.style.width = pct + "%";
+                if (pct >= 100) clearInterval(progressInterval);
+            }, 50);
+        }
 
         function showSlide(index) {
             if (index < 0) index = slides.length - 1;
@@ -2801,25 +3577,28 @@ footer {
 
             slides.forEach((slide, i) => {
                 slide.classList.remove("active");
-                dots[i].classList.remove("active");
+                if (dots[i]) dots[i].classList.remove("active");
 
-                // Pause video if present
                 const video = slide.querySelector('video');
                 if (video) {
                     video.pause();
+                    video.currentTime = 0;
                 }
             });
 
             slides[index].classList.add("active");
-            dots[index].classList.add("active");
+            if (dots[index]) dots[index].classList.add("active");
 
-            // Play video if present
             const activeVideo = slides[index].querySelector('video');
             if (activeVideo) {
-                activeVideo.play();
+                activeVideo.play().catch(() => {});
             }
 
             currentIndex = index;
+            if (slideNumEl) {
+                slideNumEl.textContent = String(index + 1).padStart(2, "0");
+            }
+            resetProgress();
         }
 
         function nextSlide() {
@@ -2830,38 +3609,41 @@ footer {
             showSlide(currentIndex - 1);
         }
 
-        // Auto Slide
         function startAutoSlide() {
-            slideInterval = setInterval(nextSlide, 8000); // Increased to 8s for better video viewing
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, slideDuration);
         }
 
         function stopAutoSlide() {
             clearInterval(slideInterval);
+            clearInterval(progressInterval);
         }
 
-        // Events
         dots.forEach(dot => {
             dot.addEventListener("click", () => {
                 stopAutoSlide();
-                showSlide(parseInt(dot.getAttribute("data-slide")));
+                showSlide(parseInt(dot.getAttribute("data-slide"), 10));
                 startAutoSlide();
             });
         });
 
-        nextBtn.addEventListener("click", () => {
-            stopAutoSlide();
-            nextSlide();
-            startAutoSlide();
-        });
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide();
+            });
+        }
 
-        prevBtn.addEventListener("click", () => {
-            stopAutoSlide();
-            prevSlide();
-            startAutoSlide();
-        });
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide();
+            });
+        }
 
-        // Init
-        showSlide(currentIndex);
+        showSlide(0);
         startAutoSlide();
     });
     </script>
