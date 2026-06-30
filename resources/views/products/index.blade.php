@@ -153,7 +153,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 15px 0;
+            padding: 5px 0;
             background: #fff;
             /* black with 60% opacity */
             backdrop-filter: blur(2px);
@@ -165,7 +165,7 @@
         header.scrolled {
             background-color: white;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            padding: 5px 0;
+            padding: 2px 0;
         }
 
         .nav-container {
@@ -960,19 +960,22 @@
 
         /* Product Image */
         .product-image {
-            display: block;
-            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
             margin: 0;
-            aspect-ratio: 1 / 1;
+            /* aspect-ratio: 1 / 1; */
             overflow: hidden;
             line-height: 0;
+            background-color: #fff;
         }
 
         .product-image img {
             width: 100%;
             height: 100%;
             display: block;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center center;
             border-radius: 0;
             transform-origin: center center;
@@ -1345,7 +1348,7 @@
 
 
     {{-- 🌐 MAIN CATEGORIES (Always Visible) --}}
-    <section class="products-sections" style="padding: 40px 20px 10px 20px;background-color:#f0f9fd">
+    <section class="products-sections" style="padding: 60px 20px 10px 20px;background-color:#f0f9fd">
         <nav class="categories">
 
             @foreach ($categories as $categoryItem)
@@ -1379,7 +1382,7 @@
     </section>
 
     {{-- 💎 PRODUCTS --}}
-    <section class="product-section  position-relative overflow-hidden" style="background-color:#f4faff; padding: 20px 0 40px 0;">
+    <section class="product-section  position-relative overflow-hidden" style="background-color:#f4faff; ">
 
         <div class="container text-center">
             @if ($subcategories && count($subcategories))
@@ -1401,12 +1404,15 @@
                 </div>
             @endif
 
-            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 reveal fade-up" style="--delay: 140ms">
-                <h6 class="section-title text-blue-700 mb-0">Our Products</h6>
-                <form class="d-flex">
-                    <input type="text" id="liveSearch" class="form-control" placeholder="Search products..."
-                        aria-label="Search products" style="width: 280px;">
-                </form>
+            <div class="d-flex align-items-center mb-4 reveal fade-up" style="--delay: 140ms">
+                <div class="flex-grow-1"></div>
+                <h2 class="mb-0 position-absolute start-50 translate-middle-x" style="font-family: 'Playfair Display', serif; font-weight: 500; color: #0369a1; font-size: 1.8rem;">Our Products</h2>
+                <div class="flex-grow-1 d-flex justify-content-end">
+                    <form class="d-flex">
+                        <input type="text" id="liveSearch" class="form-control" placeholder="Search products..."
+                            aria-label="Search products" style="width: 280px;">
+                    </form>
+                </div>
             </div>
             <p id="noProductsMsg" class="text-muted mt-4 mb-4" style="display:none;">No products found.</p>
 
@@ -1429,7 +1435,7 @@
                                 {{-- Image --}}
                                 <div class="product-image">
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}"
-                                        class="w-100 h-100 product-hover-zoom" loading="lazy"
+                                        class="product-hover-zoom" loading="lazy"
                                         decoding="async" width="600" height="600"
                                         sizes="(max-width: 576px) 50vw, (max-width: 992px) 33vw, 25vw">
                                 </div>
@@ -1800,7 +1806,7 @@
 
         /* Image area — flush edge-to-edge */
         .product-image {
-            aspect-ratio: 1 / 1;
+            /* aspect-ratio: 1 / 1; */
             overflow: hidden;
             position: relative;
             padding: 0;
@@ -1831,7 +1837,7 @@
         }
 
         .product-image img {
-            object-fit: cover;
+            object-fit: contain;
             object-position: center center;
         }
 
