@@ -23,12 +23,7 @@ use App\Http\Controllers\Admin\ContactInfoController;
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-Route::get('/home', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 Route::get('/product', function () {
     return view('product');
 })->name('product');

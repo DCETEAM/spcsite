@@ -2928,7 +2928,7 @@ footer {
                         @endforeach
                     </div>
                 </div> -->
-                @if ($data)
+                @isset($data)
                 <div class="hero-stats-bar">
                     @for ($i = 1; $i <= 4; $i++)
                         @php
@@ -2949,7 +2949,7 @@ footer {
                         @endif
                     @endfor
                 </div>
-                @endif
+                @endisset
             </div>
         </div>
     </section>
@@ -2961,44 +2961,23 @@ footer {
         ============================== -->
             <div class="section-header">
                 <h2 class="section-title">
-                    {{ $data->title ?? 'Why Leading Brands Choose Us' }}
+                    {{ isset($data) ? ($data->title ?? 'Why Leading Brands Choose Us') : 'Why Leading Brands Choose Us' }}
                 </h2>
 
                 <p style="text-align: justify; text-justify: inter-word;">
-                    {!! $data->description ?? 'Welcome to our company. Please add content from admin panel.' !!}
+                    {!! isset($data) ? ($data->description ?? 'Welcome to our company. Please add content from admin panel.') : 'Welcome to our company. Please add content from admin panel.' !!}
                 </p>
             </div>
 
-            <!-- =========================
-             STATS SECTION
-        ============================== -->
-            <div class="stats-grid">
-
-                @for ($i = 1; $i <= 4; $i++) @php $icon=$data->{'stat' . $i . '_icon'} ?? null;
-                    $value = $data->{'stat' . $i . '_value'} ?? null;
-                    $title = $data->{'stat' . $i . '_title'} ?? null;
-                    @endphp
-
-                    @if ($icon || $value || $title)
-                    <div class="stat-box">
-                        <i class="{{ $icon }}"></i>
-                        <h3>{{ $value }}</h3>
-                        <p>{{ $title }}</p>
-                    </div>
-                    @endif
-                    @endfor
-
-            </div>
-
-            <!-- =========================
-             CERTIFICATES SECTION
-        ============================== -->
+          
+            @isset($certificates)
             <div class="certifications">
                 @foreach ($certificates as $cert)
                 <img src="{{ asset('storage/' . $cert->image) }}" alt="Certificate"
                     style="height:90px;object-fit:contain;">
                 @endforeach
             </div>
+            @endisset
 
         </div>
     </section>
@@ -3006,11 +2985,11 @@ footer {
 
     <section class="about-commitments mt-4" id="about">
         <div class="container">
-            <h2 class="section-title">{{ $about->title ?? 'About Us' }}</h2>
+            <h2 class="section-title">{{ isset($about) ? ($about->title ?? 'About Us') : 'About Us' }}</h2>
 
             <div class="about-item">
                 <div class="about-text">
-                    @if (!empty($about->description))
+                    @if (isset($about) && !empty($about->description))
                     <p>{!! nl2br(e($about->description)) !!}</p>
                     @else
                     <p>No About content added yet. Please update it from the admin panel.</p>
@@ -3018,8 +2997,8 @@ footer {
                 </div>
 
                 <div class="about-image">
-                    @if (!empty($about->image))
-                    <img src="{{ asset($about->image) }}" alt="{{ $about->title ?? 'About Image' }}">
+                    @if (isset($about) && !empty($about->image))
+                    <img src="{{ asset($about->image) }}" alt="{{ isset($about) ? ($about->title ?? 'About Image') : 'About Image' }}">
                     @else
                     <img src="{{ asset('assets/img/default.jpg') }}" alt="Default About Image">
                     @endif
@@ -3033,6 +3012,7 @@ footer {
 
             <div class="categories-grid">
 
+                @isset($categories)
                 @foreach ($categories as $cat)
                 <a href="{{ route('products.category', $cat->slug) }}" class="category-link">
 
@@ -3046,6 +3026,7 @@ footer {
 
                 </a>
                 @endforeach
+                @endisset
 
             </div>
         </div>
@@ -3288,7 +3269,7 @@ footer {
                     </div>
                     <h5 class="fw-bold mb-2">ABOUT COMPANY</h5>
 
-                    @if (!empty($contact->about_lines))
+                    @if (isset($contact) && !empty($contact->about_lines))
                     @foreach ($contact->about_lines as $line)
                     <p>{{ $line }}</p>
                     @endforeach
@@ -3305,13 +3286,13 @@ footer {
                     </div>
                     <h5 class="fw-bold mb-2">PHONE</h5>
 
-                    @if (!empty($contact->phone_numbers))
+                    @if (isset($contact) && !empty($contact->phone_numbers))
                     @foreach ($contact->phone_numbers as $phone)
                     <p class="mb-2"><i class="fas fa-phone me-2"></i>{{ $phone }}</p>
                     @endforeach
                     @endif
 
-                    @if (!empty($contact->marketing_numbers))
+                    @if (isset($contact) && !empty($contact->marketing_numbers))
                     @foreach ($contact->marketing_numbers as $mPhone)
                     <p class="mb-2"><i class="fas fa-user-tie me-2"></i>
                         Marketing Manager: {{ $mPhone }}
@@ -3319,7 +3300,7 @@ footer {
                     @endforeach
                     @endif
 
-                    @if ($contact->email)
+                    @if (isset($contact) && $contact->email)
                     <p class="mb-2">
                         <i class="fas fa-envelope me-2"></i>{{ $contact->email }}
                     </p>
@@ -3332,7 +3313,7 @@ footer {
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <h5 class="fw-bold mb-2">OUR OFFICE LOCATION</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i>{{ $contact->address ?? 'Address not available' }}</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>{{ isset($contact) ? ($contact->address ?? 'Address not available') : 'Address not available' }}</p>
                 </div>
 
             </div>
@@ -3372,6 +3353,7 @@ footer {
                 <div class="footer-col">
                     <h4>Product Categories</h4>
                     <ul class="footer-links">
+                        @isset($categories)
                         @foreach ($categories as $cat)
                         <li>
                             <a href="{{ route('products.category', $cat->slug) }}">
@@ -3379,6 +3361,7 @@ footer {
                             </a>
                         </li>
                         @endforeach
+                        @endisset
                     </ul>
                 </div>
 
