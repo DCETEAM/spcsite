@@ -58,13 +58,13 @@ class ProductsController extends Controller
             'slug'              => 'nullable|string|max:255|unique:products,slug',
             'subtitle'          => 'nullable|string|max:255',
             'code'              => 'nullable|string|max:255',
-            'description'       => 'nullable|string',
-            'features'          => 'nullable|string',
-            'product_weight'    => 'nullable|string|max:255',
-            'brimful_volume'    => 'nullable|string|max:255',
-            'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
-            'main_category_ids' => 'required|array',
-            'sub_category_ids'  => 'required|array',
+            'description'       => 'required|string',
+            'features'          => 'required|string',
+            'product_weight'    => 'required|string|max:255',
+            'brimful_volume'    => 'required|string|max:255',
+            'image'             => 'required|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'main_category_ids' => 'required|array|min:1',
+            'sub_category_ids'  => 'required|array|min:1',
         ]);
 
         $imagePath = null;
@@ -77,10 +77,10 @@ class ProductsController extends Controller
         $product->subtitle          = $validated['subtitle'] ?? null;
         $product->slug              = $validated['slug'];
         $product->code              = $validated['code'] ?? null;
-        $product->description       = $validated['description'] ?? null;
-        $product->features          = $validated['features'] ?? null;
-        $product->product_weight    = $validated['product_weight'] ?? null;
-        $product->brimful_volume    = $validated['brimful_volume'] ?? null;
+        $product->description       = $validated['description'];
+        $product->features          = $validated['features'];
+        $product->product_weight    = $validated['product_weight'];
+        $product->brimful_volume    = $validated['brimful_volume'];
         $product->image             = $imagePath;
         $product->main_category_ids = $request->input('main_category_ids', []);
         $product->sub_category_ids  = $request->input('sub_category_ids', []);
@@ -127,18 +127,22 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
 
+        $imageRule = ($product->image || $request->hasFile('image'))
+            ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096'
+            : 'required|image|mimes:jpg,jpeg,png,webp|max:4096';
+
         $validated = $request->validate([
             'title'             => 'required|string|max:255',
             'slug'              => 'nullable|string|max:255|unique:products,slug,' . $id,
             'subtitle'          => 'nullable|string|max:255',
             'code'              => 'nullable|string|max:255',
-            'description'       => 'nullable|string',
-            'features'          => 'nullable|string',
-            'product_weight'    => 'nullable|string|max:255',
-            'brimful_volume'    => 'nullable|string|max:255',
-            'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'description'       => 'required|string',
+            'features'          => 'required|string',
+            'product_weight'    => 'required|string|max:255',
+            'brimful_volume'    => 'required|string|max:255',
+            'image'             => $imageRule,
             'main_category_ids' => 'required|array|min:1',
-            'sub_category_ids'  => 'nullable|array',
+            'sub_category_ids'  => 'required|array|min:1',
         ]);
 
         // Auto-generate slug: title + plastic-bucket-used-in + main categories

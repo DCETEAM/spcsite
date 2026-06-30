@@ -1,9 +1,10 @@
-     <!DOCTYPE html>
+﻿     <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="description" content="Explore the advanced manufacturing facilities of Senthil Plastic Containers (SPC). Our state-of-the-art infrastructure in Virudhunagar ensures precision-moulded, high-quality plastic containers.">
     <meta name="keywords" content="SPC manufacturing facility, plastic container production, injection moulding Tamil Nadu, industrial infrastructure Virudhunagar, precision plastic moulding">
@@ -38,9 +39,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
-    <!-- Header -->
+</head>
 
-     <body>
+<body>
+    @include('partials.initial-loader-markup')
           <header id="header">
          <div class="container nav-container">
              <div style="display:flex;align-items:center;gap:8px;">
@@ -328,7 +330,8 @@ document.addEventListener('DOMContentLoaded', function () {
                      max-width: 100%;
                  }
              }
-         </style>
+         
+</style>
 
        @include('layouts.footer')
          <style>
@@ -959,7 +962,8 @@ document.addEventListener('DOMContentLoaded', function () {
                      margin-top: 40px;
                  }
              }
-         </style>
+         
+</style>
 
          <script>
              document.querySelectorAll('.facility-circle').forEach(circle => {
@@ -995,7 +999,8 @@ document.addEventListener('DOMContentLoaded', function () {
                  });
              });
          </script>
-     </body>
-     </head>
+     
+    @include('partials.initial-loader-script')
+</body>
 
-     </html>
+</html>

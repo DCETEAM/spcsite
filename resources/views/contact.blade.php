@@ -4,6 +4,7 @@
  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="description" content="Contact Senthil Plastic Containers (SPC) in Virudhunagar for high-quality plastic packaging solutions. Reach out for quotes, product inquiries, and bulk orders.">
     <meta name="keywords" content="Contact Senthil Plastic Containers, SPC contact number, plastic container supplier Virudhunagar, SPC address, plastic packaging inquiry Tamil Nadu">
@@ -685,7 +686,10 @@
                  text-align: center;
              }
          }
-     </style>
+     
+</style>
+<body>
+    @include('partials.initial-loader-markup')
      <header id="header">
          <div class="container nav-container">
              <div style="display:flex;align-items:center;gap:8px;">
@@ -800,7 +804,9 @@
      <!-- Footer -->
      @include('layouts.footer')
 
-     </body>
+     
+    @include('partials.initial-loader-script')
+</body>
 
 
 

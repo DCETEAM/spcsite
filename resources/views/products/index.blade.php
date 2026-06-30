@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="description" content="Browse our wide range of high-quality plastic containers, buckets, and pails. Senthil Plastic Containers (SPC) provides durable packaging for various industrial applications.">
     <meta name="keywords" content="SPC products, plastic container catalog, industrial pails, plastic buckets Tamil Nadu, bulk plastic containers, packaging solutions">
@@ -48,6 +49,13 @@
     <title>{{ $productsPageTitlePart }} | Senthil Plastic Containers Private Limited</title>
     <meta name="description" content="Browse {{ $productsPageTitlePart }} from Senthil Plastic Containers Private Limited.">
     <link rel="canonical" href="{{ request()->url() }}">
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -610,8 +618,8 @@
         .categories {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin: 40px 0;
+            gap: 20px;
+            margin: 20px 0;
             flex-wrap: wrap;
         }
 
@@ -952,23 +960,27 @@
 
         /* Product Image */
         .product-image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            display: block;
+            padding: 0;
+            margin: 0;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            line-height: 0;
         }
 
         .product-image img {
-            max-width: 100%;
-
-            background-color: #f8f9fa;
-            border-radius: 20px;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 0;
+            transform-origin: center center;
             transition: transform 0.4s ease;
         }
 
         .product-card:hover .product-image img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         /* Product Info */
@@ -1296,6 +1308,7 @@
 </head>
 
 <body>
+    @include('partials.initial-loader-markup')
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
@@ -1332,8 +1345,7 @@
 
 
     {{-- 🌐 MAIN CATEGORIES (Always Visible) --}}
-    {{-- 🌐 MAIN CATEGORIES (Always Visible) --}}
-    <section class="products-sections" style="padding: 80px 40px 20px 20px;background-color:#f0f9fd">
+    <section class="products-sections" style="padding: 40px 20px 10px 20px;background-color:#f0f9fd">
         <nav class="categories">
 
             @foreach ($categories as $categoryItem)
@@ -1367,11 +1379,11 @@
     </section>
 
     {{-- 💎 PRODUCTS --}}
-    <section class="product-section  position-relative overflow-hidden" style="background-color:#f4faff;">
+    <section class="product-section  position-relative overflow-hidden" style="background-color:#f4faff; padding: 20px 0 40px 0;">
 
         <div class="container text-center">
             @if ($subcategories && count($subcategories))
-                <div class="subcategory-wrap mb-4 mx-auto reveal fade-in" style="--delay: 60ms">
+                <div class="subcategory-wrap mb-3 mx-auto reveal fade-in" style="--delay: 60ms">
                     <div class="d-flex flex-wrap justify-content-center gap-2 gap-md-3">
                     @foreach ($subcategories as $sub)
     <a href="{{ route('products.subcategory', $sub->slug) }}"
@@ -1389,52 +1401,45 @@
                 </div>
             @endif
 
-            <h6 class="section-title mb-4  text-blue-700 reveal fade-up" style="--delay: 140ms">Our Products</h6>
-            <div class="container my-4">
-                <form class="d-flex justify-content-center mb-4">
-                    <input type="text" id="liveSearch" class="form-control w-25" placeholder="Search products..."
-                        aria-label="Search products">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 reveal fade-up" style="--delay: 140ms">
+                <h6 class="section-title text-blue-700 mb-0">Our Products</h6>
+                <form class="d-flex">
+                    <input type="text" id="liveSearch" class="form-control" placeholder="Search products..."
+                        aria-label="Search products" style="width: 280px;">
                 </form>
             </div>
             <p id="noProductsMsg" class="text-muted mt-4 mb-4" style="display:none;">No products found.</p>
 
             {{-- Product Grid --}}
             <div id="productList"
-                class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center mb-4">
+                class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mb-4">
 
                 @forelse ($products as $product)
                     <div class="col">
-                        <div class="product-card card border-0 shadow-sm h-100 rounded-4 overflow-hidden reveal zoom-in parallax"
+                        <div class="product-card card border-0 shadow-sm h-100 rounded-4 overflow-hidden reveal zoom-in"
                             style="--delay: {{ $loop->index * 70 + 160 }}ms">
                             <a href="{{ route('products.show', $product->slug) }}"
                                 class="text-decoration-none text-ink d-block position-relative h-100">
 
-                                {{-- New badge with pop-in --}}
-                                <span class="badge bg-blue-subtle text-blue fw-medium position-absolute z-2 badge-pop"
-                                    style="top: 10px; left: 12px;">
+                                {{-- New badge --}}
+                                <span class="badge bg-blue-subtle text-blue fw-medium position-absolute z-2 badge-pop product-badge">
                                     New
                                 </span>
 
-                                {{-- Image with parallax tilt --}}
-                                <div class="product-image position-relative">
+                                {{-- Image --}}
+                                <div class="product-image">
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}"
-                                        class="w-100 h-100 object-cover product-hover-zoom parallax-img" loading="lazy"
+                                        class="w-100 h-100 product-hover-zoom" loading="lazy"
                                         decoding="async" width="600" height="600"
                                         sizes="(max-width: 576px) 50vw, (max-width: 992px) 33vw, 25vw">
-
-                                    {{-- Hover overlay CTA + shine --}}
-                                    <div class="hover-overlay">
-                                        <span class="hover-cta text-blue">View</span>
-                                    </div>
-                                    <span class="img-shine" aria-hidden="true"></span>
                                 </div>
 
-                                <div class="p-3">
-                                    <h6 class="fw-semibold mb-1 text-ink text-truncate"
+                                <div class="product-text">
+                                    <h6 class="product-title text-truncate"
                                         title="{{ $product->title }}">
                                         {{ $product->title }}
                                     </h6>
-                                    <div class="rating mb-1 twinkle-on-hover"
+                                    <div class="rating twinkle-on-hover"
                                         aria-label="Rating: {{ number_format($product->rating, 1) }} out of 5">
                                         @for ($i = 1; $i <= 5; $i++)
                                             @if ($i <= floor($product->rating))
@@ -1793,72 +1798,50 @@
             border-color: var(--blue-200);
         }
 
-        /* Image area with shine and parallax */
+        /* Image area — flush edge-to-edge */
         .product-image {
             aspect-ratio: 1 / 1;
-            background: #fff;
             overflow: hidden;
             position: relative;
+            padding: 0;
+            margin: 0;
+            line-height: 0;
         }
 
-        .object-cover {
+        .product-badge {
+            top: 10px;
+            left: 10px;
+        }
+
+        .product-text {
+            padding: 8px 12px 12px;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0 0 4px;
+            line-height: 1.3;
+        }
+
+        .product-text .rating {
+            margin-bottom: 0 !important;
+            line-height: 1;
+        }
+
+        .product-image img {
             object-fit: cover;
+            object-position: center center;
         }
 
         .product-hover-zoom {
             transition: transform .45s ease;
+            transform-origin: center center;
         }
 
         .product-card:hover .product-hover-zoom {
-            transform: scale(1.06);
-        }
-
-        /* Shine sweep */
-        .img-shine {
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(75deg, transparent 0%, rgba(255, 255, 255, 0.4) 45%, rgba(255, 255, 255, 0.75) 50%, transparent 55%);
-            transform: skewX(-12deg);
-            transition: left .7s ease;
-            pointer-events: none;
-        }
-
-        .product-card:hover .img-shine {
-            left: 130%;
-        }
-
-        /* Hover overlay CTA */
-        .hover-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 40%, rgba(224, 242, 255, 0.75) 100%);
-            opacity: 0;
-            display: grid;
-            place-items: end center;
-            padding: 10px;
-            transition: opacity .3s ease;
-            pointer-events: none;
-        }
-
-        .hover-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #fff;
-            color: var(--blue-700);
-            border: 1px solid var(--blue-200);
-            border-radius: 999px;
-            padding: 5px 12px;
-            font-size: 12px;
-            font-weight: 700;
-            box-shadow: 0 6px 14px rgba(2, 132, 199, 0.18);
-        }
-
-        .product-card:hover .hover-overlay {
-            opacity: 1;
+            transform: scale(1.05);
         }
 
         /* Badge pop-in */
@@ -1986,8 +1969,7 @@
         }
 
         /* Responsive tweaks */
-        @media (max-width: 575.98px) {
-
+        @media (max-width: 768px) {
             .products-sections .circle,
             .product-section .circle {
                 width: 96px;
@@ -1996,6 +1978,17 @@
 
             .subcategory-chip {
                 padding: 8px 12px;
+            }
+
+            /* On small screens, stack heading and search bar */
+            .d-flex.justify-content-between.align-items-center {
+                flex-direction: column !important;
+                gap: 16px;
+            }
+
+            #liveSearch {
+                width: 100% !important;
+                max-width: 360px;
             }
         }
 
@@ -2254,3 +2247,5 @@
             }
         });
     </script>
+
+    @include('partials.initial-loader-script')

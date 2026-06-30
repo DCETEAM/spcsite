@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="description" content="Senthil Plastic Containers (SPC) is a leading manufacturer and supplier of high-quality plastic containers in Virudhunagar, Tamil Nadu, offering durable, reliable, and industry-standard plastic packaging solutions.">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -1241,10 +1242,12 @@
                 font-size: 2rem;
             }
         }
-    </style>
+    
+</style>
 </head>
 
 <body>
+    @include('partials.initial-loader-markup')
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
@@ -1957,6 +1960,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 </script>
+
+    @include('partials.initial-loader-script')
 </body>
 
 </html>

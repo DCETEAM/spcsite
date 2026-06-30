@@ -1,9 +1,10 @@
- <!DOCTYPE html>
+﻿ <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="Senthil Plastic Containers">
@@ -14,22 +15,29 @@
     <meta name="geo.position" content="9.5851;77.9570">
     <meta name="ICBM" content="9.5851, 77.9570">
 
-    <title>{{ \Illuminate\Support\Str::title(str_replace('-', ' ', $product->slug)) }} | Senthil Plastic Containers Private Limited</title>
-    <meta name="description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : 'Senthil Plastic Containers (SPC) is a leading manufacturer of high-quality plastic containers.')) }}">
+    @php
+        $metaTitle = \Illuminate\Support\Str::title(str_replace(['-', '_'], ' ', $product->slug));
+        $metaDescription = $product->description
+            ? \Illuminate\Support\Str::limit(strip_tags($product->description), 300, '')
+            : '';
+    @endphp
+
+    <title>{{ $metaTitle }} | Senthil Plastic Containers Private Limited</title>
+    <meta name="description" content="{{ $metaDescription ?: 'Senthil Plastic Containers (SPC) is a leading manufacturer of high-quality plastic containers.' }}">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph -->
     <meta property="og:type" content="product">
-    <meta property="og:title" content="{{ $product->title }} | Senthil Plastic Containers">
-    <meta property="og:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <meta property="og:title" content="{{ $metaTitle }} | Senthil Plastic Containers">
+    <meta property="og:description" content="{{ $metaDescription }}">
     <meta property="og:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/item2.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $product->title }} | Senthil Plastic Containers">
-    <meta name="twitter:description" content="{{ strip_tags($product->subtitle ?: ($product->description ? \Illuminate\Support\Str::limit($product->description, 160, '') : '')) }}">
+    <meta name="twitter:title" content="{{ $metaTitle }} | Senthil Plastic Containers">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
     <meta name="twitter:image" content="{{ $product->image ? asset('storage/' . $product->image) : asset('assets/img/item2.png') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -41,7 +49,12 @@
 
      <link
          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-         rel="stylesheet" /><!-- Header -->
+         rel="stylesheet" />
+</head>
+
+<body>
+    @include('partials.initial-loader-markup')
+    <!-- Header -->
      <header id="header">
          <div class="container nav-container">
              <div style="display:flex;align-items:center;gap:8px;">
@@ -994,7 +1007,8 @@
              color: #6c757d;
              font-weight: 600;
          }
-     </style>
+     
+</style>
      <script>
          function changeImage(element) {
              const mainImage = document.getElementById("mainImage");
@@ -1029,6 +1043,8 @@
              });
          });
      </script>
-     </body>
+     
+    @include('partials.initial-loader-script')
+</body>
 
  </html>

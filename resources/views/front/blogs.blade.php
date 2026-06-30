@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    @include('partials.initial-loader-styles')
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     <meta name="description" content="Stay updated with the latest news, industry trends, and manufacturing insights from Senthil Plastic Containers (SPC). Your source for plastic packaging expertise.">
     <meta name="keywords" content="SPC blog, plastic manufacturing news, packaging industry trends, Senthil Plastic updates, industrial container insights">
@@ -742,10 +743,12 @@
             object-fit: cover;
             border-radius: 8px;
         }
-    </style>
+    
+</style>
 </head>
 
 <body>
+    @include('partials.initial-loader-markup')
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
@@ -918,6 +921,8 @@
         });
     </script>
 
+
+    @include('partials.initial-loader-script')
 </body>
 
 </html>
