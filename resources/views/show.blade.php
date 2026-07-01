@@ -1,4 +1,4 @@
-﻿ <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -150,6 +150,25 @@
 
     @if ($product->subtitle)
         <p class="product-subtitle text-muted mb-3">{{ $product->subtitle }}</p>
+    @endif
+
+    @if ($product->product_weight || $product->brimful_volume)
+        <div class="product-specs mb-3 d-flex flex-wrap gap-4">
+            @if ($product->product_weight)
+                <div class="spec-item d-flex align-items-center">
+                    <i class="fa fa-balance-scale me-2" style="color: #45aae3;"></i>
+                    <strong>Weight:</strong> 
+                    <span class="ms-2">{{ $product->product_weight }}</span>
+                </div>
+            @endif
+            @if ($product->brimful_volume)
+                <div class="spec-item d-flex align-items-center">
+                    <i class="fa fa-tint me-2" style="color: #45aae3;"></i>
+                    <strong>Volume:</strong> 
+                    <span class="ms-2">{{ $product->brimful_volume }}</span>
+                </div>
+            @endif
+        </div>
     @endif
 
     @if ($product->description)

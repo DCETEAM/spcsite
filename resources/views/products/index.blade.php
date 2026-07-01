@@ -1445,18 +1445,19 @@
                                         title="{{ $product->title }}">
                                         {{ $product->title }}
                                     </h6>
-                                    <div class="rating twinkle-on-hover"
-                                        aria-label="Rating: {{ number_format($product->rating, 1) }} out of 5">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            @if ($i <= floor($product->rating))
-                                                <i class="fas fa-star text-warning"></i>
-                                            @elseif ($i - $product->rating < 1)
-                                                <i class="fas fa-star-half-alt text-warning"></i>
-                                            @else
-                                                <i class="far fa-star text-warning"></i>
-                                            @endif
-                                        @endfor
-
+                                    <div class="product-specs mt-2 d-flex justify-content-between align-items-center">
+                                        @isset($product->product_weight)
+                                            <div class="spec-item text-sm text-muted">
+                                                <i class="fa fa-balance-scale me-1"></i>
+                                                <span>{{ $product->product_weight }}</span>
+                                            </div>
+                                        @endisset
+                                        @isset($product->brimful_volume)
+                                            <div class="spec-item text-sm text-muted">
+                                                <i class="fa fa-tint me-1"></i>
+                                                <span>{{ $product->brimful_volume }}</span>
+                                            </div>
+                                        @endisset
                                     </div>
                                 </div>
                             </a>
@@ -1831,9 +1832,23 @@
             line-height: 1.3;
         }
 
-        .product-text .rating {
-            margin-bottom: 0 !important;
-            line-height: 1;
+        .product-text .product-specs {
+            margin-top: 8px;
+        }
+
+        .product-text .spec-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.4;
+            margin-bottom: 2px;
+        }
+
+        .product-text .spec-item i {
+            color: var(--blue-400, #0ea5e9);
+            font-size: 0.8rem;
+            width: 16px;
         }
 
         .product-image img {
