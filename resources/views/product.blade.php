@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,9 +32,7 @@
     <title>spc | Premium Plastic Containers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+    @include('partials.site-fonts')
     <style>
          :root {
             /* Brand Colors */
@@ -87,7 +85,7 @@
         }
 
         body {
-             font-family: "Playfair Display", serif;
+             font-family: "Poppins", sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
@@ -99,7 +97,7 @@
         h3,
         h4,
         h5 {
-             font-family: "Playfair Display", serif;
+             font-family: "Poppins", sans-serif;
             font-weight: 700;
             line-height: 1.2;
             font-size: 23px;
@@ -146,7 +144,7 @@
         }
 
         .logo {
-                font-family: "Playfair Display", serif;
+                font-family: "Poppins", sans-serif;
           
             font-weight: 900;
             color: rgb(19, 16, 16);
@@ -171,7 +169,8 @@
         .nav-link {
             text-decoration: none;
             color:rgb(7, 5, 5);
-            font-weight: 900;
+            font-weight: 600;
+    text-transform: uppercase;
             position: relative;
             font-size: 18px;
             padding: 5px 0;
@@ -571,7 +570,7 @@
         body {
 
             background: #fff;
-       font-family: "Playfair Display", serif;
+       font-family: "Poppins", sans-serif;
             font-weight: 400;
             font-style: regular;
             margin: 0;
@@ -684,7 +683,7 @@
 
 
 
-        /* 📱 Mobile */
+        /* ?? Mobile */
         @media (max-width: 480px) {
             .categories {
                 /* height: 50px;
@@ -696,7 +695,8 @@
         .nav-link {
             text-decoration: none;
             color:rgb(241, 239, 239);
-            font-weight: 900;
+            font-weight: 600;
+    text-transform: uppercase;
             position: relative;
             font-size: 18px;
             padding: 5px 0;
@@ -704,7 +704,7 @@
         }
         .nav-menu .active {
             color: var(--accent);
-            font-weight: 900;
+            font-weight: 600;
         }
             .logo {
                 font-size: 12px;
@@ -1352,7 +1352,7 @@
                         </a>
                         <div class="product-info">
                             <h3>P10</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1369,7 +1369,7 @@
                         </a>
                         <div class="product-info">
                             <h3>K10</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                         </div>
                     </div>
@@ -1385,7 +1385,7 @@
                         </a>
                         <div class="product-info">
                             <h3>K5</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
                             {{-- <p class="price">$18.00</p> --}}
                            
                         </div>
@@ -1402,7 +1402,7 @@
                         </a>
                         <div class="product-info">
                             <h3>P20</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1426,7 +1426,7 @@
                         </div>
                         <div class="product-info">
                             <h3>ssssssss</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1441,7 +1441,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K10</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                         </div>
                     </div>
@@ -1454,7 +1454,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K5</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
                             {{-- <p class="price">$18.00</p> --}}
                            
                         </div>
@@ -1469,7 +1469,7 @@
                         </div>
                         <div class="product-info">
                             <h3>P20</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1493,7 +1493,7 @@
                         </div>
                         <div class="product-info">
                             <h3>ssssssss</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1508,7 +1508,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K10</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                         </div>
                     </div>
@@ -1521,7 +1521,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K5</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
                             {{-- <p class="price">$18.00</p> --}}
                            
                         </div>
@@ -1536,7 +1536,7 @@
                         </div>
                         <div class="product-info">
                             <h3>aaaxsa</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1561,7 +1561,7 @@
                         </div>
                         <div class="product-info">
                             <h3>ssssssss</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1576,7 +1576,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K10</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                         </div>
                     </div>
@@ -1589,7 +1589,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K5</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
                             {{-- <p class="price">$18.00</p> --}}
                            
                         </div>
@@ -1604,7 +1604,7 @@
                         </div>
                         <div class="product-info">
                             <h3>P20</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1629,7 +1629,7 @@
                         </div>
                         <div class="product-info">
                             <h3>ssssssss</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1644,7 +1644,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K10</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                         </div>
                     </div>
@@ -1657,7 +1657,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K5</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
                             {{-- <p class="price">$18.00</p> --}}
                            
                         </div>
@@ -1672,7 +1672,7 @@
                         </div>
                         <div class="product-info">
                             <h3>P20</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1697,7 +1697,7 @@
                         </div>
                         <div class="product-info">
                             <h3>ssssssss</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>
@@ -1712,7 +1712,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K10</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                         </div>
                     </div>
@@ -1725,7 +1725,7 @@
                         </div>
                         <div class="product-info">
                             <h3>K5</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
                             {{-- <p class="price">$18.00</p> --}}
                            
                         </div>
@@ -1740,7 +1740,7 @@
                         </div>
                         <div class="product-info">
                             <h3>P20</h3>
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <div class="rating">?????</div>
 
                            
                         </div>

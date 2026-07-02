@@ -1,4 +1,4 @@
-﻿ <!DOCTYPE html>
+ <!DOCTYPE html>
  <html lang="en">
 
  <head>
@@ -19,9 +19,7 @@
      <meta property="og:type" content="product">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-     <link
-         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-         rel="stylesheet" /><!-- Header -->
+    @include('partials.site-fonts')<!-- Header -->
      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
      <header id="header">
@@ -72,15 +70,15 @@
                      <p class="product-desc">
                          Our 103Ltr plastic bucket is engineered for performance and longevity. Made with
                          high-grade polymer, it ensures strong durability, chemical resistance, and secure
-                         sealing. Perfect for paint, chemical, and lubricant industries — designed to meet
+                         sealing. Perfect for paint, chemical, and lubricant industries � designed to meet
                          international safety and packaging standards.
                      </p>
 
                      <ul class="product-features">
-                         <li>✔ High-density polymer material</li>
-                         <li>✔ Leak-proof lid and ergonomic handle</li>
-                         <li>✔ Custom branding & color options</li>
-                         <li>✔ ISO-certified manufacturing</li>
+                         <li>? High-density polymer material</li>
+                         <li>? Leak-proof lid and ergonomic handle</li>
+                         <li>? Custom branding & color options</li>
+                         <li>? ISO-certified manufacturing</li>
                      </ul>
 
                      <div class="product-buttons">
@@ -240,7 +238,7 @@
      }
 
      .section-title {
-         font-family: 'Playfair Display', serif;
+         font-family: 'Poppins', sans-serif;
          font-weight: 700;
          font-size: 2rem;
          text-align: center;
@@ -332,7 +330,7 @@
 
      /* Product Title */
      .product-card h3 {
-         font-family: 'Playfair Display', serif;
+         font-family: 'Poppins', sans-serif;
          font-size: 1.1rem;
          font-weight: 600;
          margin-top: 15px;
@@ -487,7 +485,7 @@
      }
 
      .logo {
-         font-family: "Playfair Display", serif;
+         font-family: "Poppins", sans-serif;
        
          font-weight: 900;
          color: rgb(19, 16, 16);
@@ -512,7 +510,8 @@
      .nav-link {
          text-decoration: none;
          color: rgb(21, 18, 18);
-         font-weight: 900;
+         font-weight: 600;
+    text-transform: uppercase;
          font-size: 18px;
          position: relative;
          padding: 5px 0;
@@ -811,7 +810,7 @@
      }
 
      body {
-         font-family: "Playfair Display", serif;
+         font-family: "Poppins", sans-serif;
          line-height: 1.6;
          color: var(--dark);
          background-color: var(--light);
@@ -823,8 +822,8 @@
      h3,
      h4,
      h5 {
-         font-family: "Playfair Display", serif;
-         font-weight: 600;
+         font-family: "Poppins", sans-serif;
+         font-weight: 700;
          line-height: 1.2;
      }
 
@@ -855,7 +854,8 @@
          .nav-link {
              text-decoration: none;
              color: rgb(241, 239, 239);
-             font-weight: 900;
+             font-weight: 600;
+    text-transform: uppercase;
              position: relative;
              font-size: 18px;
              padding: 5px 0;

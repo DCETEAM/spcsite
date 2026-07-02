@@ -1,4 +1,4 @@
-ï»¿     <!DOCTYPE html>
+     <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -36,9 +36,7 @@
     <link rel="canonical" href="{{ request()->url() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+    @include('partials.site-fonts')
 </head>
 
 <body>
@@ -174,8 +172,8 @@ document.addEventListener('DOMContentLoaded', function () {
                  <div class="commitment-header">
                      <h2>Proof of Our Promise: The Trusted Plastic Packaging Partner</h2>
                      <p>
-                         We donâ€™t just make containers â€” we safeguard your products, brands, and reputation.
-                         Thatâ€™s why Indiaâ€™s leading companies trust us as their long-term packaging partner for reliable
+                         We don’t just make containers — we safeguard your products, brands, and reputation.
+                         That’s why India’s leading companies trust us as their long-term packaging partner for reliable
                          plastic containers.
                      </p>
                  </div>
@@ -218,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function () {
                              <i class="fas fa-users-cog"></i>
                          </div>
                          <h3>Client First Service & Support</h3>
-                         <p>Your satisfaction drives everything we do â€” service beyond expectations.</p>
+                         <p>Your satisfaction drives everything we do — service beyond expectations.</p>
                      </div>
                  </div>
              </div>
@@ -668,7 +666,7 @@ document.addEventListener('DOMContentLoaded', function () {
              }
 
              body {
-                 font-family: "Playfair Display", serif;
+                 font-family: "Poppins", sans-serif;
                  line-height: 1.6;
                  color: var(--dark);
                  /* background-color: violet; */
@@ -680,8 +678,8 @@ document.addEventListener('DOMContentLoaded', function () {
              h3,
              h4,
              h5 {
-                 font-family: "Playfair Display", serif;
-                 font-weight: 600;
+                 font-family: "Poppins", sans-serif;
+                 font-weight: 700;
                  line-height: 1.2;
              }
 
@@ -775,7 +773,7 @@ document.addEventListener('DOMContentLoaded', function () {
              }
 
              .logo {
-                 font-family: "Playfair Display", serif;
+                 font-family: "Poppins", sans-serif;
                
                  font-weight: 900;
                  color: rgb(19, 16, 16);
@@ -800,7 +798,8 @@ document.addEventListener('DOMContentLoaded', function () {
              .nav-link {
                  text-decoration: none;
                  color: rgb(21, 18, 18);
-                 font-weight: 900;
+                 font-weight: 600;
+    text-transform: uppercase;
                  font-size: 18px;
                  position: relative;
                  padding: 5px 0;
@@ -942,7 +941,8 @@ document.addEventListener('DOMContentLoaded', function () {
                  .nav-link {
                      text-decoration: none;
                      color: rgb(241, 239, 239);
-                     font-weight: 900;
+                     font-weight: 600;
+    text-transform: uppercase;
                      position: relative;
                      font-size: 18px;
                      padding: 5px 0;

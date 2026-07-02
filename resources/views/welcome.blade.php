@@ -32,9 +32,7 @@
     <title>Industrial Plastic Containers, Buckets & Pails Manufacturer | Senthil Plastic</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+    @include('partials.site-fonts')
 </head>
 <style>
 :root {
@@ -101,7 +99,9 @@ body {
 }
 
 body {
-    font-family: "Playfair Display", serif;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
     line-height: 1.6;
     color: var(--dark);
     background-color: var(--light);
@@ -109,12 +109,23 @@ body {
 }
 
 section {
-    /* Full screen */
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     display: flex;
     align-items: center;
-    /* Center content vertically */
+}
 
+section.contact-footer-section {
+    padding: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #0a1517;
 }
 
 h1,
@@ -122,8 +133,8 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: "Playfair Display", serif;
-    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
     line-height: 1.2;
 }
 
@@ -168,7 +179,7 @@ header.scrolled {
 }
 
 .logo {
-    font-family: "Playfair Display", serif;
+    font-family: "Poppins", sans-serif;
 
     font-weight: 900;
     color: rgb(19, 16, 16);
@@ -193,13 +204,14 @@ header.scrolled {
 
 .nav-menu .active {
     color: var(--accent);
-    font-weight: 900;
+    font-weight: 600;
 }
 
 .nav-link {
     text-decoration: none;
     color: rgb(21, 18, 18);
-    font-weight: 900;
+    font-weight: 600;
+    /* text-transform: uppercase; */
     font-size: 18px;
     position: relative;
     padding: 5px 0;
@@ -242,7 +254,7 @@ header.scrolled {
     z-index: 1001;
     background: var(--hero-navy);
     color: rgba(255, 255, 255, 0.88);
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 0.78rem;
 }
 
@@ -289,7 +301,7 @@ header.scrolled {
     padding: 10px 20px;
     background: var(--hero-navy);
     color: #fff !important;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 0.88rem;
     font-weight: 600;
     border-radius: 6px;
@@ -431,7 +443,7 @@ header.scrolled {
 
 .hero-content h1 {
     /* font-size: clamp(2rem, 4.5vw, 3.25rem); */
-    font-weight: 500;
+    font-weight: 700;
     color: #fff;
     text-align: left;
     line-height: 1.15;
@@ -592,7 +604,7 @@ header.scrolled {
 }
 
 .hero-strip-head h3 {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: clamp(1rem, 1.8vw, 1.35rem);
     font-weight: 700;
     color: var(--hero-navy);
@@ -604,7 +616,7 @@ header.scrolled {
 }
 
 .hero-strip-head p {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 0.82rem;
     color: #6b7280;
     margin: 4px 0 0;
@@ -644,7 +656,7 @@ header.scrolled {
 
 .hero-strip-card span {
     flex: 1;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--hero-navy);
@@ -1259,80 +1271,182 @@ header.scrolled {
 }
 
 .facility-panel-split {
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 15px;
+    display: none;
+    border-radius: 24px;
     overflow: hidden;
-    margin-bottom: 30px;
-    width: 100%;
-    height: auto;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(0, 26, 61, 0.12);
+    border: 1px solid rgba(0, 26, 61, 0.06);
+    min-height: 300px;
 }
 
-.facility-panel-split:hover {
-    transform: scale(1.02);
+.facility-panel-split.active {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    animation: techSlideIn 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes techSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.tech-slide-visual {
+    position: relative;
+    min-height: 280px;
+    overflow: hidden;
 }
 
 .facility-image {
-    flex: 1 1 50%;
-    /* min-height: 400px; */
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
     background-size: cover;
     background-position: center;
+    transition: transform 0.6s ease;
+}
+
+.facility-panel-split.active .facility-image {
+    transform: scale(1);
+}
+
+.tech-slide-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 26, 61, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.tech-slide-badge {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--hero-navy);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 2;
 }
 
 .facility-content {
-    flex: 1 1 50%;
-    background: #212529;
-    /* Dark background for readability */
-    color: #fff;
-    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: clamp(20px, 3vw, 32px);
+    background: linear-gradient(160deg, var(--hero-navy) 0%, #002855 100%);
+    color: #fff;
+    position: relative;
+}
+
+.facility-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(69, 170, 227, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.tech-slide-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--hero-gold);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
 }
 
 .facility-content h3 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
 }
 
 .facility-content p {
-    font-size: 1rem;
+    font-size: 0.875rem;
     line-height: 1.6;
-    text-align: justify;
-    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 16px;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+}
+
+.tech-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.tech-cta-btn:hover {
+    background: transparent;
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.tech-cta-btn i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.tech-cta-btn:hover i {
+    transform: translateX(4px);
 }
 
 .facility-content .btn-outline {
-    width: 50%;
-    padding: 10px 20px;
-    border: 2px solid #fff;
-    color: #fff;
-    align-items: center;
-    /* border-radius: 8px; */
-    transition: all 0.3s ease;
+    display: none;
 }
 
-.facility-content .btn-outline:hover {
-    background-color: #fff;
-    color: #000;
+@media (max-width: 992px) {
+    .facility-panel-split.active {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-slide-visual,
+    .facility-image {
+        min-height: 220px;
+    }
 }
 
-/* Responsive for mobile */
 @media (max-width: 768px) {
     .facility-panel-split {
-        flex-direction: column;
-    }
-
-    .facility-image,
-    .facility-content {
-        flex: 1 1 100%;
-        min-height: 200px;
+        min-height: auto;
     }
 
     .facility-content {
-        padding: 25px;
+        padding: 28px 24px;
     }
 }
 
@@ -1443,51 +1557,89 @@ header.scrolled {
 }
 
 /* Grid */
+.product-categories {
+    padding: 80px 0 100px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+    overflow: visible;
+    position: relative;
+}
+
+.product-categories .section-title {
+    color: #0369a1;
+    margin-bottom: 50px;
+    font-family: 'Playfair Display', serif;
+}
+
 .categories-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    overflow: visible;
 }
 
 /* Card */
 .category-card {
     position: relative;
-    height: 230px;
-    border-radius: 16px;
+    height: 240px;
+    border-radius: 20px;
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    z-index: 1;
 }
 
 /* Overlay */
 .category-card .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.25);
-    transition: background 0.4s ease;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+    transition: all 0.4s ease;
 }
 
 /* Title */
 .category-card h3 {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    text-align: left;
+    text-align: center;
     z-index: 2;
+    padding: 25px 20px;
+    margin: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .category-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(3, 105, 161, 0.2);
+    z-index: 10;
+}
+
+.category-card:hover .overlay {
+    background: linear-gradient(to top, rgba(3, 105, 161, 0.9) 0%, rgba(3, 105, 161, 0.3) 50%, rgba(3, 105, 161, 0.1) 100%);
+}
+
+.category-card:hover h3 {
+    transform: translateY(-5px);
+    font-size: 1.35rem;
 }
 
 
 /* Responsive */
+@media (max-width: 1200px) {
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 992px) {
     .categories-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1751,7 +1903,7 @@ header.scrolled {
     }
 
     .facility-content h3 {
-        font-size: 18px;
+        font-size: 1rem;
     }
 
     /* Button */
@@ -1770,7 +1922,8 @@ header.scrolled {
     .nav-link {
         text-decoration: none;
         color: rgb(248, 240, 240);
-        font-weight: 900;
+        font-weight: 600;
+    text-transform: uppercase;
         position: relative;
         font-size: 18px;
         padding: 5px 0;
@@ -1837,7 +1990,7 @@ header.scrolled {
 .promo-text {
     flex-grow: 0.5;
     color: white;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Poppins', sans-serif;
     /* or any stylish font */
 }
 
@@ -2025,57 +2178,202 @@ header.scrolled {
     color: var(--accent);
 }
 
-/* Facilities Tabs Section */
+/* Facilities / Technologies Section */
 .facilities-tabs {
-    padding: 80px 0px !important;
-    background: #fff;
+    padding: clamp(28px, 4vw, 48px) 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #eef4fc 50%, #f8fafc 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.facilities-tabs .container {
+    width: 95%;
+    max-width: 1100px;
+}
+
+.facilities-tabs::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(69, 170, 227, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.tech-section-header {
     text-align: center;
+    max-width: 900px;
+    margin: 60px auto 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.tech-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(69, 170, 227, 0.1);
+    padding: 4px 14px;
+    border-radius: 50px;
+    margin-bottom: 8px;
+}
+
+.tech-subtitle {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-top: 6px;
+    margin-bottom: 0;
 }
 
 .facilities-tabs .section-title {
-    font-size: 2rem;
-    margin-bottom: 50px;
-    color: #222;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin-top: 0;
+    margin-bottom: 0;
+    color: var(--hero-navy);
 }
 
-/* Circles Nav */
-.facilities-nav {
+.facilities-tabs .section-title::after {
+    display: none;
+}
+
+.tech-tab-bar {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 auto 18px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 26, 61, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 26, 61, 0.06);
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    z-index: 10;
+    isolation: isolate;
 }
 
-.facility-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: #f0f0f0;
+.tech-tab {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-align: center;
-    padding: 20px;
+    gap: 8px;
+    flex: 1 1 220px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 10px 14px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
     cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #64748b;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
+    touch-action: manipulation;
+}
+
+.tech-tab-num,
+.tech-tab-label {
+    pointer-events: none;
+    user-select: none;
+}
+
+.tech-tab:hover {
+    color: var(--hero-navy);
+    background: rgba(69, 170, 227, 0.08);
+}
+
+.tech-tab.active {
+    background: var(--hero-navy);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 26, 61, 0.2);
+}
+
+.tech-tab-num {
+    font-size: 0.7rem;
+    font-weight: 700;
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+}
+
+.tech-tab.active .tech-tab-num {
+    opacity: 0.9;
+    color: var(--hero-gold);
+}
+
+.tech-slider-wrap {
+    position: relative;
+    z-index: 1;
+}
+
+.facilities-content {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.tech-slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 16px;
+}
+
+.tech-nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 26, 61, 0.12);
+    background: #fff;
+    color: var(--hero-navy);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
-.facility-circle.active {
-    background: var(--accent, #00a86b);
+.tech-nav-btn:hover {
+    background: var(--hero-navy);
     color: #fff;
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border-color: var(--hero-navy);
 }
 
-/* Panels */
-.facilities-content {
-    position: relative;
-    /* max-width: 1000px; */
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
+.tech-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.tech-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.tech-dot.active {
+    width: 28px;
+    border-radius: 4px;
+    background: var(--accent);
 }
 
 .facility-panel {
@@ -2125,10 +2423,9 @@ header.scrolled {
     margin-bottom: 20px;
 }
 
-/* Button */
 .btn.btn-outline {
     padding: 10px 25px;
-    border: 2px solidvar(--accent);
+    border: 2px solid var(--accent);
     border-radius: 30px;
     color: var(--accent);
     background: rgba(255, 255, 255, 0.1);
@@ -2142,7 +2439,6 @@ header.scrolled {
     color: var(--accent, #00a86b);
 }
 
-/* Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -2155,17 +2451,28 @@ header.scrolled {
     }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-    .facilities-nav {
-        /* flex-direction: column; */
-        gap: 20px;
+    .tech-tab-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        max-width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
 
-    .facility-circle {
-        width: 100px;
-        height: 100px;
-        font-size: 0.9rem;
+    .tech-tab-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tech-tab {
+        flex: 0 0 auto;
+        padding: 12px 16px;
+        font-size: 0.82rem;
+    }
+
+    .tech-tab-num {
+        display: none;
     }
 }
 
@@ -2351,181 +2658,458 @@ header.scrolled {
     transform: scale(1.2);
 }
 
-/* Contact */
-.contact {
-    padding: 80px 0;
-    background: #80c0e3;
-    color: white;
+/* Contact + Footer — single screen */
+.contact-premium {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(340px, 52%) 1fr;
+    min-height: 0;
+    align-items: stretch;
 }
 
-.contact .section-title {
-    color: white;
+.contact-premium-aside {
+    background: linear-gradient(165deg, var(--hero-navy) 0%, #001428 55%, #002855 100%);
+    padding: clamp(20px, 3vh, 28px) clamp(24px, 3.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
 }
 
-.contact .section-title:after {
-    background-color: var(--accent);
+.contact-premium-aside::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(69, 170, 227, 0.18) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-.contact-content {
+.contact-premium-aside::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    height: 72px;
+    background: linear-gradient(180deg, var(--hero-gold), transparent);
+}
+
+.contact-eyebrow {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--hero-gold);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-title {
+    font-size: clamp(1rem, 3vw, 2.5rem);
+    font-weight: 500;
+    color: #fff;
+    margin: 0 0 8px;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+}
+
+.contact-subtitle {
+    font-size: clamp(0.88rem, 1.2vw, 1rem);
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0 0 14px;
+    line-height: 1.55;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-about-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-about-lines p {
+    font-size: clamp(0.78rem, 1vw, 0.88rem);
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+    padding-left: 14px;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contact-premium-main {
+    padding: clamp(20px, 3vh, 28px) clamp(24px, 3.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #ffffff;
+    min-height: 0;
+    height: 100%;
+}
+
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.contact-info-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: clamp(12px, 2vw, 24px);
+    padding: clamp(10px, 1.4vh, 14px) 0;
+    border-bottom: 1px solid rgba(0, 26, 61, 0.07);
+    align-items: start;
 }
 
-.contact-info {
-    opacity: 0;
-    transform: translateX(-50px);
+.contact-info-row:first-child {
+    border-top: 1px solid rgba(0, 26, 61, 0.07);
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
+.contact-info-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    padding: 0;
+    align-items: start;
 }
 
-.contact-icon {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
+.contact-info-icon {
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
-    font-size: 1.2rem;
+    color: var(--hero-navy);
+    font-size: 1rem;
+    border-radius: 12px;
+    background: rgba(0, 26, 61, 0.04);
 }
 
-.contact-form {
-    opacity: 0;
-    transform: translateX(50px);
+.contact-info-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #94a3b8;
+    margin-bottom: 5px;
 }
 
-.form-group {
-    margin-bottom: 20px;
+.contact-info-value,
+.contact-info-value a {
+    font-size: clamp(0.85rem, 1.05vw, 0.95rem);
+    color: var(--hero-navy);
+    font-weight: 500;
+    line-height: 1.55;
+    text-decoration: none;
+    margin: 0;
+    word-break: break-word;
 }
 
-.form-control {
-    width: 100%;
-    padding: 12px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.9);
-    font-family: "Montserrat", sans-serif;
-    transition: var(--transition);
+.contact-info-value a:hover {
+    color: var(--accent);
 }
 
-.form-control:focus {
-    outline: none;
-    background-color: white;
-    box-shadow: 0 0 0 2px var(--accent);
-}
-
-textarea.form-control {
-    min-height: 150px;
-    resize: vertical;
+.contact-info-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .customer-testimonials {
-    padding: 80px 20px;
-
+    padding: clamp(60px, 8vw, 100px) 20px;
+    background: var(--hero-navy);
+    position: relative;
+    overflow: hidden;
 }
 
+.customer-testimonials::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(69, 170, 227, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(255, 184, 0, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
 
+.customer-testimonials .container {
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.customer-testimonials .section-title {
+    color: #fff;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.customer-testimonials .tech-eyebrow {
+    background: rgba(69, 170, 227, 0.2);
+    color: var(--hero-blue);
+}
 
 .section-subtitle {
     text-align: center;
-    color: var(--text-light);
-    margin-bottom: 30px;
-    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    margin-top: 12px;
 }
 
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding-top: 50px;
-    justify-content: center;
+.testimonial-carousel {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.testimonial-carousel-viewport {
+    overflow: hidden;
+}
+
+.testimonial-track {
+    display: flex;
+    align-items: stretch;
+    gap: 32px;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.testimonial-track .testimonial-card {
+    flex: 0 0 calc(50% - 16px);
+    max-width: calc(50% - 16px);
+    box-sizing: border-box;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
 }
 
 .testimonial-card {
-    background: var(--bg-light);
-    border-radius: 25px;
-    padding: 40px 25px 30px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 28px 24px;
     position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    border-color: rgba(69, 170, 227, 0.3);
+}
+
+.testimonial-stars {
+    color: var(--hero-gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+}
+
+.quote-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(69, 170, 227, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--hero-blue);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    flex-shrink: 0;
 }
 
 .quote {
-    position: absolute;
-    top: -50px;
-    right: 25px;
-    font-size: 80px;
-    color: #45aae3;
-    opacity: 0.3;
-    transform: rotate(180deg);
-    user-select: none;
+    display: none;
 }
 
 .testimonial-card p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.65;
+    font-size: 0.92rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    margin-bottom: 0;
+    padding-right: 6px;
     position: relative;
     z-index: 2;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.testimonial-card p::-webkit-scrollbar {
+    width: 4px;
+}
+
+.testimonial-card p::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 4px;
 }
 
 .user {
-    margin-top: 20px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
 }
 
 .user img {
-    width: 50px;
-    height: 50px;
-
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 3px rgba(69, 170, 227, 0.2);
+    flex-shrink: 0;
 }
 
 .user h4 {
     margin: 0;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
+    word-break: break-word;
 }
 
 .user p {
     margin: 0;
     font-size: 13px;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.6);
 }
 
-/* Footer */
-footer {
-    background-color: #0d1f22;
+.testimonial-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 36px;
+}
+
+.testimonial-nav {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.testimonial-nav:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.testimonial-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.testimonial-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.testimonial-dot.active {
+    width: 28px;
+    border-radius: 4px;
+    background: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .testimonial-track .testimonial-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+        height: 300px;
+        min-height: 300px;
+        max-height: 300px;
+    }
+}
+
+/* Upgraded Footer */
+.site-footer-compact {
+    flex-shrink: 0;
+    background: #0a1517;
     color: white;
-    padding: 30px 20px 20px 30px;
+    padding: 16px 0 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    margin: 0;
+}
+
+.site-footer-compact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--hero-gold), var(--accent), transparent);
+}
+
+.site-footer-compact > .container {
+    width: 95%;
+    max-width: 1400px;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    /* margin-bottom: 40px; */
+    grid-template-columns: 1.4fr 1fr 1fr auto;
+    gap: clamp(20px, 3vw, 36px);
+    align-items: start;
 }
 
 .footer-col h4 {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.footer-col p {
+    font-size: 0.78rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
 }
 
 .footer-col h4:after {
@@ -2533,60 +3117,83 @@ footer {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 40px;
+    width: 28px;
     height: 2px;
-    background-color: var(--accent);
+    background: var(--accent);
+    border-radius: 2px;
 }
 
 .footer-links {
     list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .footer-links li {
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 .footer-links a {
-    color: #bbb;
+    color: #94a3b8;
     text-decoration: none;
+    font-size: 0.78rem;
     transition: var(--transition);
+    line-height: 1.65;
 }
 
 .footer-links a:hover {
     color: var(--accent);
-    padding-left: 5px;
 }
 
 .social-links {
     display: flex;
-    margin-top: 20px;
+    margin-top: 12px;
+    gap: 8px;
 }
 
 .social-links a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    margin-right: 10px;
-    color: white;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: #94a3b8;
     text-decoration: none;
+    font-size: 0.78rem;
     transition: var(--transition);
 }
 
 .social-links a:hover {
     background-color: var(--accent);
-    transform: translateY(-3px);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.site-footer-compact .qrcode {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: block;
+}
+
+.footer-qr-col h4 {
+    margin-bottom: 8px;
 }
 
 .copyright {
     text-align: center;
-    padding-top: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #bbb;
-    font-size: 0.9rem;
+    padding-top: 8px;
+    margin-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: #475569;
+    font-size: 0.75rem;
 }
 
 /* Animations */
@@ -2667,16 +3274,40 @@ footer {
         max-width: 100%;
     }
 
-    .about-content,
-    .contact-content {
+    .about-content {
         grid-template-columns: 1fr;
     }
 
-    .about-text,
-    .about-image,
-    .contact-info,
-    .contact-form {
-        transform: none;
+    .contact-footer-section {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow: visible;
+    }
+
+    .contact-premium {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-premium-aside {
+        padding: 18px 20px;
+    }
+
+    .contact-premium-main {
+        padding: 18px 20px;
+    }
+
+    .contact-subtitle {
+        max-width: 100%;
+    }
+
+    .contact-info-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -2735,27 +3366,6 @@ footer {
     }
 }
 
-.icon-circle {
-    width: 60px;
-    height: 60px;
-    background: #45aae3;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-}
-
-.icon-circle i {
-    color: #fff;
-    font-size: 32px;
-}
-
-.contact p {
-    margin: 0;
-    font-size: 16px;
-    color: #1d1818;
-}
 </style>
 </head>
 
@@ -3051,75 +3661,108 @@ footer {
     $facilities = \App\Models\Facility::orderBy('id')->get();
     @endphp
 
-    <section class="facilities-tabs mt-8" id="facilities">
+    <section class="facilities-tabs" id="facilities">
         <div class="container">
 
-            <h2 class="section-title">Our Technologies</h2>
+            <div class="tech-section-header">
+                <!-- <span class="tech-eyebrow">Innovation</span> -->
+                <h2 class="section-title">Our Technologies</h2>
+                <p class="tech-subtitle">Advanced manufacturing and decoration solutions — from HTL to IML — for premium industrial packaging</p>
+            </div>
 
-            {{-- ------------------ NAV ------------------ --}}
-            <div class="facilities-nav">
+            <div class="tech-tab-bar" role="tablist">
                 @foreach ($facilities as $facility)
-                <div class="facility-circle {{ $loop->first ? 'active' : '' }}" data-tab="{{ $loop->iteration }}">
-                    <span>{{ $facility->title }}</span>
-                </div>
+                <button type="button" class="tech-tab {{ $loop->first ? 'active' : '' }}" data-tab="{{ $loop->iteration }}" role="tab" aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                    <span class="tech-tab-num">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                    <span class="tech-tab-label">{{ $facility->title }}</span>
+                </button>
                 @endforeach
             </div>
 
-            {{-- ------------------ CONTENT PANELS ------------------ --}}
-            <div class="facilities-content">
+            <div class="tech-slider-wrap">
+                <div class="facilities-content">
+                    @foreach ($facilities as $facility)
+                    <div class="facility-panel-split {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->iteration }}" role="tabpanel">
 
-                @foreach ($facilities as $facility)
-                <div class="facility-panel-split {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->iteration }}">
+                        <div class="tech-slide-visual">
+                            <div class="facility-image"
+                                style="background-image: url('{{ asset("storage/{$facility->image}") }}');">
+                            </div>
+                            <span class="tech-slide-badge">{{ $facility->title }}</span>
+                        </div>
 
-                    {{-- IMAGE (background-image style) --}}
-                    <div class="facility-image"
-                        style="background-image: url('{{ asset("storage/{$facility->image}") }}');">
+                        <div class="facility-content">
+                            <span class="tech-slide-tag">Technology {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                            <h3>{{ $facility->title }}</h3>
+                            <p>{{ $facility->description }}</p>
+                            <a href="{{ route('facility') }}" class="tech-cta-btn">
+                                Explore More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+
                     </div>
-
-                    <div class="facility-content">
-                        <h3>{{ $facility->title }}</h3>
-
-                        <p>{{ $facility->description }}</p>
-
-                        <center>
-                            <a href="{{ route('facility') }}" class="btn btn-outline">View More</a>
-                        </center>
-                    </div>
-
+                    @endforeach
                 </div>
-                @endforeach
 
             </div>
         </div>
     </section>
 
-    {{-- ------------------ JS FOR TAB SWITCHING ------------------ --}}
+    {{-- Technologies slider JS --}}
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('.facility-circle');
-        const panels = document.querySelectorAll('.facility-panel-split');
+    (function() {
+        function initTechTabs() {
+            const section = document.getElementById('facilities');
+            if (!section) return;
 
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const tabId = this.dataset.tab;
+            const tabBar = section.querySelector('.tech-tab-bar');
+            const tabs = section.querySelectorAll('.tech-tab');
+            const panels = section.querySelectorAll('.facility-panel-split');
+            const totalTabs = panels.length;
+            if (!tabBar || !totalTabs) return;
 
-                tabs.forEach(t => t.classList.remove('active'));
+            let currentTab = 1;
+            let techAutoTimer;
+
+            function showTab(tabId) {
+                if (tabId < 1) tabId = totalTabs;
+                if (tabId > totalTabs) tabId = 1;
+                currentTab = tabId;
+
+                tabs.forEach(t => {
+                    const isActive = Number(t.dataset.tab) === tabId;
+                    t.classList.toggle('active', isActive);
+                    t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+
                 panels.forEach(p => p.classList.remove('active'));
+                const activePanel = section.querySelector('#tab-' + tabId);
+                if (activePanel) activePanel.classList.add('active');
+            }
 
-                this.classList.add('active');
-                document.getElementById('tab-' + tabId).classList.add('active');
+            tabBar.addEventListener('click', function(e) {
+                const tab = e.target.closest('.tech-tab');
+                if (!tab || !tabBar.contains(tab)) return;
+                showTab(parseInt(tab.dataset.tab, 10));
+                startTechAuto();
             });
-        });
-    });
-    </script>
 
-    <style>
-    @media (max-width: 767px) {
-        #facilities {
-            display: none !important;
+            function startTechAuto() {
+                clearInterval(techAutoTimer);
+                if (totalTabs <= 1) return;
+                techAutoTimer = setInterval(() => showTab(currentTab + 1), 10000);
+            }
+
+            startTechAuto();
         }
-    }
-    </style>
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTechTabs);
+        } else {
+            initTechTabs();
+        }
+    })();
+    </script>
 
 
 
@@ -3188,13 +3831,18 @@ footer {
 
     <section class="customer-testimonials">
         <div class="container">
-            <h2 class="section-title">What Our Customers Say About Our Packaging</h2>
-            <p class="section-subtitle">Trusted by businesses across industries for quality, reliability, and service
-            </p>
+            <div class="testimonial-header">
+                <!-- <span class="tech-eyebrow">Testimonials</span> -->
+                <h2 class="section-title">What Our Customers Say About Our Packaging</h2>
+                <p class="section-subtitle">Trusted by businesses across industries for quality, reliability, and service</p>
+            </div>
 
-            <div class="testimonial-grid">
+            <div class="testimonial-carousel">
+                <div class="testimonial-carousel-viewport">
+                    <div class="testimonial-track" id="testimonial-review-track">
                 <div class="testimonial-card">
-                    <div class="quote">❝</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
                     <p>We’ve truly enjoyed partnering with you over the past 15 years of business. Your well-planned
                         service, exceptional product quality, and prompt responses to our queries have always impressed
                         us.
@@ -3209,7 +3857,8 @@ footer {
                 </div>
 
                 <div class="testimonial-card">
-                    <div class="quote">❝</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
                     <p>"Excellent product and service. Responsive to requests and accommodate changes as much as
                         possible,We sincerely appreciate your continued excellence and commitment.
                         "</p>
@@ -3223,7 +3872,8 @@ footer {
                 </div>
 
                 <div class="testimonial-card">
-                    <div class="quote">❝</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
                     <p>"SPC's robust containers have excellent quality and provide outstanding service. Their attention
                         to detail and commitment to customer satisfaction sets them apart in the industry."</p>
                     <div class="user">
@@ -3236,7 +3886,8 @@ footer {
                 </div>
 
                 <div class="testimonial-card">
-                    <div class="quote">❝</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
                     <p>"Exceptional quality and reliability. SPC has been our trusted partner for all our packaging
                         needs. Their dedicated support have significantly improved our operations and customer
                         satisfaction."</p>
@@ -3249,133 +3900,140 @@ footer {
                         </div>
                     </div>
                 </div>
+                </div>
+                </div>
+
             </div>
         </div>
     </section>
-    {{-- contactus --}}
-    <section class="contact">
+    {{-- Contact + Footer — single screen --}}
+    <section class="contact-footer-section" id="contact">
         @php
         use App\Models\ContactInfo;
         $contact = ContactInfo::first();
         @endphp
 
-        <div class="container">
-            <div class="row text-center justify-content-center">
-
-                <!-- ABOUT COMPANY -->
-                <div class="col-md-4 mb-4">
-                    <div class="icon-circle mb-3">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <h5 class="fw-bold mb-2">ABOUT COMPANY</h5>
-
+        <div class="contact-premium">
+            <aside class="contact-premium-aside">
+                <span class="contact-eyebrow">Get In Touch</span>
+                <!-- <h2 class="contact-title">Let's Build Something Together</h2>
+                <p class="contact-subtitle">Premium industrial packaging solutions — reach out for quotes, product details, or a factory visit.</p> -->
+                <div class="contact-about-lines">
                     @if (isset($contact) && !empty($contact->about_lines))
                     @foreach ($contact->about_lines as $line)
                     <p>{{ $line }}</p>
                     @endforeach
                     @else
-                    <p>Plastic Solutions</p>
-                    <p>Manufacturing</p>
+                    <p>Plastic Solutions Manufacturing</p>
+                    <p>Virudhunagar, Tamil Nadu</p>
                     @endif
                 </div>
+            </aside>
 
-                <!-- PHONE -->
-                <div class="col-md-4 mb-4">
-                    <div class="icon-circle mb-3">
-                        <i class="fas fa-phone-alt"></i>
+            <div class="contact-premium-main">
+                <div class="contact-info-list">
+                    <div class="contact-info-row">
+                        @if (isset($contact) && !empty($contact->phone_numbers))
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fas fa-phone-alt"></i></div>
+                            <div>
+                                <div class="contact-info-label">Phone</div>
+                                <div class="contact-info-lines">
+                                    @foreach ($contact->phone_numbers as $phone)
+                                    <p class="contact-info-value">{{ $phone }}</p>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if (isset($contact) && !empty($contact->marketing_numbers))
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fas fa-user-tie"></i></div>
+                            <div>
+                                <div class="contact-info-label">Marketing</div>
+                                <div class="contact-info-lines">
+                                    @foreach ($contact->marketing_numbers as $mPhone)
+                                    <p class="contact-info-value">{{ $mPhone }}</p>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     </div>
-                    <h5 class="fw-bold mb-2">PHONE</h5>
 
-                    @if (isset($contact) && !empty($contact->phone_numbers))
-                    @foreach ($contact->phone_numbers as $phone)
-                    <p class="mb-2"><i class="fas fa-phone me-2"></i>{{ $phone }}</p>
-                    @endforeach
-                    @endif
+                    <div class="contact-info-row">
+                        @if (isset($contact) && $contact->email)
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="contact-info-label">Email</div>
+                                <p class="contact-info-value">
+                                    <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
+                                </p>
+                            </div>
+                        </div>
+                        @endif
 
-                    @if (isset($contact) && !empty($contact->marketing_numbers))
-                    @foreach ($contact->marketing_numbers as $mPhone)
-                    <p class="mb-2"><i class="fas fa-user-tie me-2"></i>
-                        Marketing Manager: {{ $mPhone }}
-                    </p>
-                    @endforeach
-                    @endif
-
-                    @if (isset($contact) && $contact->email)
-                    <p class="mb-2">
-                        <i class="fas fa-envelope me-2"></i>{{ $contact->email }}
-                    </p>
-                    @endif
-                </div>
-
-                <!-- OFFICE LOCATION -->
-                <div class="col-md-4 mb-4">
-                    <div class="icon-circle mb-3">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <div class="contact-info-label">Office Location</div>
+                                <p class="contact-info-value">{{ isset($contact) ? ($contact->address ?? 'Address not available') : 'Address not available' }}</p>
+                            </div>
+                        </div>
                     </div>
-                    <h5 class="fw-bold mb-2">OUR OFFICE LOCATION</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i>{{ isset($contact) ? ($contact->address ?? 'Address not available') : 'Address not available' }}</p>
                 </div>
-
             </div>
         </div>
-    </section>
 
-
-    </section>
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>spc</h4>
-                    <p>
-                        Premium plastic containers designed for sustainability and
-                        elegance.
-                    </p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <footer class="site-footer-compact">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-col">
+                        <h4>spc</h4>
+                        <p>Premium plastic containers designed for sustainability and elegance.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="{{ route('products.index') }}">Products</a></li>
+                            <li><a href="#why-us">Why choose us</a></li>
+                            <li><a href="{{ route('blogs.list') }}">Blog</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Categories</h4>
+                        <ul class="footer-links">
+                            @isset($categories)
+                            @foreach ($categories as $cat)
+                            <li>
+                                <a href="{{ route('products.category', $cat->slug) }}">{{ $cat->maincategory_name }}</a>
+                            </li>
+                            @endforeach
+                            @endisset
+                        </ul>
+                    </div>
+                    <div class="footer-col footer-qr-col">
+                        <h4>QR Code</h4>
+                        <img class="qrcode" src="{{ asset('assets/img/qrcode.png') }}" alt="SPC QR Code">
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="{{ route('products.index') }}">Products</a></li>
-                        <li><a href="#why-us">Why choose us</a></li>
-                        <li><a href="{{ route('blogs.list') }}">Blog</a></li>
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Product Categories</h4>
-                    <ul class="footer-links">
-                        @isset($categories)
-                        @foreach ($categories as $cat)
-                        <li>
-                            <a href="{{ route('products.category', $cat->slug) }}">
-                                {{ $cat->maincategory_name }}
-                            </a>
-                        </li>
-                        @endforeach
-                        @endisset
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Qr Code</h4>
-
-                    <img class="qrcode" src="{{ asset('assets/img/qrcode.png') }}" alt="Blog 3">
+                <div class="copyright">
+                    <p>&copy; 2025 spc. All Rights Reserved.</p>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 spc. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </section>
 
     <script>
     // Navigation Scroll Effect
@@ -3407,39 +4065,55 @@ footer {
         });
     });
 
-    // Testimonial Slider
-    const track = document.getElementById("testimonial-track");
-    const dots = document.querySelectorAll(".slider-dot");
-    let currentSlide = 0;
+    // Testimonial Review Carousel
+    (function() {
+        const track = document.getElementById('testimonial-review-track');
+        if (!track) return;
 
-    function goToSlide(slideIndex) {
-        if (!track || dots.length === 0) return;
-        track.style.transform = `translateX(-${slideIndex * 100}%)`;
+        const cards = track.querySelectorAll('.testimonial-card');
+        let currentPage = 0;
+        let autoTimer;
 
-        // Update active dot
-        dots.forEach((dot) => dot.classList.remove("active"));
-        if (dots[slideIndex]) {
-            dots[slideIndex].classList.add("active");
+        function getPerView() {
+            return window.innerWidth <= 768 ? 1 : 2;
         }
 
-        currentSlide = slideIndex;
-    }
+        function getTotalPages() {
+            return Math.max(1, Math.ceil(cards.length / getPerView()));
+        }
 
-    // Add click events to dots
-    if (dots.length > 0) {
-        dots.forEach((dot) => {
-            dot.addEventListener("click", function() {
-                const slideIndex = parseInt(this.getAttribute("data-slide"));
-                goToSlide(slideIndex);
-            });
+        function goToPage(page) {
+            const perView = getPerView();
+            const totalPages = getTotalPages();
+            if (page < 0) page = totalPages - 1;
+            if (page >= totalPages) page = 0;
+            currentPage = page;
+
+            const card = cards[0];
+            if (card) {
+                const gap = parseFloat(getComputedStyle(track).gap) || 0;
+                const shift = currentPage * perView * (card.offsetWidth + gap);
+                track.style.transform = 'translateX(-' + shift + 'px)';
+            }
+        }
+
+        function startAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(() => goToPage(currentPage + 1), 10000);
+        }
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (currentPage >= getTotalPages()) currentPage = 0;
+                goToPage(currentPage);
+            }, 200);
         });
 
-        // Auto slide every 5 seconds
-        setInterval(() => {
-            let nextSlide = (currentSlide + 1) % dots.length;
-            goToSlide(nextSlide);
-        }, 5000);
-    }
+        goToPage(0);
+        startAuto();
+    })();
 
     // Scroll Animations
     const observerOptions = {
@@ -3493,36 +4167,6 @@ footer {
                     behavior: "smooth",
                 });
             }
-        });
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const circles = document.querySelectorAll('.facility-circle');
-        const panels = document.querySelectorAll('.facility-panel-split');
-
-        circles.forEach(circle => {
-            circle.addEventListener('click', () => {
-                const tabId = circle.getAttribute('data-tab');
-
-                // Remove active class from all circles
-                circles.forEach(c => c.classList.remove('active'));
-                // Add active class to clicked circle
-                circle.classList.add('active');
-
-                // Hide all panels
-                panels.forEach(panel => panel.style.display = 'none');
-                // Show selected panel
-                const activePanel = document.getElementById(`tab-${tabId}`);
-                if (activePanel) {
-                    activePanel.style.display = 'flex'; // Flex because split layout
-                }
-            });
-        });
-
-        // Initialize: show first panel only
-        panels.forEach((panel, index) => {
-            panel.style.display = index === 0 ? 'flex' : 'none';
         });
     });
     </script>
