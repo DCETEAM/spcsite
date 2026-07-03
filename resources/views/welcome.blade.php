@@ -49,6 +49,7 @@
     --hero-gold: #ffb800;
     --hero-blue: #3a9dff;
     --hero-stats-height: clamp(88px, 11vh, 104px);
+    --header-offset: 98px;
 
     /* Backgrounds */
     --light: #F8FAFC;
@@ -89,13 +90,14 @@
     box-sizing: border-box;
 }
 
-html,
-body {
-    height: 100%;
-    margin: 0;
+html {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+}
 
+html,
+body {
+    margin: 0;
 }
 
 body {
@@ -106,27 +108,48 @@ body {
     color: var(--dark);
     background-color: var(--light);
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 section {
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    scroll-margin-top: var(--header-offset);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100vh - var(--header-offset));
+    min-height: calc(100dvh - var(--header-offset));
+    padding: 20px 0 40px;
+    box-sizing: border-box;
 }
 
-section.contact-footer-section {
-    padding: 0;
-    align-items: stretch;
-    justify-content: flex-start;
-    flex-direction: column;
+section.hero {
     min-height: 100vh;
     min-height: 100dvh;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
-    background: #0a1517;
+    padding: 0;
+    margin-top: 0;
 }
+
+section.page-end-section {
+    display: block;
+    min-height: calc(100vh - var(--header-offset));
+    min-height: calc(100dvh - var(--header-offset));
+    height: auto;
+    overflow: visible;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    background: #fff;
+    padding: 0;
+}
+
+    @media (max-width: 992px) {
+        :root {
+            --header-offset: 70px;
+        }
+    }
 
 h1,
 h2,
@@ -285,7 +308,7 @@ header.scrolled {
 }
 
 .site-topbar i {
-    color: var(--hero-blue);
+    color: var(--accent);
     margin-right: 6px;
 }
 
@@ -323,13 +346,13 @@ header.scrolled {
     min-height: 100vh;
     overflow: hidden;
     background: var(--hero-navy);
-    margin-top: 38px;
+    margin-top: 0;
 }
 
 .hero-slider {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 38px);
+    min-height: 100vh;
     height: 100%;
     padding-bottom: var(--hero-stats-height);
 }
@@ -385,7 +408,7 @@ header.scrolled {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: clamp(100px, 13vh, 140px) clamp(32px, 5vw, 80px) calc(var(--hero-stats-height) + 28px);
+    padding: calc(var(--header-offset) + 24px) clamp(32px, 5vw, 80px) calc(var(--hero-stats-height) + 28px);
     z-index: 3;
     display: flex;
     align-items: center;
@@ -453,7 +476,7 @@ header.scrolled {
 }
 
 .hero-accent {
-    color: var(--hero-blue);
+    color: var(--accent);
 }
 
 .hero-sub {
@@ -498,7 +521,7 @@ header.scrolled {
 }
 
 .hero-btn-primary {
-    background: var(--hero-blue);
+    background: var(--accent);
     color: #fff;
     box-shadow: 0 8px 24px rgba(58, 157, 255, 0.35);
 }
@@ -552,7 +575,7 @@ header.scrolled {
 }
 
 .hero-features i {
-    color: var(--hero-blue);
+    color: var(--accent);
     font-size: 0.95rem;
 }
 
@@ -612,7 +635,7 @@ header.scrolled {
 }
 
 .hero-strip-head h3 span {
-    color: var(--hero-blue);
+    color: var(--accent);
 }
 
 .hero-strip-head p {
@@ -664,7 +687,7 @@ header.scrolled {
 }
 
 .hero-strip-card i {
-    color: var(--hero-blue);
+    color: var(--accent);
     font-size: 0.85rem;
 }
 
@@ -701,7 +724,7 @@ header.scrolled {
     height: 46px;
     min-width: 46px;
     border-radius: 50%;
-    background: var(--hero-blue);
+    background: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -917,13 +940,18 @@ header.scrolled {
 }
 
 .section-title {
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
     text-align: center;
-    font-size: 2.5rem;
-    margin-top: 20px;
-    margin-bottom: 60px;
+    margin-top: 0;
+    margin-bottom: 24px;
     position: relative;
     opacity: 0;
     transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .section-title:after {
@@ -952,12 +980,12 @@ header.scrolled {
 .about-text h3 {
     font-size: 1.8rem;
     margin-bottom: 20px;
-    color: var(--primary);
+    color: var(--white);
 }
 
 .about-text p {
     margin-bottom: 20px;
-    color: var(--gray);
+    color: rgba(255, 255, 255, 0.88);
 }
 
 .about-image {
@@ -986,84 +1014,256 @@ header.scrolled {
 
 /* About Commitments Section */
 .about-commitments {
-    padding: 80px 20px;
-    background: #f9f9f9;
+    padding: clamp(24px, 4vw, 48px) 20px;
+    background: var(--hero-navy);
 }
 
-.about-commitments .section-title {
-    font-size: 2.0rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 60px;
-    color: #333;
+.about-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.about-commitments .about-image {
     position: relative;
+    opacity: 0;
+    transform: translateX(-40px);
+    padding-bottom: 24px;
 }
 
-.about-commitments .section-title::after {
-    content: "";
+.about-commitments .about-image img {
+    width: 100%;
+    height: clamp(320px, 42vw, 480px);
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(0, 26, 61, 0.12);
     display: block;
-    width: 70px;
-    height: 4px;
-    background: var(--accent, #00a86b);
-    margin: 12px auto 0;
-    border-radius: 2px;
 }
 
-/* Flexbox Layout for Each Item */
-.about-item {
+.about-years-badge {
+    position: absolute;
+    right: 20px;
+    bottom: -18px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 70px;
-    gap: 40px;
-    flex-wrap: wrap;
+    gap: 14px;
+    background: #fff;
+    padding: 16px 20px;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(0, 26, 61, 0.14);
+    border: 1px solid rgba(0, 26, 61, 0.06);
+    min-width: 220px;
 }
 
-.about-item.reverse {
-    flex-direction: row-reverse;
+.about-years-badge__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--hero-navy);
+    color: var(--hero-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
 }
 
-.about-text {
-    flex: 1;
-    min-width: 300px;
+.about-years-badge__text strong {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--hero-navy);
+    line-height: 1.2;
 }
 
-.about-text h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #222;
+.about-years-badge__text span {
+    display: block;
+    font-size: 0.82rem;
+    color: #64748b;
+    margin-top: 2px;
 }
 
-.about-text p {
-    font-size: 1rem;
-    color: #555;
+.about-commitments .about-text {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.section-kicker,
+.about-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(255, 184, 0, 0.12);
+    color: #b8860b;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.section-kicker i,
+.about-kicker i {
+    font-size: 0.62rem;
+    color: var(--hero-gold);
+}
+
+.section-header .section-kicker,
+.tech-section-header .section-kicker,
+.testimonial-header .section-kicker {
+    margin-bottom: 12px;
+}
+
+.section-header .section-title,
+.tech-section-header .section-title,
+.testimonial-header .section-title,
+.product-categories .section-header .section-title {
+    margin-top: 0;
+    opacity: 1;
+    transform: none;
+}
+
+.section-header .section-title::after,
+.tech-section-header .section-title::after,
+.testimonial-header .section-title::after,
+.product-categories .section-header .section-title::after {
+    display: none;
+}
+
+.section-header--center {
+    text-align: center;
+}
+
+.about-headline {
+    /* font-size: clamp(1.85rem, 3.4vw, 2.65rem);
+    font-weight: 700; */
+    line-height: 1.18;
+    /* margin: 0 0 20px; */
+    letter-spacing: -0.02em;
+}
+
+.about-headline-dark {
+    color: rgba(255, 255, 255, 0.88)   ;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.about-headline-accent {
+    color: var(--accent);
+}
+
+.about-desc {
+    font-size: clamp(0.92rem, 1.1vw, 1rem);
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.65;
+    margin: 0 0 28px;
     text-align: justify;
-    line-height: 1.7;
 }
 
-.about-image {
-    flex: 1;
-    min-width: 250px;
-    height: auto;
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
 }
 
-.about-image img {
-    width: 100%;
-    height: 400px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+.about-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid rgba(0, 26, 61, 0.08);
+    border-radius: 14px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--hero-navy);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.about-image img:hover {
-    transform: scale(1.15);
+.about-feature:hover {
+    border-color: rgba(58, 157, 255, 0.35);
+    box-shadow: 0 8px 24px rgba(0, 26, 61, 0.06);
+}
+
+.about-feature__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(58, 157, 255, 0.12);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.about-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: var(--hero-navy);
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 10px 28px rgba(0, 26, 61, 0.22);
+}
+
+.about-cta:hover {
+    background: #002855;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 26, 61, 0.28);
+}
+
+.about-cta i {
+    font-size: 0.82rem;
+    transition: transform 0.25s ease;
+}
+
+.about-cta:hover i {
+    transform: translateX(4px);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .about-item {
-        flex-direction: column;
-        text-align: center;
+    .about-block {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .about-commitments .about-image {
+        order: -1;
+    }
+
+    .about-years-badge {
+        right: 16px;
+        bottom: -14px;
+        min-width: 0;
+        padding: 14px 16px;
+    }
+
+    .about-desc {
+        max-width: 100%;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    .about-cta {
+        width: 100%;
+        justify-content: center;
     }
 
     .hero-prev,
@@ -1074,7 +1274,7 @@ header.scrolled {
     }
 
     .hero .container {
-        padding: clamp(90px, 12vh, 120px) clamp(20px, 5vw, 28px) calc(var(--hero-stats-height) + 20px);
+        padding: calc(var(--header-offset) + 20px) clamp(20px, 5vw, 28px) calc(var(--hero-stats-height) + 20px);
         align-items: center;
     }
 
@@ -1213,9 +1413,6 @@ header.scrolled {
         margin-bottom: 14px;
     }
 
-    .about-commitments .section-title {
-        font-size: 1.5rem;
-    }
 
     .container {
         width: auto;
@@ -1235,13 +1432,6 @@ header.scrolled {
         padding: 20px;
     }
 
-    .about-item.reverse {
-        flex-direction: column;
-    }
-
-    .about-text {
-        margin-bottom: 20px;
-    }
 
     header.scrolled {
         padding: 1px 0;
@@ -1345,7 +1535,7 @@ header.scrolled {
     flex-direction: column;
     justify-content: center;
     padding: clamp(20px, 3vw, 32px);
-    background: linear-gradient(160deg, var(--hero-navy) 0%, #002855 100%);
+    background:white;
     color: #fff;
     position: relative;
 }
@@ -1357,7 +1547,7 @@ header.scrolled {
     right: 0;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(69, 170, 227, 0.2) 0%, transparent 70%);
+    background:white;
     pointer-events: none;
 }
 
@@ -1378,13 +1568,14 @@ header.scrolled {
     margin-bottom: 10px;
     line-height: 1.3;
     position: relative;
+    color: #1a2a4f;
     z-index: 1;
 }
 
 .facility-content p {
     font-size: 0.875rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-dark);
     margin-bottom: 16px;
     text-align: left;
     position: relative;
@@ -1397,10 +1588,10 @@ header.scrolled {
     gap: 8px;
     width: fit-content;
     padding: 10px 20px;
-    background: var(--accent);
+    background: var(--hero-navy);
     color: #fff;
     text-decoration: none;
-    border-radius: 50px;
+    border-radius: 10px;
     font-weight: 600;
     font-size: 0.85rem;
     transition: all 0.3s ease;
@@ -1452,21 +1643,18 @@ header.scrolled {
 
 /* Why Choose Us Section */
 .why-choose-us {
-    padding: 80px 20px;
-    background: #f7faff;
+    padding: clamp(24px, 4vw, 48px) 20px;
+    background:var(--text-primary);
     text-align: center;
 }
 
 .section-header {
-    max-width: 800px;
+    max-width: 1400px;
     margin: 0 auto 50px;
 }
 
-.section-title {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #1a2a4f;
+.section-header .section-title {
+    margin-bottom: 12px;
 }
 
 .section-header p {
@@ -1537,7 +1725,7 @@ header.scrolled {
 /* Section Base */
 /* Section */
 .product-categories {
-    padding: 80px 0px !important;
+    padding: clamp(24px, 4vw, 8px) 0 !important;
     background: rgb(224 236 251 / 25%);
     text-align: center;
 }
@@ -1546,28 +1734,21 @@ header.scrolled {
     padding: 40px 20px 20px 40px;
 }
 
-.section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 40px;
-    color: #222;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
 /* Grid */
 .product-categories {
-    padding: 80px 0 100px 0;
+    padding:clamp(64px, 8vw, 100px) 20px;
     background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
     overflow: visible;
     position: relative;
 }
 
-.product-categories .section-title {
-    color: #0369a1;
-    margin-bottom: 50px;
-    font-family: 'Playfair Display', serif;
+.product-categories .section-header {
+    margin-bottom: 10px;
+}
+
+.product-categories .section-header .section-title {
+    color:#1a2a4f;
+    margin-bottom: 0;
 }
 
 .categories-grid {
@@ -1580,7 +1761,7 @@ header.scrolled {
 /* Card */
 .category-card {
     position: relative;
-    height: 240px;
+    height: 230px;
     border-radius: 20px;
     overflow: hidden;
     background-size: cover;
@@ -1843,8 +2024,8 @@ header.scrolled {
 /* Mobile (<=768px) */
 @media (max-width: 768px) {
     .section-title {
-        font-size: 1.6rem;
-        margin-bottom: 30px;
+        font-size: 1.15rem;
+        margin-bottom: 20px;
     }
 
     .categories-grid {
@@ -1891,7 +2072,7 @@ header.scrolled {
 /* Small Mobile (<=480px) */
 @media (max-width: 480px) {
     .section-title {
-        font-size: 1.4rem;
+        font-size: 1.05rem;
     }
 
     section {
@@ -2100,12 +2281,6 @@ header.scrolled {
     margin-bottom: 12px;
 }
 
-.section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 50px;
-    color: #222;
-}
 
 /* Blog Grid */
 .blog-grid {
@@ -2180,7 +2355,7 @@ header.scrolled {
 
 /* Facilities / Technologies Section */
 .facilities-tabs {
-    padding: clamp(28px, 4vw, 48px) 0;
+    /* padding: clamp(24px, 4vw, 40px) 0; */
     background: linear-gradient(180deg, #f8fafc 0%, #eef4fc 50%, #f8fafc 100%);
     position: relative;
     overflow: hidden;
@@ -2231,8 +2406,11 @@ header.scrolled {
     margin-bottom: 0;
 }
 
+.why-choose-us .section-title {
+    color: #1a2a4f;
+}
+
 .facilities-tabs .section-title {
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
     margin-top: 0;
     margin-bottom: 0;
     color: var(--hero-navy);
@@ -2485,9 +2663,7 @@ header.scrolled {
 
 .commitments .section-title {
     text-align: center;
-    font-size: 2.4rem;
-    font-weight: 700;
-    margin-bottom: 50px;
+    margin-bottom: 32px;
     color: #222;
 }
 
@@ -2563,11 +2739,11 @@ header.scrolled {
     }
 
     .section-title {
-        font-size: 1.3rem;
+        font-size: 1.05rem;
     }
 
     .facilities-tabs .section-title {
-        font-size: 1.3rem;
+        font-size: 1.05rem;
     }
 
     .facility-inner h3 {
@@ -2699,16 +2875,28 @@ header.scrolled {
     background: linear-gradient(180deg, var(--hero-gold), transparent);
 }
 
-.contact-eyebrow {
-    display: inline-block;
+.contact-eyebrow,
+.contact-premium-aside .section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(255, 184, 0, 0.12);
     font-size: 0.68rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--hero-gold);
+    color: #b8860b;
     margin-bottom: 8px;
     position: relative;
     z-index: 1;
+}
+
+.contact-eyebrow i,
+.contact-premium-aside .section-kicker i {
+    font-size: 0.62rem;
+    color: var(--hero-gold);
 }
 
 .contact-title {
@@ -2828,7 +3016,7 @@ header.scrolled {
 }
 
 .customer-testimonials {
-    padding: clamp(60px, 8vw, 100px) 20px;
+    padding: clamp(24px, 4vw, 48px) 20px;
     background: var(--hero-navy);
     position: relative;
     overflow: hidden;
@@ -2856,12 +3044,11 @@ header.scrolled {
 
 .customer-testimonials .section-title {
     color: #fff;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .customer-testimonials .tech-eyebrow {
     background: rgba(69, 170, 227, 0.2);
-    color: var(--hero-blue);
+    color: var(--accent);
 }
 
 .section-subtitle {
@@ -2900,7 +3087,7 @@ header.scrolled {
 }
 
 .testimonial-card {
-    background: rgba(255, 255, 255, 0.06);
+    /* background: rgba(255, 255, 255, 0.06); */
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
@@ -2934,7 +3121,7 @@ header.scrolled {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--hero-blue);
+    color: var(--accent);
     font-size: 0.9rem;
     margin-bottom: 16px;
     flex-shrink: 0;
@@ -3278,11 +3465,12 @@ header.scrolled {
         grid-template-columns: 1fr;
     }
 
-    .contact-footer-section {
-        height: auto;
+    .page-end-section {
         min-height: 100vh;
         min-height: 100dvh;
+        height: auto;
         overflow: visible;
+        scroll-snap-stop: normal;
     }
 
     .contact-premium {
@@ -3421,7 +3609,7 @@ header.scrolled {
                     <a href="{{ route('contact') }}" class="nav-link ">Contact</a>
                 </li>
             </ul>
-            <a href="{{ route('contact') }}" class="nav-quote-btn d-none d-lg-inline-flex"><i class="fas fa-user-tie"></i> Get a Quote</a>
+            <!-- <a href="{{ route('contact') }}" class="nav-quote-btn d-none d-lg-inline-flex"><i class="fas fa-user-tie"></i> Get a Quote</a> -->
             </div>
         </div>
     </header>
@@ -3570,6 +3758,10 @@ header.scrolled {
              SECTION TITLE & DESCRIPTION
         ============================== -->
             <div class="section-header">
+                <span class="section-kicker">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    Why Choose Us
+                </span>
                 <h2 class="section-title">
                     {{ isset($data) ? ($data->title ?? 'Why Leading Brands Choose Us') : 'Why Leading Brands Choose Us' }}
                 </h2>
@@ -3595,30 +3787,69 @@ header.scrolled {
 
     <section class="about-commitments mt-4" id="about">
         <div class="container">
-            <h2 class="section-title">{{ isset($about) ? ($about->title ?? 'About Us') : 'About Us' }}</h2>
+            @php
+                $aboutHeadline = (isset($about) && !empty($about->title) && strcasecmp(trim($about->title), 'About Us') !== 0)
+                    ? $about->title
+                    : 'Precision moulded, quality delivered.';
+                $titleParts = array_map('trim', explode(',', $aboutHeadline, 2));
+            @endphp
 
-            <div class="about-item">
-                <div class="about-text">
-                    @if (isset($about) && !empty($about->description))
-                    <p>{!! nl2br(e($about->description)) !!}</p>
-                    @else
-                    <p>No About content added yet. Please update it from the admin panel.</p>
-                    @endif
-                </div>
-
+            <div class="about-block">
                 <div class="about-image">
                     @if (isset($about) && !empty($about->image))
-                    <img src="{{ asset($about->image) }}" alt="{{ isset($about) ? ($about->title ?? 'About Image') : 'About Image' }}">
+                    <img src="{{ asset($about->image) }}" alt="{{ $about->title ?? 'About Senthil Plastic Containers' }}">
                     @else
-                    <img src="{{ asset('assets/img/default.jpg') }}" alt="Default About Image">
+                    <img src="{{ asset('assets/img/default.jpg') }}" alt="Senthil Plastic Containers manufacturing facility">
                     @endif
+
+                    <div class="about-years-badge">
+                        <div class="about-years-badge__icon">
+                            <i class="fas fa-award" aria-hidden="true"></i>
+                        </div>
+                        <div class="about-years-badge__text">
+                            <strong>25+ Years</strong>
+                            <span>of trusted manufacturing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <span class="section-kicker">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        spc
+                    </span>
+
+                    <h2 class="about-headline">
+                        @if (count($titleParts) === 2)
+                        <span class="about-headline-dark">{{ $titleParts[0] }},</span>
+                        <span class="about-headline-accent">{{ $titleParts[1] }}</span>
+                        @else
+                        <span class="about-headline-dark">{{ $aboutHeadline }}</span>
+                        @endif
+                    </h2>
+
+                    @if (isset($about) && !empty($about->description))
+                    <p class="about-desc">{!! nl2br(e($about->description)) !!}</p>
+                    @else
+                    <p class="about-desc">Senthil Plastic Containers Private Limited is a Virudhunagar-based industrial manufacturer specialising in high-grade plastic packaging. From food-grade jars to heavy-duty industrial jerry cans, we combine advanced injection moulding with uncompromising quality control.</p>
+                    @endif
+
+                 
+
+                   
                 </div>
             </div>
         </div>
     </section>
     <section class="product-categories mt-4" id="products">
         <div class="container">
-            <h2 class="section-title">Product Categories</h2>
+            <div class="section-header section-header--center">
+                <span class="section-kicker">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    Product Categories
+                </span>
+                <h2 class="section-title">We have a wide range of products to choose from</h2>
+            </div>
 
             <div class="categories-grid">
 
@@ -3665,9 +3896,12 @@ header.scrolled {
         <div class="container">
 
             <div class="tech-section-header">
-                <!-- <span class="tech-eyebrow">Innovation</span> -->
-                <h2 class="section-title">Our Technologies</h2>
-                <p class="tech-subtitle">Advanced manufacturing and decoration solutions — from HTL to IML — for premium industrial packaging</p>
+                <span class="section-kicker">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    Our Technologies
+                </span>
+                <h2 class="section-title">Advanced manufacturing and decoration solutions</h2>
+                
             </div>
 
             <div class="tech-tab-bar" role="tablist">
@@ -3832,9 +4066,12 @@ header.scrolled {
     <section class="customer-testimonials">
         <div class="container">
             <div class="testimonial-header">
-                <!-- <span class="tech-eyebrow">Testimonials</span> -->
+                <span class="section-kicker">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    Testimonials
+                </span>
                 <h2 class="section-title">What Our Customers Say About Our Packaging</h2>
-                <p class="section-subtitle">Trusted by businesses across industries for quality, reliability, and service</p>
+                <!-- <p class="section-subtitle">Trusted by businesses across industries for quality, reliability, and service</p> -->
             </div>
 
             <div class="testimonial-carousel">
@@ -3906,133 +4143,10 @@ header.scrolled {
             </div>
         </div>
     </section>
-    {{-- Contact + Footer — single screen --}}
-    <section class="contact-footer-section" id="contact">
-        @php
-        use App\Models\ContactInfo;
-        $contact = ContactInfo::first();
-        @endphp
 
-        <div class="contact-premium">
-            <aside class="contact-premium-aside">
-                <span class="contact-eyebrow">Get In Touch</span>
-                <!-- <h2 class="contact-title">Let's Build Something Together</h2>
-                <p class="contact-subtitle">Premium industrial packaging solutions — reach out for quotes, product details, or a factory visit.</p> -->
-                <div class="contact-about-lines">
-                    @if (isset($contact) && !empty($contact->about_lines))
-                    @foreach ($contact->about_lines as $line)
-                    <p>{{ $line }}</p>
-                    @endforeach
-                    @else
-                    <p>Plastic Solutions Manufacturing</p>
-                    <p>Virudhunagar, Tamil Nadu</p>
-                    @endif
-                </div>
-            </aside>
-
-            <div class="contact-premium-main">
-                <div class="contact-info-list">
-                    <div class="contact-info-row">
-                        @if (isset($contact) && !empty($contact->phone_numbers))
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon"><i class="fas fa-phone-alt"></i></div>
-                            <div>
-                                <div class="contact-info-label">Phone</div>
-                                <div class="contact-info-lines">
-                                    @foreach ($contact->phone_numbers as $phone)
-                                    <p class="contact-info-value">{{ $phone }}</p>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-
-                        @if (isset($contact) && !empty($contact->marketing_numbers))
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon"><i class="fas fa-user-tie"></i></div>
-                            <div>
-                                <div class="contact-info-label">Marketing</div>
-                                <div class="contact-info-lines">
-                                    @foreach ($contact->marketing_numbers as $mPhone)
-                                    <p class="contact-info-value">{{ $mPhone }}</p>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-
-                    <div class="contact-info-row">
-                        @if (isset($contact) && $contact->email)
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <div class="contact-info-label">Email</div>
-                                <p class="contact-info-value">
-                                    <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
-                                </p>
-                            </div>
-                        </div>
-                        @endif
-
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div>
-                                <div class="contact-info-label">Office Location</div>
-                                <p class="contact-info-value">{{ isset($contact) ? ($contact->address ?? 'Address not available') : 'Address not available' }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer class="site-footer-compact">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-col">
-                        <h4>spc</h4>
-                        <p>Premium plastic containers designed for sustainability and elegance.</p>
-                        <div class="social-links">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="{{ route('products.index') }}">Products</a></li>
-                            <li><a href="#why-us">Why choose us</a></li>
-                            <li><a href="{{ route('blogs.list') }}">Blog</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Categories</h4>
-                        <ul class="footer-links">
-                            @isset($categories)
-                            @foreach ($categories as $cat)
-                            <li>
-                                <a href="{{ route('products.category', $cat->slug) }}">{{ $cat->maincategory_name }}</a>
-                            </li>
-                            @endforeach
-                            @endisset
-                        </ul>
-                    </div>
-                    <div class="footer-col footer-qr-col">
-                        <h4>QR Code</h4>
-                        <img class="qrcode" src="{{ asset('assets/img/qrcode.png') }}" alt="SPC QR Code">
-                    </div>
-                </div>
-                <div class="copyright">
-                    <p>&copy; 2025 spc. All Rights Reserved.</p>
-                </div>
-            </div>
-        </footer>
+    <section class="page-end-section">
+        @include('partials.site-contact-block')
+        @include('layouts.footer')
     </section>
 
     <script>
