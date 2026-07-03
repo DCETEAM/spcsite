@@ -59,7 +59,7 @@ body {
 }
 
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 1rem;

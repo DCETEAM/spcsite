@@ -53,17 +53,11 @@
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         integrity="sha512-HJ..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+    @include('partials.site-fonts')
     <style>
         :root {
             /* Brand Colors */
@@ -116,7 +110,7 @@
         }
 
         body {
-            font-family: "Playfair Display", serif;
+            font-family: "Poppins", sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
@@ -128,7 +122,7 @@
         h3,
         h4,
         h5 {
-            font-family: "Playfair Display", serif;
+            font-family: "Poppins", sans-serif;
             font-weight: 700;
             line-height: 1.2;
             font-size: 23px;
@@ -153,7 +147,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 15px 0;
+            padding: 5px 0;
             background: #fff;
             /* black with 60% opacity */
             backdrop-filter: blur(2px);
@@ -165,7 +159,7 @@
         header.scrolled {
             background-color: white;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            padding: 5px 0;
+            padding: 2px 0;
         }
 
         .nav-container {
@@ -175,7 +169,7 @@
         }
 
         .logo {
-            font-family: "Playfair Display", serif;
+            font-family: "Poppins", sans-serif;
 
             font-weight: 900;
             color: rgb(19, 16, 16);
@@ -201,7 +195,8 @@
         .nav-link {
             text-decoration: none;
             color: rgb(7, 5, 5);
-            font-weight: 900;
+            font-weight: 600;
+    text-transform: uppercase;
             position: relative;
             font-size: 18px;
             padding: 5px 0;
@@ -230,7 +225,7 @@
 
         .nav-menu .active {
             color: var(--accent);
-            font-weight: 900;
+            font-weight: 600;
         }
 
         .hamburger {
@@ -607,7 +602,7 @@
         body {
 
             background: #fff;
-            font-family: "Playfair Display", serif;
+            font-family: "Poppins", sans-serif;
             font-weight: 400;
             font-style: regular;
             margin: 0;
@@ -732,7 +727,8 @@
             .nav-link {
                 text-decoration: none;
                 color: rgb(241, 239, 239);
-                font-weight: 900;
+                font-weight: 600;
+    text-transform: uppercase;
                 position: relative;
                 font-size: 18px;
                 padding: 5px 0;
@@ -741,7 +737,7 @@
 
             .nav-menu .active {
                 color: var(--accent);
-                font-weight: 900;
+                font-weight: 600;
             }
 
             .logo {
@@ -960,19 +956,22 @@
 
         /* Product Image */
         .product-image {
-            display: block;
-            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
             margin: 0;
-            aspect-ratio: 1 / 1;
+            /* aspect-ratio: 1 / 1; */
             overflow: hidden;
             line-height: 0;
+            background-color: #fff;
         }
 
         .product-image img {
             width: 100%;
             height: 100%;
             display: block;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center center;
             border-radius: 0;
             transform-origin: center center;
@@ -1345,7 +1344,7 @@
 
 
     {{-- 🌐 MAIN CATEGORIES (Always Visible) --}}
-    <section class="products-sections" style="padding: 40px 20px 10px 20px;background-color:#f0f9fd">
+    <section class="products-sections" style="padding: 60px 20px 10px 20px;background-color:#f0f9fd">
         <nav class="categories">
 
             @foreach ($categories as $categoryItem)
@@ -1379,7 +1378,7 @@
     </section>
 
     {{-- 💎 PRODUCTS --}}
-    <section class="product-section  position-relative overflow-hidden" style="background-color:#f4faff; padding: 20px 0 40px 0;">
+    <section class="product-section  position-relative overflow-hidden" style="background-color:#f4faff; ">
 
         <div class="container text-center">
             @if ($subcategories && count($subcategories))
@@ -1401,12 +1400,15 @@
                 </div>
             @endif
 
-            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 reveal fade-up" style="--delay: 140ms">
-                <h6 class="section-title text-blue-700 mb-0">Our Products</h6>
-                <form class="d-flex">
-                    <input type="text" id="liveSearch" class="form-control" placeholder="Search products..."
-                        aria-label="Search products" style="width: 280px;">
-                </form>
+            <div class="d-flex align-items-center mb-4 reveal fade-up" style="--delay: 140ms">
+                <div class="flex-grow-1"></div>
+                <h2 class="mb-0 position-absolute start-50 translate-middle-x" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #0369a1; font-size: 1.8rem;">Our Products</h2>
+                <div class="flex-grow-1 d-flex justify-content-end">
+                    <form class="d-flex">
+                        <input type="text" id="liveSearch" class="form-control" placeholder="Search products..."
+                            aria-label="Search products" style="width: 280px;">
+                    </form>
+                </div>
             </div>
             <p id="noProductsMsg" class="text-muted mt-4 mb-4" style="display:none;">No products found.</p>
 
@@ -1429,7 +1431,7 @@
                                 {{-- Image --}}
                                 <div class="product-image">
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}"
-                                        class="w-100 h-100 product-hover-zoom" loading="lazy"
+                                        class="product-hover-zoom" loading="lazy"
                                         decoding="async" width="600" height="600"
                                         sizes="(max-width: 576px) 50vw, (max-width: 992px) 33vw, 25vw">
                                 </div>
@@ -1439,18 +1441,19 @@
                                         title="{{ $product->title }}">
                                         {{ $product->title }}
                                     </h6>
-                                    <div class="rating twinkle-on-hover"
-                                        aria-label="Rating: {{ number_format($product->rating, 1) }} out of 5">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            @if ($i <= floor($product->rating))
-                                                <i class="fas fa-star text-warning"></i>
-                                            @elseif ($i - $product->rating < 1)
-                                                <i class="fas fa-star-half-alt text-warning"></i>
-                                            @else
-                                                <i class="far fa-star text-warning"></i>
-                                            @endif
-                                        @endfor
-
+                                    <div class="product-specs mt-2 d-flex justify-content-between align-items-center">
+                                        @isset($product->product_weight)
+                                            <div class="spec-item text-sm text-muted">
+                                                <i class="fa fa-balance-scale me-1"></i>
+                                                <span>{{ $product->product_weight }}</span>
+                                            </div>
+                                        @endisset
+                                        @isset($product->brimful_volume)
+                                            <div class="spec-item text-sm text-muted">
+                                                <i class="fa fa-tint me-1"></i>
+                                                <span>{{ $product->brimful_volume }}</span>
+                                            </div>
+                                        @endisset
                                     </div>
                                 </div>
                             </a>
@@ -1800,7 +1803,7 @@
 
         /* Image area — flush edge-to-edge */
         .product-image {
-            aspect-ratio: 1 / 1;
+            /* aspect-ratio: 1 / 1; */
             overflow: hidden;
             position: relative;
             padding: 0;
@@ -1825,13 +1828,27 @@
             line-height: 1.3;
         }
 
-        .product-text .rating {
-            margin-bottom: 0 !important;
-            line-height: 1;
+        .product-text .product-specs {
+            margin-top: 8px;
+        }
+
+        .product-text .spec-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.4;
+            margin-bottom: 2px;
+        }
+
+        .product-text .spec-item i {
+            color: var(--blue-400, #0ea5e9);
+            font-size: 0.8rem;
+            width: 16px;
         }
 
         .product-image img {
-            object-fit: cover;
+            object-fit: contain;
             object-position: center center;
         }
 

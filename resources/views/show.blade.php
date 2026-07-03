@@ -1,4 +1,4 @@
-﻿ <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -46,10 +46,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-HJ..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-     <link
-         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-         rel="stylesheet" />
+    @include('partials.site-fonts')
 </head>
 
 <body>
@@ -150,6 +147,25 @@
 
     @if ($product->subtitle)
         <p class="product-subtitle text-muted mb-3">{{ $product->subtitle }}</p>
+    @endif
+
+    @if ($product->product_weight || $product->brimful_volume)
+        <div class="product-specs mb-3 d-flex flex-wrap gap-4">
+            @if ($product->product_weight)
+                <div class="spec-item d-flex align-items-center">
+                    <i class="fa fa-balance-scale me-2" style="color: #45aae3;"></i>
+                    <strong>Weight:</strong> 
+                    <span class="ms-2">{{ $product->product_weight }}</span>
+                </div>
+            @endif
+            @if ($product->brimful_volume)
+                <div class="spec-item d-flex align-items-center">
+                    <i class="fa fa-tint me-2" style="color: #45aae3;"></i>
+                    <strong>Volume:</strong> 
+                    <span class="ms-2">{{ $product->brimful_volume }}</span>
+                </div>
+            @endif
+        </div>
     @endif
 
     @if ($product->description)
@@ -309,7 +325,7 @@
          }
 
          .section-title {
-             font-family: 'Playfair Display', serif;
+             font-family: 'Poppins', sans-serif;
              font-weight: 700;
              font-size: 2rem;
              text-align: center;
@@ -401,7 +417,7 @@
 
          /* Product Title */
          .product-card h3 {
-             font-family: 'Playfair Display', serif;
+             font-family: 'Poppins', sans-serif;
              font-size: 1.1rem;
              font-weight: 600;
              margin-top: 15px;
@@ -557,7 +573,7 @@
          }
 
          .logo {
-             font-family: "Playfair Display", serif;
+             font-family: "Poppins", sans-serif;
            
              font-weight: 900;
              color: rgb(19, 16, 16);
@@ -583,7 +599,8 @@
          .nav-link {
              text-decoration: none;
              color: rgb(21, 18, 18);
-             font-weight: 900;
+             font-weight: 600;
+    text-transform: uppercase;
              font-size: 18px;
              position: relative;
              padding: 5px 0;
@@ -621,7 +638,8 @@
              .nav-link {
                  text-decoration: none;
                  color: rgb(241, 239, 239);
-                 font-weight: 900;
+                 font-weight: 600;
+    text-transform: uppercase;
                  position: relative;
                  font-size: 18px;
                  padding: 5px 0;
@@ -939,7 +957,7 @@
          }
 
          body {
-             font-family: "Playfair Display", serif;
+             font-family: "Poppins", sans-serif;
              line-height: 1.6;
              color: var(--dark);
              background-color: var(--light);
@@ -951,8 +969,8 @@
          h3,
          h4,
          h5 {
-             font-family: "Playfair Display", serif;
-             font-weight: 600;
+             font-family: "Poppins", sans-serif;
+             font-weight: 700;
              line-height: 1.2;
          }
 
