@@ -325,7 +325,7 @@
          }
 
          .section-title {
-             font-family: 'Poppins', sans-serif;
+             font-family: var(--font-body);
              font-weight: 700;
              font-size: 2rem;
              text-align: center;
@@ -417,7 +417,7 @@
 
          /* Product Title */
          .product-card h3 {
-             font-family: 'Poppins', sans-serif;
+             font-family: var(--font-body);
              font-size: 1.1rem;
              font-weight: 600;
              margin-top: 15px;
@@ -573,7 +573,7 @@
          }
 
          .logo {
-             font-family: "Poppins", sans-serif;
+             font-family: var(--font-body);
            
              font-weight: 900;
              color: rgb(19, 16, 16);
@@ -600,7 +600,7 @@
              text-decoration: none;
              color: rgb(21, 18, 18);
              font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
              font-size: 18px;
              position: relative;
              padding: 5px 0;
@@ -639,7 +639,7 @@
                  text-decoration: none;
                  color: rgb(241, 239, 239);
                  font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
                  position: relative;
                  font-size: 18px;
                  padding: 5px 0;
@@ -914,8 +914,6 @@
              /* Deeper Blue for hover states */
              --secondary: #6610F2;
              /* Violet Accent */
-             --accent: #45aae3;
-             /* Light Blue highlight tone */
 
              /* Backgrounds */
              --light: #F8FAFC;
@@ -957,7 +955,7 @@
          }
 
          body {
-             font-family: "Poppins", sans-serif;
+             font-family: var(--font-body);
              line-height: 1.6;
              color: var(--dark);
              background-color: var(--light);
@@ -969,7 +967,7 @@
          h3,
          h4,
          h5 {
-             font-family: "Poppins", sans-serif;
+             font-family: var(--font-body);
              font-weight: 700;
              line-height: 1.2;
          }

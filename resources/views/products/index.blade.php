@@ -67,8 +67,6 @@
             /* Deeper Blue for hover states */
             --secondary: #6610F2;
             /* Violet Accent */
-            --accent: #45aae3;
-            /* Light Blue highlight tone */
 
             /* Backgrounds */
             --light: #F8FAFC;
@@ -110,11 +108,17 @@
         }
 
         body {
-            font-family: "Poppins", sans-serif;
+          
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
             overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         h1,
@@ -122,7 +126,7 @@
         h3,
         h4,
         h5 {
-            font-family: "Poppins", sans-serif;
+          
             font-weight: 700;
             line-height: 1.2;
             font-size: 23px;
@@ -166,11 +170,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .logo {
-            font-family: "Poppins", sans-serif;
-
             font-weight: 900;
             color: rgb(19, 16, 16);
             text-decoration: none;
@@ -196,7 +206,7 @@
             text-decoration: none;
             color: rgb(7, 5, 5);
             font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
             position: relative;
             font-size: 18px;
             padding: 5px 0;
@@ -233,6 +243,10 @@
             cursor: pointer;
             font-size: 24px;
             color: #000000;
+            flex: 0 0 auto;
+            z-index: 1002;
+            padding: 6px;
+            line-height: 1;
         }
 
         /* Hero Section */
@@ -602,7 +616,7 @@
         body {
 
             background: #fff;
-            font-family: "Poppins", sans-serif;
+          
             font-weight: 400;
             font-style: regular;
             margin: 0;
@@ -728,7 +742,7 @@
                 text-decoration: none;
                 color: rgb(241, 239, 239);
                 font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
                 position: relative;
                 font-size: 18px;
                 padding: 5px 0;
@@ -757,14 +771,14 @@
             }
 
             .categories .cat-item .circle {
-                width: 120px;
-                height: 120px;
+                width: 88px;
+                height: 88px;
                 border-radius: 50%;
                 background: #f5f5f5;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                /* overflow: hidden; */
+                overflow: hidden;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                 transition: 0.3s ease;
             }
@@ -1198,21 +1212,72 @@
         }
 
         @media (max-width: 768px) {
-            .hamburger {
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            header {
+                width: 100%;
+                max-width: 100%;
+                left: 0;
+                right: 0;
+            }
+
+            .nav-container {
+                gap: 8px;
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            .nav-brand {
+                min-width: 0;
+                flex: 1 1 auto;
+            }
+
+            .logo {
+                font-size: 0.78rem;
+                line-height: 1.2;
                 display: block;
+                min-width: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .logo-suffix {
+                display: none;
+            }
+
+            .logo-image {
+                width: 34px !important;
+                height: 34px !important;
+            }
+
+            .hamburger {
+                display: block !important;
+                flex: 0 0 auto;
+                margin-left: auto;
             }
 
             .nav-menu {
                 position: fixed;
-                top: 80px;
+                top: 70px;
                 right: -100%;
+                left: auto;
                 flex-direction: column;
                 background-color: rgb(13, 12, 12);
-                width: 80%;
-                height: calc(100vh - 80px);
+                width: min(300px, 86vw);
+                max-width: 86vw;
+                height: calc(100vh - 70px);
+                height: calc(100dvh - 70px);
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
                 transition: var(--transition);
                 padding: 40px 0;
+                z-index: 1001;
+                margin: 0;
             }
 
             .nav-menu.active {
@@ -1223,6 +1288,38 @@
                 margin: 0;
                 text-align: center;
                 padding: 10px 0;
+            }
+
+            .products-sections,
+            .product-section {
+                position: relative;
+                overflow: hidden;
+                max-width: 100%;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .products-sections {
+                padding: 70px 14px 10px 14px !important;
+            }
+
+            .products-sections::before,
+            .product-section::before,
+            .products-sections::after,
+            .product-section::after {
+                display: none;
+            }
+
+            .categories {
+                gap: 12px;
+                margin: 12px 0;
+                max-width: 100%;
+            }
+
+            .subcategory-wrap {
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             .hero {
@@ -1311,10 +1408,10 @@
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
-            <div style="display:flex;align-items:center;gap:8px;">
-                <img src="{{ asset('assets/img/item2.png') }}" style="width:40px;height:40px;display:block;"
+            <div class="nav-brand">
+                <img src="{{ asset('assets/img/item2.png') }}" style="width:40px;height:40px;display:block;flex-shrink:0;"
                     alt="Logo" class="logo-image">
-                <a href="#" class="logo" style="margin:0;">Senthil Plastic Containers<span>&nbsp;Private
+                <a href="{{ route('home') }}" class="logo" style="margin:0;">Senthil Plastic Containers<span class="logo-suffix">&nbsp;Private
                         Limited</span></a>
             </div>
             <div class="hamburger" id="hamburger">
@@ -1400,13 +1497,13 @@
                 </div>
             @endif
 
-            <div class="d-flex align-items-center mb-4 reveal fade-up" style="--delay: 140ms">
-                <div class="flex-grow-1"></div>
-                <h2 class="mb-0 position-absolute start-50 translate-middle-x" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #0369a1; font-size: 1.8rem;">Our Products</h2>
-                <div class="flex-grow-1 d-flex justify-content-end">
-                    <form class="d-flex">
-                        <input type="text" id="liveSearch" class="form-control" placeholder="Search products..."
-                            aria-label="Search products" style="width: 280px;">
+            <div class="products-toolbar d-flex align-items-center mb-4 reveal fade-up" style="--delay: 140ms">
+                <div class="flex-grow-1 products-toolbar__spacer"></div>
+                <h2 class="products-toolbar__title mb-0" style="font-family: var(--font-heading); font-weight: 500; color: #0369a1; font-size: 1.8rem;">Our Products</h2>
+                <div class="flex-grow-1 d-flex justify-content-end products-toolbar__search-wrap">
+                    <form class="d-flex w-100 justify-content-end">
+                        <input type="text" id="liveSearch" class="form-control products-toolbar__search" placeholder="Search products..."
+                            aria-label="Search products">
                     </form>
                 </div>
             </div>
@@ -1505,33 +1602,26 @@
             background: var(--blue-100) !important;
         }
 
-        /* Decorative soft blobs */
+        /* Decorative soft blobs — clipped so they never create section scrollbars */
+        .products-sections,
+        .product-section {
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
         .products-sections::before,
         .product-section::before {
-            content: "";
-            position: absolute;
-            width: 480px;
-            height: 480px;
-            top: -140px;
-            right: -140px;
-            /* background: radial-gradient(50% 50% at 50% 50%, rgba(56,189,248,0.15) 0%, rgba(56,189,248,0) 70%); */
-            filter: blur(2px);
-            z-index: 0;
-            animation: drift 14s ease-in-out infinite alternate;
+            content: none;
+            display: none;
         }
 
         .products-sections::after,
         .product-section::after {
-            content: "";
-            position: absolute;
-            width: 420px;
-            height: 420px;
-            bottom: -120px;
-            left: -120px;
-            background: radial-gradient(50% 50% at 50% 50%, rgba(186, 230, 253, 0.25) 0%, rgba(186, 230, 253, 0) 70%);
-            filter: blur(2px);
-            z-index: 0;
-            animation: drift 16s ease-in-out infinite alternate-reverse;
+            content: none;
+            display: none;
         }
 
         @keyframes drift {
@@ -1985,6 +2075,10 @@
             }
         }
 
+        .products-toolbar__search {
+            width: 280px;
+        }
+
         /* Responsive tweaks */
         @media (max-width: 768px) {
             .products-sections .circle,
@@ -1998,14 +2092,157 @@
             }
 
             /* On small screens, stack heading and search bar */
-            .d-flex.justify-content-between.align-items-center {
+            .products-toolbar {
                 flex-direction: column !important;
-                gap: 16px;
+                gap: 14px;
+                text-align: center;
             }
 
+            .products-toolbar__spacer {
+                display: none;
+            }
+
+            .products-toolbar__title {
+                font-size: 1.5rem !important;
+            }
+
+            .products-toolbar__search-wrap {
+                flex-grow: 0 !important;
+                width: 100%;
+                justify-content: center !important;
+            }
+
+            .products-toolbar__search-wrap form {
+                justify-content: center !important;
+            }
+
+            #liveSearch,
+            .products-toolbar__search {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+        }
+
+        /* Keep page from sideways-scrolling on all devices (layout unchanged) */
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        .products-sections,
+        .product-section {
+            position: relative;
+            overflow: hidden; /* both axes — overflow-x alone forces overflow-y:auto and a section scrollbar */
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .products-sections::before,
+        .product-section::before,
+        .products-sections::after,
+        .product-section::after {
+            content: none;
+            display: none;
+        }
+
+        .categories {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        #productList.row {
+            max-width: 100%;
+        }
+
+        /* Mobile-only overflow lock (must stay last so it wins cascade; desktop unchanged) */
+        @media (max-width: 768px) {
+            html,
+            body {
+                overflow-x: hidden !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                position: relative;
+            }
+
+            .products-sections,
+            .product-section,
+            .container,
+            .categories,
+            .subcategory-wrap,
+            .products-toolbar,
+            #productList,
+            .row {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .products-sections,
+            .product-section {
+                overflow: hidden !important;
+                width: 100% !important;
+            }
+
+            .products-sections::before,
+            .product-section::before,
+            .products-sections::after,
+            .product-section::after {
+                content: none !important;
+                display: none !important;
+                width: 0 !important;
+                height: 0 !important;
+            }
+
+            .categories {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 12px !important;
+                width: 100% !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            .categories .cat-item {
+                flex: 0 1 calc(33.333% - 12px);
+                max-width: 110px;
+            }
+
+            .products-sections .circle,
+            .product-section .circle,
+            .categories .cat-item .circle,
+            .cat-item .circle {
+                width: 88px !important;
+                height: 88px !important;
+            }
+
+            #productList.row {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                width: 100% !important;
+            }
+
+            #productList > [class*="col"] {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            .products-toolbar__search,
             #liveSearch {
                 width: 100% !important;
-                max-width: 360px;
+                max-width: 100% !important;
+            }
+
+            .spc-site-footer,
+            .spc-footer-grid {
+                max-width: 100% !important;
+                overflow-x: hidden !important;
             }
         }
 

@@ -43,11 +43,6 @@
     /* Deeper Blue for hover states */
     --secondary: #6610F2;
     /* Violet Accent */
-    --accent: #45aae3;
-    /* Light Blue highlight tone */
-    --hero-navy: #001a3d;
-    --hero-gold: #ffb800;
-    --hero-blue: #3a9dff;
     --hero-stats-height: clamp(88px, 11vh, 104px);
     --header-offset: 98px;
 
@@ -101,12 +96,12 @@ body {
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: 18px;
     line-height: 1.6;
-    color: var(--dark);
-    background-color: var(--light);
+    color: var(--text-muted);
+    background-color: transparent;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -141,7 +136,7 @@ section.page-end-section {
     overflow: visible;
     scroll-snap-align: start;
     scroll-snap-stop: normal;
-    background: #fff;
+    background: transparent;
     padding: 0;
 }
 
@@ -156,7 +151,7 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
     font-weight: 700;
     line-height: 1.2;
 }
@@ -202,7 +197,7 @@ header.scrolled {
 }
 
 .logo {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
 
     font-weight: 900;
     color: rgb(19, 16, 16);
@@ -277,7 +272,7 @@ header.scrolled {
     z-index: 1001;
     background: var(--hero-navy);
     color: rgba(255, 255, 255, 0.88);
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.78rem;
 }
 
@@ -324,7 +319,7 @@ header.scrolled {
     padding: 10px 20px;
     background: var(--hero-navy);
     color: #fff !important;
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.88rem;
     font-weight: 600;
     border-radius: 6px;
@@ -627,7 +622,7 @@ header.scrolled {
 }
 
 .hero-strip-head h3 {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
     font-size: clamp(1rem, 1.8vw, 1.35rem);
     font-weight: 700;
     color: var(--hero-navy);
@@ -639,7 +634,7 @@ header.scrolled {
 }
 
 .hero-strip-head p {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.82rem;
     color: #6b7280;
     margin: 4px 0 0;
@@ -679,7 +674,7 @@ header.scrolled {
 
 .hero-strip-card span {
     flex: 1;
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--hero-navy);
@@ -874,6 +869,13 @@ header.scrolled {
     right: clamp(12px, 2vw, 28px);
 }
 
+@media (max-width: 768px) {
+    .hero-prev,
+    .hero-next {
+        display: none !important;
+    }
+}
+
 .btn {
     display: inline-block;
     padding: 12px 24px;
@@ -936,11 +938,11 @@ header.scrolled {
 /* About Section */
 .about {
     padding: 100px 0;
-    background-color: white;
+    background-color: transparent;
 }
 
 .section-title {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
     font-size: clamp(1.2rem, 2.2vw, 1.55rem);
     font-weight: 600;
     line-height: 1.35;
@@ -985,7 +987,7 @@ header.scrolled {
 
 .about-text p {
     margin-bottom: 20px;
-    color: rgba(255, 255, 255, 0.88);
+    color: var(--text-muted);
 }
 
 .about-image {
@@ -1015,7 +1017,7 @@ header.scrolled {
 /* About Commitments Section */
 .about-commitments {
     padding: clamp(24px, 4vw, 48px) 20px;
-    background: var(--hero-navy);
+    /* background: var(--hero-navy); */
 }
 
 .about-block {
@@ -1098,8 +1100,8 @@ header.scrolled {
     gap: 8px;
     padding: 8px 16px;
     border-radius: 999px;
-    background: rgba(255, 184, 0, 0.12);
-    color: #b8860b;
+    background: color-mix(in srgb, var(--hero-gold) 12%, transparent);
+    color: color-mix(in srgb, var(--hero-gold) 78%, #000);
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -1148,7 +1150,7 @@ header.scrolled {
 }
 
 .about-headline-dark {
-    color: rgba(255, 255, 255, 0.88)   ;
+    color: var(--text-primary);
     font-weight: 600;
     letter-spacing: -0.02em;
 }
@@ -1159,7 +1161,7 @@ header.scrolled {
 
 .about-desc {
     font-size: clamp(0.92rem, 1.1vw, 1rem);
-    color: rgba(255, 255, 255, 0.88);
+    color: var(--text-muted);
     line-height: 1.65;
     margin: 0 0 28px;
     text-align: justify;
@@ -1264,13 +1266,6 @@ header.scrolled {
     .about-cta {
         width: 100%;
         justify-content: center;
-    }
-
-    .hero-prev,
-    .hero-next {
-        width: 42px;
-        height: 46px;
-        font-size: 18px;
     }
 
     .hero .container {
@@ -1644,7 +1639,7 @@ header.scrolled {
 /* Why Choose Us Section */
 .why-choose-us {
     padding: clamp(24px, 4vw, 48px) 20px;
-    background:var(--text-primary);
+    /* background:var(--text-primary); */
     text-align: center;
 }
 
@@ -1737,7 +1732,7 @@ header.scrolled {
 /* Grid */
 .product-categories {
     padding:clamp(64px, 8vw, 100px) 20px;
-    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+    /* background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%); */
     overflow: visible;
     position: relative;
 }
@@ -2104,7 +2099,7 @@ header.scrolled {
         text-decoration: none;
         color: rgb(248, 240, 240);
         font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
         position: relative;
         font-size: 18px;
         padding: 5px 0;
@@ -2171,7 +2166,7 @@ header.scrolled {
 .promo-text {
     flex-grow: 0.5;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-body);
     /* or any stylish font */
 }
 
@@ -2356,7 +2351,7 @@ header.scrolled {
 /* Facilities / Technologies Section */
 .facilities-tabs {
     /* padding: clamp(24px, 4vw, 40px) 0; */
-    background: linear-gradient(180deg, #f8fafc 0%, #eef4fc 50%, #f8fafc 100%);
+    /* background: linear-gradient(180deg, #f8fafc 0%, #eef4fc 50%, #f8fafc 100%); */
     position: relative;
     overflow: hidden;
 }
@@ -2373,7 +2368,7 @@ header.scrolled {
     right: -80px;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(69, 170, 227, 0.12) 0%, transparent 70%);
+    /* background: radial-gradient(circle, rgba(69, 170, 227, 0.12) 0%, transparent 70%); */
     pointer-events: none;
 }
 
@@ -2452,7 +2447,7 @@ header.scrolled {
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-body);
     font-weight: 600;
     font-size: 0.85rem;
     color: #64748b;
@@ -2631,22 +2626,22 @@ header.scrolled {
 
 @media (max-width: 768px) {
     .tech-tab-bar {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        justify-content: stretch;
         max-width: 100%;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-
-    .tech-tab-bar::-webkit-scrollbar {
-        display: none;
+        gap: 6px;
+        padding: 6px;
     }
 
     .tech-tab {
-        flex: 0 0 auto;
-        padding: 12px 16px;
-        font-size: 0.82rem;
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 14px;
+        font-size: 0.8rem;
+        white-space: normal;
+        word-break: break-word;
     }
 
     .tech-tab-num {
@@ -2658,7 +2653,7 @@ header.scrolled {
 /* Commitments Section */
 .commitments {
     padding: 80px 0px;
-    background: #fff;
+    background: transparent;
 }
 
 .commitments .section-title {
@@ -2755,7 +2750,7 @@ header.scrolled {
 /* Testimonials */
 .testimonials {
     padding: 100px 0;
-    background-color: white;
+    background-color: transparent;
 }
 
 .testimonial-slider {
@@ -2882,12 +2877,12 @@ header.scrolled {
     gap: 8px;
     padding: 8px 16px;
     border-radius: 999px;
-    background: rgba(255, 184, 0, 0.12);
+    background: color-mix(in srgb, var(--hero-gold) 12%, transparent);
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #b8860b;
+    color: color-mix(in srgb, var(--hero-gold) 78%, #000);
     margin-bottom: 8px;
     position: relative;
     z-index: 1;
@@ -3017,7 +3012,7 @@ header.scrolled {
 
 .customer-testimonials {
     padding: clamp(24px, 4vw, 48px) 20px;
-    background: var(--hero-navy);
+/* background: var(--hero-navy); */
     position: relative;
     overflow: hidden;
 }
@@ -3026,7 +3021,7 @@ header.scrolled {
     content: '';
     position: absolute;
     inset: 0;
-    background:
+    /* background: */
         radial-gradient(ellipse at 20% 50%, rgba(69, 170, 227, 0.15) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 50%, rgba(255, 184, 0, 0.08) 0%, transparent 50%);
     pointer-events: none;
@@ -3047,7 +3042,7 @@ header.scrolled {
 }
 
 .customer-testimonials .tech-eyebrow {
-    background: rgba(69, 170, 227, 0.2);
+    /* background: rgba(69, 170, 227, 0.2); */
     color: var(--accent);
 }
 
@@ -3087,7 +3082,7 @@ header.scrolled {
 }
 
 .testimonial-card {
-    /* background: rgba(255, 255, 255, 0.06); */
+    
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
@@ -3241,12 +3236,32 @@ header.scrolled {
 }
 
 @media (max-width: 768px) {
+    section:not(.hero):not(.page-end-section) {
+        min-height: auto;
+        padding: 24px 0 28px;
+    }
+
+    .customer-testimonials {
+        min-height: auto !important;
+        padding: 20px 16px 24px !important;
+        margin: 0 !important;
+    }
+
+    .testimonial-header {
+        margin-bottom: 20px;
+    }
+
     .testimonial-track .testimonial-card {
         flex: 0 0 100%;
         max-width: 100%;
-        height: 300px;
-        min-height: 300px;
-        max-height: 300px;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .testimonial-carousel-controls {
+        margin-top: 16px;
+        margin-bottom: 0;
     }
 }
 
@@ -3813,7 +3828,7 @@ header.scrolled {
                     </div>
                 </div>
 
-                <div class="about-text">
+                <div class="about-text glass-panel">
                     <span class="section-kicker">
                         <i class="fas fa-star" aria-hidden="true"></i>
                         spc

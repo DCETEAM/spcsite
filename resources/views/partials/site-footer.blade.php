@@ -6,13 +6,8 @@
 
 @once
 <style>
-    :root {
-        --spc-accent: #45aae3;
-        --spc-accent-dark: #2e96d4;
-    }
-
     .spc-site-footer {
-        background: #060f1a;
+        background: var(--footer-bg, #060f1a);
         color: #fff;
         padding: clamp(48px, 6vw, 72px) 0 0;
     }
@@ -57,7 +52,7 @@
     }
 
     .spc-footer-logo__text {
-        font-family: "Playfair Display", Georgia, serif;
+        font-family: var(--font-heading);
         font-size: 1.05rem;
         font-weight: 700;
         line-height: 1.2;
@@ -101,7 +96,7 @@
     }
 
     .spc-footer-col h4 {
-        font-family: "Playfair Display", Georgia, serif;
+        font-family: var(--font-heading);
         font-size: 1rem;
         font-weight: 700;
         color: #fff;

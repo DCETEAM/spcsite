@@ -48,7 +48,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-body);
   background-color: var(--background);
   color: var(--text);
 }
@@ -59,7 +59,7 @@ body {
 }
 
 .section-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-body);
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 1rem;

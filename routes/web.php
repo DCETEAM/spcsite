@@ -20,6 +20,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\ContactInfoController;
+use App\Http\Controllers\Admin\ThemeSettingsController;
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 
@@ -71,6 +72,9 @@ Route::post('/admin/about', [AboutController::class, 'store'])->name('admin.abou
 
 Route::get('/admin/contact-info/edit', [App\Http\Controllers\Admin\ContactInfoController::class, 'edit'])->name('contact.edit');
         Route::post('/admin/contact-info/update', [App\Http\Controllers\Admin\ContactInfoController::class, 'update'])->name('contact.update');
+
+Route::get('/admin/theme/edit', [ThemeSettingsController::class, 'edit'])->name('admin.theme.edit');
+Route::post('/admin/theme/update', [ThemeSettingsController::class, 'update'])->name('admin.theme.update');
 
 
 

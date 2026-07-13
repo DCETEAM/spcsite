@@ -40,10 +40,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #45aae3;
-            --hero-navy: #001a3d;
-            --hero-gold: #ffb800;
-            --hero-blue: #3a9dff;
             --text-muted: #64748b;
             --border: rgba(0, 26, 61, 0.1);
             --transition: all 0.35s ease;
@@ -53,10 +49,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: "Poppins", sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
             color: #1E1E1E;
-            background: #fff;
+            background: transparent;
             overflow-x: hidden;
         }
 
@@ -119,7 +115,7 @@
         }
 
         .logo {
-            font-family: "Poppins", sans-serif;
+            font-family: var(--font-body);
             font-weight: 900;
             color: #111;
             text-decoration: none;
@@ -298,10 +294,12 @@
             grid-template-rows: 1fr;
             height: 100%;
             min-height: var(--facility-card-h);
-            background: #fff;
-           
+            background: var(--glass-bg, rgba(255, 255, 255, 0.72));
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border, rgba(0, 26, 61, 0.1));
+            border-radius: 18px;
             overflow: hidden;
-            
         }
 
         .facility-card-visual {
@@ -379,7 +377,7 @@
         }
 
         .facility-card-title {
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: var(--font-heading);
             font-size: clamp(1.35rem, 2.2vw, 1.85rem);
             font-weight: 700;
             color: var(--hero-navy);
@@ -415,7 +413,7 @@
         }
 
         .facility-stat-value {
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: var(--font-heading);
             font-size: 1.75rem;
             font-weight: 700;
             color: var(--hero-gold);
@@ -517,6 +515,7 @@
                 gap: 8px;
                 padding-bottom: 8px;
                 max-height: none;
+                margin-top: 0;
             }
 
             .facility-nav-item {
@@ -562,24 +561,177 @@
         }
 
         @media (max-width: 768px) {
-            .hamburger { display: block; }
+            body {
+                font-size: 15px;
+            }
+
+            .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .nav-container {
+                padding: 8px 0;
+                gap: 10px;
+            }
+
+            .nav-container > div:first-child {
+                min-width: 0;
+                flex: 1;
+            }
+
+            .nav-container > div:first-child img {
+                width: 34px !important;
+                height: 34px !important;
+            }
+
+            .logo {
+                font-size: 0.72rem;
+                line-height: 1.3;
+                white-space: normal;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 1002;
+                padding: 6px;
+                flex-shrink: 0;
+            }
 
             .nav-menu {
                 position: fixed;
-                top: 70px;
+                top: var(--header-offset);
                 right: -100%;
                 flex-direction: column;
                 background: #fff;
-                width: 80%;
-                height: calc(100vh - 70px);
+                width: min(300px, 86vw);
+                height: calc(100vh - var(--header-offset));
+                height: calc(100dvh - var(--header-offset));
                 box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
                 transition: var(--transition);
-                padding: 30px 0;
+                padding: 20px 0;
+                z-index: 1001;
             }
 
             .nav-menu.active { right: 0; }
-            .nav-item { margin: 0; text-align: center; padding: 14px 0; }
+
+            .nav-item {
+                margin: 0;
+                text-align: center;
+                padding: 12px 0;
+            }
+
+            .nav-link {
+                font-size: 0.92rem;
+            }
+
             .nav-quote-btn { display: none !important; }
+
+            .facility-page {
+                padding-top: calc(var(--header-offset) + 12px);
+                padding-bottom: 24px;
+            }
+
+            .facility-breadcrumb ol {
+                font-size: 0.72rem;
+            }
+
+            .facility-nav-item {
+                min-width: 140px;
+                padding: 12px 10px;
+                grid-template-columns: 32px 1fr;
+                gap: 8px;
+            }
+
+            .facility-nav-num {
+                font-size: 0.65rem;
+            }
+
+            .facility-nav-title {
+                font-size: 0.78rem;
+                line-height: 1.3;
+            }
+
+            .facility-card-body {
+                padding: 18px 16px;
+                max-height: min(52vh, 460px);
+            }
+
+            .facility-card-kicker {
+                font-size: 0.62rem;
+                margin-bottom: 8px;
+            }
+
+            .facility-card-title {
+                font-size: 1.15rem;
+                margin-bottom: 12px;
+            }
+
+            .facility-card-desc {
+                font-size: 0.84rem;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+
+            .facility-feature-list li {
+                font-size: 0.84rem;
+                padding: 12px 0;
+                grid-template-columns: 40px 1fr;
+                gap: 12px;
+            }
+
+            .facility-feature-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .facility-stat strong {
+                font-size: 1.1rem;
+            }
+
+            .facility-stat span {
+                font-size: 0.72rem;
+            }
+
+            .commitment-section {
+                padding: 48px 0 56px;
+            }
+
+            .commitment-title {
+                font-size: 1.45rem;
+            }
+
+            .commitment-header p {
+                font-size: 0.86rem;
+            }
+
+            .commitment-item h3 {
+                font-size: 0.88rem;
+            }
+
+            .commitment-item p {
+                font-size: 0.76rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 0.65rem;
+            }
+
+            .nav-container > div:first-child img {
+                width: 30px !important;
+                height: 30px !important;
+            }
+
+            .facility-card-title {
+                font-size: 1.05rem;
+            }
+
+            .facility-nav-title {
+                font-size: 0.72rem;
+            }
         }
     </style>
 </head>

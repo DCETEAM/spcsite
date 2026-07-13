@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Models\MainCategory;
+use App\Models\SiteSetting;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,9 +20,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-  public function boot()
-{
-    view()->composer('layouts.footer', function ($view) {
-        $view->with('categories', MainCategory::all());
-    });
-}}
+    public function boot(): void
+    {
+        View::composer('*', function ($view) {
+            $view->with('siteTheme', SiteSetting::current());
+        });
+
+        View::composer('layouts.footer', function ($view) {
+            $view->with('categories', MainCategory::all());
+        });
+    }
+}

@@ -44,10 +44,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #45aae3;
-            --hero-navy: #001a3d;
-            --hero-gold: #ffb800;
-            --hero-blue: #3a9dff;
             --text-muted: #64748b;
             --border: rgba(0, 26, 61, 0.1);
             --glass-bg: rgba(255, 255, 255, 0.78);
@@ -60,7 +56,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: "Poppins", sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
             color: #1E1E1E;
             background: #fff;
@@ -126,7 +122,7 @@
         }
 
         .logo {
-            font-family: "Poppins", sans-serif;
+            font-family: var(--font-body);
             font-weight: 900;
             color: #111;
             text-decoration: none;
@@ -280,7 +276,7 @@
             justify-content: center;
             min-height: calc(100vh - var(--header-offset) - 140px);
             padding: clamp(24px, 3vw, 36px);
-            /* background: var(--glass-bg); */
+            /*  */
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             border: 1px solid rgba(0, 26, 61, 0.12);
@@ -324,7 +320,7 @@
         }
 
         .product-title {
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: var(--font-heading);
             /* font-size: clamp(2.4rem, 5vw, 4rem);
             font-weight: 700; */
             line-height: 1.05;
@@ -438,8 +434,8 @@
             gap: 8px;
             padding: 8px 16px;
             border-radius: 999px;
-            background: rgba(255, 184, 0, 0.12);
-            color: #b8860b;
+            background: color-mix(in srgb, var(--hero-gold) 12%, transparent);
+            color: color-mix(in srgb, var(--hero-gold) 78%, #000);
             font-size: 0.68rem;
             font-weight: 700;
             letter-spacing: 0.16em;
@@ -450,7 +446,7 @@
         .section-kicker i { font-size: 0.62rem; color: var(--hero-gold); }
 
         .spec-sheet-title {
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: var(--font-heading);
             font-size: clamp(1.5rem, 2.8vw, 2.2rem);
             font-weight: 700;
             color: var(--hero-navy);
@@ -536,24 +532,171 @@
         }
 
         @media (max-width: 768px) {
-            .hamburger { display: block; }
+            body {
+                font-size: 15px;
+            }
+
+            .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .nav-container {
+                padding: 8px 0;
+                gap: 10px;
+            }
+
+            .nav-container > div:first-child {
+                min-width: 0;
+                flex: 1;
+            }
+
+            .nav-container > div:first-child img {
+                width: 34px !important;
+                height: 34px !important;
+            }
+
+            .logo {
+                font-size: 0.72rem;
+                line-height: 1.3;
+                white-space: normal;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 1002;
+                padding: 6px;
+                flex-shrink: 0;
+            }
 
             .nav-menu {
                 position: fixed;
-                top: 70px;
+                top: var(--header-offset);
                 right: -100%;
                 flex-direction: column;
                 background: #fff;
-                width: 80%;
-                height: calc(100vh - 70px);
+                width: min(300px, 86vw);
+                height: calc(100vh - var(--header-offset));
+                height: calc(100dvh - var(--header-offset));
                 box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
                 transition: var(--transition);
-                padding: 30px 0;
+                padding: 20px 0;
+                z-index: 1001;
             }
 
             .nav-menu.active { right: 0; }
-            .nav-item { margin: 0; text-align: center; padding: 14px 0; }
+
+            .nav-item {
+                margin: 0;
+                text-align: center;
+                padding: 12px 0;
+            }
+
+            .nav-link {
+                font-size: 0.92rem;
+            }
+
             .nav-quote-btn { display: none !important; }
+
+            .product-layout {
+                padding-top: calc(var(--header-offset) + 12px);
+                padding-bottom: 48px;
+            }
+
+            .product-breadcrumb {
+                margin-bottom: 16px;
+            }
+
+            .product-breadcrumb ol {
+                font-size: 0.72rem;
+            }
+
+            .product-hero-content {
+                padding: 18px 16px;
+            }
+
+            .product-title {
+                font-size: 1.45rem;
+                line-height: 1.2;
+                margin-bottom: 10px;
+            }
+
+            .product-tagline {
+                font-size: 0.86rem;
+                margin-bottom: 18px;
+            }
+
+            .product-kicker-text {
+                font-size: 0.6rem;
+                letter-spacing: 0.14em;
+            }
+
+            .spec-label {
+                font-size: 0.65rem;
+            }
+
+            .spec-value {
+                font-size: 0.86rem;
+            }
+
+            .product-body p {
+                font-size: 0.86rem;
+                line-height: 1.65;
+            }
+
+            .btn-enquire {
+                font-size: 0.84rem;
+                padding: 12px 20px;
+            }
+
+            .product-spec-section {
+                padding: 36px 0 48px;
+            }
+
+            .spec-sheet-title {
+                font-size: 1.2rem;
+            }
+
+            .section-kicker {
+                font-size: 0.62rem;
+                padding: 6px 12px;
+            }
+
+            .feature-line {
+                font-size: 0.86rem;
+            }
+
+            .feature-row {
+                grid-template-columns: 40px 1fr;
+                gap: 12px;
+                padding: 14px 0;
+            }
+
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 0.65rem;
+            }
+
+            .nav-container > div:first-child img {
+                width: 30px !important;
+                height: 30px !important;
+            }
+
+            .product-title {
+                font-size: 1.28rem;
+            }
+
+            .product-image-main {
+                min-height: 220px;
+                max-height: 320px;
+            }
         }
     </style>
 </head>

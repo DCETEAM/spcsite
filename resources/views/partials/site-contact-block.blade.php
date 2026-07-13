@@ -12,21 +12,13 @@
 @endphp
 
 @once
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+@include('partials.site-theme-vars')
 <style>
-    :root {
-        --spc-accent: #45aae3;
-        --spc-accent-dark: #2e96d4;
-    }
-
     .spc-contact-block {
-        background:
-            radial-gradient(ellipse at 92% 12%, rgba(69, 170, 227, 0.1) 0%, transparent 42%),
-            radial-gradient(ellipse at 8% 88%, rgba(69, 170, 227, 0.06) 0%, transparent 38%),
-            #ffffff;
         padding: clamp(56px, 8vw, 88px) 0;
-        color: #1e293b;
-        border-top: 1px solid rgba(0, 26, 61, 0.06);
+        color: var(--text-muted);
+        background: transparent;
+        border-top: 1px solid var(--glass-border);
     }
 
     .spc-contact-grid {
@@ -54,11 +46,11 @@
     }
 
     .spc-contact-title {
-        /* font-family: "Playfair Display", Georgia, serif; */
+        font-family: var(--font-heading);
         font-size: clamp(2rem, 4.5vw, 3.15rem);
         font-weight: 600;
         line-height: 1.15;
-        color: #001a3d;
+        color: var(--text-primary);
         margin: 0 0 20px;
         max-width: 520px;
     }
@@ -69,9 +61,10 @@
     }
 
     .spc-contact-desc {
+        font-family: var(--font-body);
         font-size: clamp(0.92rem, 1.1vw, 1rem);
         line-height: 1.75;
-        color: #64748b;
+        color: var(--text-muted);
         margin: 0 0 28px;
         max-width: 500px;
     }
@@ -108,14 +101,14 @@
 
     .spc-btn--outline {
         background: transparent;
-        color: #001a3d;
-        border-color: rgba(0, 26, 61, 0.22);
+        color: var(--text-primary);
+        border-color: var(--glass-border);
     }
 
     .spc-btn--outline:hover {
-        border-color: #001a3d;
-        background: rgba(0, 26, 61, 0.04);
-        color: #001a3d;
+        border-color: var(--spc-accent);
+        background: color-mix(in srgb, var(--spc-accent) 12%, transparent);
+        color: var(--text-primary);
     }
 
     .spc-contact-cards {
@@ -125,12 +118,14 @@
     }
 
     .spc-contact-card {
-        background: #f8fafc;
-        border: 1px solid rgba(0, 26, 61, 0.08);
+        
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid var(--glass-border);
         border-radius: 14px;
         padding: 22px 20px;
         text-align: left;
-        box-shadow: 0 4px 18px rgba(0, 26, 61, 0.04);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     }
 
     .spc-contact-card__icon {
@@ -151,7 +146,7 @@
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #94a3b8;
+        color: var(--text-muted);
         margin-bottom: 6px;
     }
 
@@ -159,7 +154,7 @@
     .spc-contact-card__value a {
         font-size: 1.02rem;
         font-weight: 700;
-        color: #001a3d;
+        color: var(--text-primary);
         line-height: 1.45;
         text-decoration: none;
         margin: 0;
@@ -186,7 +181,7 @@
 
 <div class="spc-contact-block" id="contact" aria-label="Contact">
     <div class="container spc-contact-grid">
-        <div class="spc-contact-copy">
+        <div class="spc-contact-copy glass-panel">
             <span class="spc-contact-kicker">
                 <i class="fas fa-star" aria-hidden="true"></i>
                 Get In Touch
