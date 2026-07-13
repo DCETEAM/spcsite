@@ -186,6 +186,11 @@ table {
        class="{{ request()->routeIs('contact.*') ? 'active' : '' }}">
         <i class="fas fa-phone"></i> Contact Info
     </a>
+
+    <a href="{{ route('admin.theme.edit') }}"
+       class="{{ request()->routeIs('admin.theme.*') ? 'active' : '' }}">
+        <i class="fas fa-palette"></i> Site Theme
+    </a>
     <a>
     <form action="{{ route('admin.logout') }}" method="POST">
         @csrf

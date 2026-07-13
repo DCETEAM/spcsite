@@ -81,7 +81,7 @@
                      <p class="product-desc">
                          Our 10Ltr plastic bucket is engineered for performance and longevity. Made with
                          high-grade polymer, it ensures strong durability, chemical resistance, and secure
-                         sealing. Perfect for paint, chemical, and lubricant industries — designed to meet
+                         sealing. Perfect for paint, chemical, and lubricant industries â€” designed to meet
                          international safety and packaging standards.
                      </p>
 
@@ -174,54 +174,7 @@
      <!-- Font Awesome -->
      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-     <!-- Footer -->
-     <footer>
-         <div class="container">
-             <div class="footer-content">
-                 <div class="footer-col">
-                     <h4>spc</h4>
-                     <p>
-                         Premium plastic containers designed for sustainability and
-                         elegance.
-                     </p>
-                     <div class="social-links">
-                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                         <a href="#"><i class="fab fa-twitter"></i></a>
-                         <a href="#"><i class="fab fa-instagram"></i></a>
-                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                     </div>
-                 </div>
-                 <div class="footer-col">
-                     <h4>Quick Links</h4>
-                     <ul class="footer-links">
-                         <li><a href="#home">Home</a></li>
-                         <li><a href="#about">About</a></li>
-                         <li><a href="#product">Products</a></li>
-                         <li><a href="#why-us">Why choose us</a></li>
-                         <li><a href="#contact">Contact</a></li>
-                     </ul>
-                 </div>
-                 <div class="footer-col">
-                     <h4>Products</h4>
-                     <ul class="footer-links">
-                         <li><a href="#">Food Storage</a></li>
-                         <li><a href="#">Cosmetic Containers</a></li>
-                         <li><a href="#">Industrial Solutions</a></li>
-                         <li><a href="#">Custom Designs</a></li>
-                         <li><a href="#">Bulk Orders</a></li>
-                     </ul>
-                 </div>
-                 <div class="footer-col">
-                     <h4>Qr Code</h4>
-
-                     <img class="qrcode" src="{{ asset('assets/img/qrcode.png') }}" alt="Blog 3">
-                 </div>
-             </div>
-             <div class="copyright">
-                 <p>&copy; 2025 spc. All Rights Reserved.</p>
-             </div>
-         </div>
-     </footer>
+     @include('layouts.footer')
      <style>
          :root {
              --primary-color: #45aae3;
@@ -272,7 +225,7 @@
          }
 
          .section-title {
-             font-family: 'Poppins', sans-serif;
+             font-family: var(--font-body);
              font-weight: 700;
              font-size: 2rem;
              text-align: center;
@@ -364,7 +317,7 @@
 
          /* Product Title */
          .product-card h3 {
-             font-family: 'Poppins', sans-serif;
+             font-family: var(--font-body);
              font-size: 1.1rem;
              font-weight: 600;
              margin-top: 15px;
@@ -519,7 +472,7 @@
          }
 
          .logo {
-             font-family: "Poppins", sans-serif;
+             font-family: var(--font-body);
            
              font-weight: 900;
              color: rgb(19, 16, 16);
@@ -545,7 +498,7 @@
              text-decoration: none;
              color: rgb(21, 18, 18);
              font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
              font-size: 18px;
              position: relative;
              padding: 5px 0;
@@ -801,8 +754,6 @@
              /* Deeper Blue for hover states */
              --secondary: #6610F2;
              /* Violet Accent */
-             --accent: #45aae3;
-             /* Light Blue highlight tone */
 
              /* Backgrounds */
              --light: #F8FAFC;
@@ -844,7 +795,7 @@
          }
 
          body {
-             font-family: "Poppins", sans-serif;
+             font-family: var(--font-body);
              line-height: 1.6;
              color: var(--dark);
              background-color: var(--light);
@@ -856,7 +807,7 @@
          h3,
          h4,
          h5 {
-             font-family: "Poppins", sans-serif;
+             font-family: var(--font-body);
              font-weight: 700;
              line-height: 1.2;
          }
@@ -888,7 +839,7 @@
                  text-decoration: none;
                  color: rgb(241, 239, 239);
                  font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
                  position: relative;
                  font-size: 18px;
                  padding: 5px 0;

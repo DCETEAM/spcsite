@@ -46,8 +46,6 @@
             /* Deeper Blue for hover states */
             --secondary: #6610F2;
             /* Violet Accent */
-            --accent: #45aae3;
-            /* Light Blue highlight tone */
 
             /* Backgrounds */
             --light: #F8FAFC;
@@ -89,11 +87,17 @@
         }
 
         body {
-            font-family: "Poppins", sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
             overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         h1,
@@ -101,7 +105,7 @@
         h3,
         h4,
         h5 {
-            font-family: "Poppins", sans-serif;
+            font-family: var(--font-body);
             font-weight: 700;
             line-height: 1.2;
         }
@@ -148,11 +152,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .logo {
-            font-family: "Poppins", sans-serif;
-
+            font-family: var(--font-body);
             font-weight: 900;
             color: rgb(19, 16, 16);
             text-decoration: none;
@@ -178,7 +189,7 @@
             text-decoration: none;
             color: rgb(21, 18, 18);
             font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
             font-size: 18px;
             position: relative;
             padding: 5px 0;
@@ -215,6 +226,10 @@
             cursor: pointer;
             font-size: 24px;
             color: #0f0707;
+            flex: 0 0 auto;
+            z-index: 1002;
+            padding: 6px;
+            line-height: 1;
         }
 
         .section-title {
@@ -242,6 +257,9 @@
             padding: 80px;
             background: #f0f9fd;
             margin-top: 50px;
+            overflow-x: hidden;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .blog-content {
@@ -535,25 +553,66 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 14px;
+                padding-right: 14px;
+                box-sizing: border-box;
+            }
+
+            .nav-container {
+                gap: 8px;
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            .nav-brand {
+                min-width: 0;
+                flex: 1 1 auto;
+            }
+
             .hamburger {
-                display: block;
+                display: block !important;
+                flex: 0 0 auto;
+                margin-left: auto;
             }
 
             .logo {
-                font-size: 12px;
+                font-size: 0.78rem;
+                line-height: 1.2;
+                display: block;
+                min-width: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .logo-suffix {
+                display: none;
+            }
+
+            .logo-image {
+                width: 34px !important;
+                height: 34px !important;
             }
 
             .nav-menu {
                 position: fixed;
-                top: 80px;
+                top: 70px;
                 right: -100%;
+                left: auto;
                 flex-direction: column;
                 background-color: rgb(11, 7, 7);
-                width: 80%;
-                height: calc(100vh - 80px);
+                width: min(300px, 86vw);
+                max-width: 86vw;
+                height: calc(100vh - 70px);
+                height: calc(100dvh - 70px);
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
                 transition: var(--transition);
                 padding: 40px 0;
+                z-index: 1001;
+                margin: 0;
             }
 
             .nav-menu.active {
@@ -569,8 +628,6 @@
             .hero {
                 flex-direction: column;
                 height: 40vh;
-                /* height: auto; */
-                /* padding: 150px 0 80px; */
             }
 
             .hero .container {
@@ -582,13 +639,11 @@
                 top: 0;
                 left: 0;
                 width: 100%;
+                max-width: 100%;
                 z-index: 1000;
-                padding: 15px 0;
+                padding: 10px 0;
                 background: white;
-                /* black with 60% opacity */
                 backdrop-filter: blur(5px);
-                /* optional: adds a glassy blur effect */
-                z-index: 1000;
                 transition: var(--transition);
             }
 
@@ -596,19 +651,32 @@
                 width: 100%;
                 padding-right: 0;
                 text-align: center;
-                /* margin-bottom: 50px; */
             }
 
             .hero h1 {
                 font-size: 2.5rem;
             }
 
-
-
-
             .about-content,
             .contact-content {
                 grid-template-columns: 1fr;
+            }
+
+            .blog-layout {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                gap: 24px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr !important;
+                max-width: 100%;
+            }
+
+            .blog-section,
+            .blog-main-layout {
+                overflow-x: hidden;
+                max-width: 100%;
             }
 
             .about-text,
@@ -628,6 +696,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -642,7 +714,7 @@
                 text-decoration: none;
                 color: rgb(241, 239, 239);
                 font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
                 position: relative;
                 font-size: 18px;
                 padding: 5px 0;
@@ -654,7 +726,7 @@
             }
 
             .blog-section {
-                padding: 40px;
+                padding: 70px 12px 32px;
             }
         }
 
@@ -680,6 +752,8 @@
             grid-template-columns: 3fr 1.2fr;
             gap: 40px;
             align-items: start;
+            width: 100%;
+            max-width: 100%;
         }
 
         /* Blog Grid (3 per row) */
@@ -687,6 +761,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
+            width: 100%;
+            max-width: 100%;
         }
 
         /* Blog Card Style */
@@ -696,10 +772,76 @@
             border-radius: 12px;
             border: 1px solid #e6e6e6;
             transition: 0.3s ease;
+            min-width: 0;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .blog-post:hover {
             transform: translateY(-4px);
+        }
+
+        @media (max-width: 768px) {
+            .blog-section {
+                padding: 80px 14px 40px !important;
+                overflow-x: hidden;
+                max-width: 100%;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .blog-section > .container {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .blog-layout {
+                grid-template-columns: 1fr !important;
+                gap: 24px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .blog-layout > div {
+                min-width: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr !important;
+                gap: 18px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .blog-post {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .blog-img img {
+                height: 200px;
+            }
+
+            .blog-meta {
+                flex-wrap: wrap;
+                gap: 8px 12px;
+            }
+
+            .read-more {
+                white-space: nowrap;
+                width: auto;
+                display: inline-block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-section {
+                padding: 70px 12px 32px !important;
+            }
         }
 
         /* Blog Image */
@@ -752,10 +894,10 @@
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
-            <div style="display:flex;align-items:center;gap:8px;">
-                <img src="{{ asset('assets/img/item2.png') }}" style="width:40px;height:40px;display:block;"
+            <div class="nav-brand">
+                <img src="{{ asset('assets/img/item2.png') }}" style="width:40px;height:40px;display:block;flex-shrink:0;"
                     alt="Logo" class="logo-image">
-                <a href="#" class="logo" style="margin:0;">Senthil Plastic Containers<span>&nbsp;Private
+                <a href="{{ route('home') }}" class="logo" style="margin:0;">Senthil Plastic Containers<span class="logo-suffix">&nbsp;Private
                         Limited</span></a>
             </div>
             <div class="hamburger" id="hamburger">

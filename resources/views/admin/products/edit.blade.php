@@ -118,7 +118,7 @@
 
                     <div class="col-md-6 col-sm-6 mb-3">
                         <label>Features <span class="text-danger">*</span></label>
-                        <textarea name="features" id="features" class="form-control @error('features') is-invalid @enderror" rows="5" required>{{ old('features', $product->features) }}</textarea>
+                        <textarea name="features" id="features" class="form-control @error('features') is-invalid @enderror" rows="5" placeholder="Enter each feature ending with a full stop (.). Separate features with a period and space." required>{{ old('features', $product->features) }}</textarea>
                         @error('features')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

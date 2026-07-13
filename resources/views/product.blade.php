@@ -42,8 +42,6 @@
             /* Deeper Blue for hover states */
             --secondary: #6610F2;
             /* Violet Accent */
-            --accent: #45aae3;
-            /* Light Blue highlight tone */
 
             /* Backgrounds */
             --light: #F8FAFC;
@@ -85,7 +83,7 @@
         }
 
         body {
-             font-family: "Poppins", sans-serif;
+             font-family: var(--font-body);
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
@@ -97,7 +95,7 @@
         h3,
         h4,
         h5 {
-             font-family: "Poppins", sans-serif;
+             font-family: var(--font-body);
             font-weight: 700;
             line-height: 1.2;
             font-size: 23px;
@@ -144,7 +142,7 @@
         }
 
         .logo {
-                font-family: "Poppins", sans-serif;
+                font-family: var(--font-body);
           
             font-weight: 900;
             color: rgb(19, 16, 16);
@@ -170,7 +168,7 @@
             text-decoration: none;
             color:rgb(7, 5, 5);
             font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
             position: relative;
             font-size: 18px;
             padding: 5px 0;
@@ -570,7 +568,7 @@
         body {
 
             background: #fff;
-       font-family: "Poppins", sans-serif;
+       font-family: var(--font-body);
             font-weight: 400;
             font-style: regular;
             margin: 0;
@@ -696,7 +694,7 @@
             text-decoration: none;
             color:rgb(241, 239, 239);
             font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
             position: relative;
             font-size: 18px;
             padding: 5px 0;
@@ -1750,55 +1748,7 @@
         </div>
         </div>
     </section>
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>spc</h4>
-                    <p>
-                        Premium plastic containers designed for sustainability and
-                        elegance.
-                    </p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                   <ul class="footer-links">
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a  href="{{ url('/') }}#about">About</a></li>
-                        <li><a href="{{ route('products.index') }}">Products</a></li>
-                        <li><a href="{{ url('/') }}#why-us">Why choose us</a></li>
-                        <li><a href="{{ route('blog') }}">Blog</a></li>
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Food Storage</a></li>
-                        <li><a href="#">Cosmetic Containers</a></li>
-                        <li><a href="#">Industrial Solutions</a></li>
-                        <li><a href="#">Custom Designs</a></li>
-                        <li><a href="#">Bulk Orders</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Qr Code</h4>
-
-                    <img class="qrcode" src="{{ asset('assets/img/qrcode.png') }}" alt="Blog 3">
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 spc. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    @include('layouts.footer')
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

@@ -99,12 +99,12 @@ public function index()
     public function showPublic($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
-        return view('show', compact('product'));
+        return view('products.show', compact('product'));
     }
  public function show($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
-        return view('show', compact('product'));
+        return view('products.show', compact('product'));
     }
    public function categoryWise($slug)
 {

@@ -111,7 +111,7 @@
 
       <div class="col-md-6 col-sm-6 mb-3">
         <label>Features <span class="text-danger">*</span></label>
-        <textarea name="features" id="features" class="form-control @error('features') is-invalid @enderror" placeholder="Enter: Product features separated by commas." rows="5" required>{{ old('features') }}</textarea>
+        <textarea name="features" id="features" class="form-control @error('features') is-invalid @enderror" placeholder="Enter each feature ending with a full stop (.). Example: High-Quality HDPE Material – Provides excellent resistance to chemicals. Leak-Proof & Airtight Seal – Ensures safe storage and transport." rows="5" required>{{ old('features') }}</textarea>
         @error('features')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror

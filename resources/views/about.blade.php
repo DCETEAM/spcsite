@@ -87,7 +87,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-body);
   background: #ffffff;
   color: #333;
 }
