@@ -114,5 +114,21 @@
     .customer-testimonials {
         background: transparent !important;
     }
+
+    /* Accent hover / dark from admin theme (filled accent controls) */
+    .hero-btn-primary:hover,
+    .readmore.btn:hover,
+    .spc-btn--accent:hover,
+    .social-links a:hover {
+        background: var(--accent-dark) !important;
+        border-color: var(--accent-dark);
+    }
+
+    .spc-footer-social a:hover,
+    .spc-footer-links a:hover,
+    .spc-footer-legal a:hover {
+        color: var(--spc-accent-dark) !important;
+        border-color: var(--spc-accent-dark);
+    }
 </style>
 @endonce

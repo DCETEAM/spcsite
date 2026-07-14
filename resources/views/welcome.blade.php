@@ -54,9 +54,7 @@
     --card-bg: #1A2A6C;
     /* Slightly lighter navy for cards */
 
-    /* Text Colors */
-    --text-primary: #FFFFFF;
-    /* White text for dark backgrounds */
+    /* Text Colors — --text-primary comes from admin theme (site-theme-vars) */
     --text-secondary: #C9D4F3;
     /* Muted light text */
     --text-dark: #1E1E1E;
@@ -86,6 +84,8 @@
 }
 
 html {
+    /* Fluid base: shrinks on phones, grows on large screens */
+    font-size: clamp(14px, 0.28vw + 13.2px, 18px);
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
 }
@@ -98,7 +98,7 @@ body {
 body {
     font-family: var(--font-body);
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 1.6;
     color: var(--text-muted);
     background-color: transparent;
@@ -111,17 +111,19 @@ section {
     scroll-snap-stop: always;
     scroll-margin-top: var(--header-offset);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 100%;
     min-height: calc(100vh - var(--header-offset));
     min-height: calc(100dvh - var(--header-offset));
-    padding: 20px 0 40px;
+    padding: clamp(16px, 3vh, 40px) 0;
     box-sizing: border-box;
 }
 
 section.hero {
+    align-items: stretch;
+    justify-content: flex-start;
     min-height: 100vh;
     min-height: 100dvh;
     padding: 0;
@@ -161,6 +163,37 @@ h5 {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Large displays (~27" → 35"+) — mirrored in site-fonts for other pages */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1440px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1680px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .container {
+        max-width: 2100px;
+    }
+}
+
+@media (min-width: 3000px) {
+    .container {
+        max-width: 2480px;
+    }
+}
+
+@media (min-width: 3440px) {
+    .container {
+        max-width: 2800px;
+    }
 }
 
 .qrcode {
@@ -230,7 +263,7 @@ header.scrolled {
     color: rgb(21, 18, 18);
     font-weight: 600;
     /* text-transform: uppercase; */
-    font-size: 18px;
+    font-size: clamp(0.88rem, 0.6vw + 0.75rem, 1.125rem);
     position: relative;
     padding: 5px 0;
     transition: var(--transition);
@@ -411,6 +444,36 @@ header.scrolled {
     pointer-events: none;
 }
 
+@media (min-width: 1400px) {
+    .hero .container:not(.hero-container-right) {
+        max-width: 1440px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .hero .container:not(.hero-container-right) {
+        max-width: 1680px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .hero .container:not(.hero-container-right) {
+        max-width: 2100px;
+    }
+}
+
+@media (min-width: 3000px) {
+    .hero .container:not(.hero-container-right) {
+        max-width: 2480px;
+    }
+}
+
+@media (min-width: 3440px) {
+    .hero .container:not(.hero-container-right) {
+        max-width: 2800px;
+    }
+}
+
 .hero-content {
     max-width: 560px;
     width: 100%;
@@ -460,7 +523,7 @@ header.scrolled {
 }
 
 .hero-content h1 {
-    /* font-size: clamp(2rem, 4.5vw, 3.25rem); */
+    font-size: clamp(1.45rem, 2.4vw + 0.85rem, 3.25rem);
     font-weight: 700;
     color: #fff;
     text-align: left;
@@ -522,7 +585,7 @@ header.scrolled {
 }
 
 .hero-btn-primary:hover {
-    background: #2b8ae8;
+    background: var(--accent-dark);
     color: #fff;
     transform: translateY(-2px);
 }
@@ -880,7 +943,7 @@ header.scrolled {
     display: inline-block;
     padding: 12px 24px;
     margin-right: 10px;
-    background: #00a86b;
+    background: var(--accent);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
@@ -888,17 +951,18 @@ header.scrolled {
 }
 
 .btn:hover {
-    background: #008f59;
+    background: var(--accent-dark);
 }
 
 .btn-outline {
     background: transparent;
     border: 2px solid #fff;
+    color: #fff;
 }
 
 .btn-outline:hover {
     background: #fff;
-    color: #00a86b;
+    color: var(--accent);
 }
 
 /* Hero Visual (side image & shape) */
@@ -943,13 +1007,13 @@ header.scrolled {
 
 .section-title {
     font-family: var(--font-body);
-    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+    font-size: clamp(1.1rem, 1.4vw + 0.75rem, 1.75rem);
     font-weight: 600;
     line-height: 1.35;
     letter-spacing: -0.01em;
     text-align: center;
     margin-top: 0;
-    margin-bottom: 24px;
+    margin-bottom: clamp(16px, 2.5vh, 24px);
     position: relative;
     opacity: 0;
     transform: translateY(30px);
@@ -1294,30 +1358,30 @@ header.scrolled {
     }
 
     .hero-content h1 {
-        font-size: 1.5rem;
+        font-size: clamp(1.35rem, 5.5vw, 1.85rem);
         margin-bottom: 12px;
     }
 
     .hero-desc,
     .hero-sub {
-        font-size: 0.85rem;
+        font-size: clamp(0.82rem, 2.8vw, 0.95rem);
     }
 
     .hero-tag {
-        font-size: 0.65rem;
+        font-size: clamp(0.62rem, 2vw, 0.72rem);
     }
 
     .hero-badge-text {
-        font-size: 0.6rem;
+        font-size: clamp(0.58rem, 1.8vw, 0.68rem);
     }
 
     .hero-btn {
         padding: 10px 18px;
-        font-size: 0.75rem;
+        font-size: clamp(0.72rem, 2.4vw, 0.85rem);
     }
 
     .hero-features li {
-        font-size: 0.7rem;
+        font-size: clamp(0.68rem, 2.2vw, 0.78rem);
         padding: 3px 8px;
     }
 
@@ -1653,7 +1717,7 @@ header.scrolled {
 }
 
 .section-header p {
-    font-size: 1rem;
+    font-size: clamp(0.88rem, 0.4vw + 0.8rem, 1.05rem);
     color: #555;
     line-height: 1.6;
 }
@@ -1742,7 +1806,7 @@ header.scrolled {
 }
 
 .product-categories .section-header .section-title {
-    color:#1a2a4f;
+    color: var(--text-primary);
     margin-bottom: 0;
 }
 
@@ -2019,8 +2083,8 @@ header.scrolled {
 /* Mobile (<=768px) */
 @media (max-width: 768px) {
     .section-title {
-        font-size: 1.15rem;
-        margin-bottom: 20px;
+        font-size: clamp(1.05rem, 4.2vw, 1.35rem);
+        margin-bottom: clamp(14px, 2vh, 20px);
     }
 
     .categories-grid {
@@ -2067,11 +2131,13 @@ header.scrolled {
 /* Small Mobile (<=480px) */
 @media (max-width: 480px) {
     .section-title {
-        font-size: 1.05rem;
+        font-size: clamp(1rem, 4.5vw, 1.2rem);
     }
 
-    section {
-        display: block;
+    section:not(.hero):not(.page-end-section) {
+        display: flex;
+        min-height: calc(100dvh - var(--header-offset));
+        justify-content: center;
     }
 
     .customer-testimonials {
@@ -2235,7 +2301,7 @@ header.scrolled {
 }
 
 .btn:hover {
-    background: #008f59;
+    background: var(--accent-dark);
 }
 
 .btn-outline {
@@ -2245,7 +2311,7 @@ header.scrolled {
 }
 
 .btn-outline:hover {
-    background: var(--accent, #00a86b);
+    background: var(--accent-dark);
     color: #fff;
 }
 
@@ -2402,13 +2468,13 @@ header.scrolled {
 }
 
 .why-choose-us .section-title {
-    color: #1a2a4f;
+    color: var(--text-primary);
 }
 
 .facilities-tabs .section-title {
     margin-top: 0;
     margin-bottom: 0;
-    color: var(--hero-navy);
+    color: var(--text-primary);
 }
 
 .facilities-tabs .section-title::after {
@@ -2659,7 +2725,7 @@ header.scrolled {
 .commitments .section-title {
     text-align: center;
     margin-bottom: 32px;
-    color: #222;
+    color: var(--text-primary);
 }
 
 .commitments-grid {
@@ -2730,19 +2796,16 @@ header.scrolled {
     }
 
     .about-text h3 {
-        font-size: 1.3rem;
+        font-size: clamp(1.15rem, 4vw, 1.4rem);
     }
 
-    .section-title {
-        font-size: 1.05rem;
-    }
-
+    .section-title,
     .facilities-tabs .section-title {
-        font-size: 1.05rem;
+        font-size: clamp(1.05rem, 4.2vw, 1.3rem);
     }
 
     .facility-inner h3 {
-        font-size: 1.5rem;
+        font-size: clamp(1.25rem, 5vw, 1.6rem);
     }
 }
 
@@ -3038,7 +3101,7 @@ header.scrolled {
 }
 
 .customer-testimonials .section-title {
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .customer-testimonials .tech-eyebrow {
@@ -3208,8 +3271,8 @@ header.scrolled {
 }
 
 .testimonial-nav:hover {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
 }
 
 .testimonial-dots {
@@ -3236,19 +3299,25 @@ header.scrolled {
 }
 
 @media (max-width: 768px) {
+    /* Keep each section full-screen while snap-scrolling */
     section:not(.hero):not(.page-end-section) {
-        min-height: auto;
-        padding: 24px 0 28px;
+        min-height: calc(100vh - var(--header-offset));
+        min-height: calc(100dvh - var(--header-offset));
+        padding: clamp(14px, 2.5vh, 24px) 0;
+        justify-content: center;
+        align-items: center;
     }
 
     .customer-testimonials {
-        min-height: auto !important;
-        padding: 20px 16px 24px !important;
+        min-height: calc(100vh - var(--header-offset)) !important;
+        min-height: calc(100dvh - var(--header-offset)) !important;
+        padding: clamp(16px, 2.5vh, 24px) 16px !important;
         margin: 0 !important;
+        box-sizing: border-box;
     }
 
     .testimonial-header {
-        margin-bottom: 20px;
+        margin-bottom: clamp(12px, 2vh, 20px);
     }
 
     .testimonial-track .testimonial-card {
@@ -3289,6 +3358,36 @@ header.scrolled {
 .site-footer-compact > .container {
     width: 95%;
     max-width: 1400px;
+}
+
+@media (min-width: 1400px) {
+    .site-footer-compact > .container {
+        max-width: 1440px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .site-footer-compact > .container {
+        max-width: 1680px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .site-footer-compact > .container {
+        max-width: 2100px;
+    }
+}
+
+@media (min-width: 3000px) {
+    .site-footer-compact > .container {
+        max-width: 2480px;
+    }
+}
+
+@media (min-width: 3440px) {
+    .site-footer-compact > .container {
+        max-width: 2800px;
+    }
 }
 
 .footer-content {
@@ -3566,6 +3665,156 @@ header.scrolled {
 
     .hero-tag {
         font-size: 0.72rem;
+    }
+}
+
+/* =========================================================
+   27" and larger — one section = one screen while scrolling
+   ========================================================= */
+@media (min-width: 1920px) {
+    :root {
+        --hero-stats-height: clamp(96px, 9vh, 120px);
+    }
+
+    html {
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+    }
+
+    /* Hero fills exactly one viewport */
+    section.hero,
+    .hero {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
+        max-height: 100vh;
+        max-height: 100dvh;
+        overflow: hidden;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        scroll-margin-top: 0;
+    }
+
+    .hero-slider {
+        height: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        padding-bottom: var(--hero-stats-height);
+    }
+
+    .hero .container:not(.hero-container-right) {
+        padding-top: calc(var(--header-offset) + clamp(16px, 3vh, 40px));
+        padding-bottom: calc(var(--hero-stats-height) + clamp(16px, 2.5vh, 32px));
+    }
+
+    .hero-content {
+        max-width: min(720px, 38vw);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.6rem, 3.4vw, 4rem);
+        margin-bottom: clamp(12px, 1.6vh, 22px);
+    }
+
+    .hero-sub {
+        font-size: clamp(1.05rem, 1.15vw, 1.35rem);
+        margin-bottom: clamp(12px, 1.8vh, 22px);
+    }
+
+    .hero-desc {
+        font-size: clamp(0.95rem, 1vw, 1.15rem);
+        margin-bottom: clamp(14px, 2vh, 24px);
+        max-width: 52ch;
+    }
+
+    .hero-actions {
+        margin-bottom: clamp(16px, 2.5vh, 28px);
+    }
+
+    .hero-btn {
+        padding: clamp(12px, 1.4vh, 16px) clamp(22px, 1.6vw, 28px);
+        font-size: clamp(0.9rem, 0.85vw, 1.05rem);
+    }
+
+    /* Every other section = one screen under the fixed header */
+    section:not(.hero):not(.page-end-section) {
+        height: calc(100vh - var(--header-offset));
+        height: calc(100dvh - var(--header-offset));
+        min-height: calc(100vh - var(--header-offset));
+        min-height: calc(100dvh - var(--header-offset));
+        max-height: calc(100vh - var(--header-offset));
+        max-height: calc(100dvh - var(--header-offset));
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        padding: clamp(16px, 2.5vh, 36px) 0;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        box-sizing: border-box;
+    }
+
+    section:not(.hero):not(.page-end-section) > .container {
+        width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .customer-testimonials {
+        height: calc(100dvh - var(--header-offset)) !important;
+        min-height: calc(100dvh - var(--header-offset)) !important;
+        max-height: calc(100dvh - var(--header-offset)) !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    .page-end-section {
+        min-height: calc(100dvh - var(--header-offset));
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        scroll-snap-stop: normal;
+    }
+
+    .section-title {
+        font-size: clamp(1.45rem, 1.6vw, 2rem);
+        margin-bottom: clamp(14px, 2vh, 24px);
+    }
+}
+
+/* ~32–35"+ — slightly larger type, still one section per screen */
+@media (min-width: 2560px) {
+    .hero-content {
+        max-width: min(840px, 36vw);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(3rem, 3.2vw, 4.5rem);
+    }
+
+    .hero-sub {
+        font-size: clamp(1.15rem, 1.1vw, 1.45rem);
+    }
+
+    .hero-desc {
+        font-size: clamp(1.05rem, 0.95vw, 1.25rem);
+    }
+
+    .section-title {
+        font-size: clamp(1.65rem, 1.5vw, 2.25rem);
+    }
+}
+
+@media (min-width: 3440px) {
+    .hero-content {
+        max-width: min(960px, 32vw);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(3.4rem, 2.8vw, 5rem);
     }
 }
 

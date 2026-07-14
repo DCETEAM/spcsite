@@ -55,9 +55,7 @@
              --card-bg: #1A2A6C;
              /* Slightly lighter navy for cards */
 
-             /* Text Colors */
-             --text-primary: #FFFFFF;
-             /* White text for dark backgrounds */
+             /* Text Colors — --text-primary comes from admin theme (site-theme-vars) */
              --text-secondary: #C9D4F3;
              /* Muted light text */
              --text-dark: #1E1E1E;

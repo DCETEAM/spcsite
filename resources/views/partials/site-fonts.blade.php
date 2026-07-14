@@ -36,4 +36,50 @@
         font-size: 15px;
         text-transform: none !important;
     }
+
+    /*
+     * Large-monitor container widths
+     * (viewport CSS px ≈ common desktop sizes; inches vary with resolution/scaling)
+     * 1400+  → wide laptop / small desktop
+     * 1920+  → ~27" Full HD / scaled
+     * 2560+  → ~27–32" QHD
+     * 3000+  → ~32–34"
+     * 3440+  → ~35" / ultrawide / 4K
+     */
+    @media (min-width: 1400px) {
+        .container {
+            max-width: 1440px !important;
+        }
+    }
+
+    @media (min-width: 1920px) {
+        .container {
+            max-width: 1680px !important;
+        }
+    }
+
+    @media (min-width: 2560px) {
+        .container {
+            max-width: 2100px !important;
+        }
+    }
+
+    @media (min-width: 3000px) {
+        .container {
+            max-width: 2480px !important;
+        }
+    }
+
+    @media (min-width: 3440px) {
+        .container {
+            max-width: 2800px !important;
+        }
+    }
+
+    /* Keep full-bleed hero layouts unconstrained */
+    @media (min-width: 1400px) {
+        .hero .container.hero-container-right {
+            max-width: 100% !important;
+        }
+    }
 </style>
